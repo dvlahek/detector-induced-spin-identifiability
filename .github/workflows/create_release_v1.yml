@@ -1,0 +1,28 @@
+name: Create v1.0.0 publication release
+
+on:
+  push:
+    branches:
+      - release-v1.0.0
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create immutable GitHub release if absent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            echo "v1.0.0 already exists"
+            exit 0
+          fi
+          gh release create v1.0.0 \
+            --target main \
+            --title "v1.0.0 - PRX submission snapshot" \
+            --notes-file RELEASE_NOTES.md
