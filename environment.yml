@@ -1,0 +1,10 @@
+name: detector-spin-identifiability
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - numpy>=2.0,<3
+      - pandas>=2.2,<4
+      - matplotlib>=3.8,<4

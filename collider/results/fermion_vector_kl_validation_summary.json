@@ -1,0 +1,39 @@
+{
+  "benchmark": "matched fermion-vs-W-like-vector antler closure",
+  "reference_events_per_hypothesis": 100000,
+  "target_bins_per_axis": 12,
+  "target": {
+    "bins_per_axis": 12.0,
+    "visible_categories": 1728.0,
+    "reference_events_per_hypothesis": 100000.0,
+    "fermion_acceptance": 0.92758,
+    "vector_acceptance": 0.91766,
+    "raw_full_D_fermion_to_vector": 0.24544915294981873,
+    "raw_full_D_vector_to_fermion": 0.1559913221919423,
+    "raw_full_D_min": 0.1559913221919423,
+    "estimated_bias_at_reference_min": 0.007093667528133424,
+    "bias_corrected_full_D_fermion_to_vector": 0.23682053351447796,
+    "bias_corrected_full_D_vector_to_fermion": 0.1488976546638089,
+    "bias_corrected_full_D_min": 0.1488976546638089,
+    "bias_corrected_D_min_ci025": 0.1447812962754047,
+    "bias_corrected_D_min_ci975": 0.15291247510327222,
+    "BH_necessary_events_point": 10.809021243940995,
+    "BH_necessary_events_conservative": 10.5252230816821
+  },
+  "classifier_crosscheck": {
+    "status": "ok",
+    "method": "5-fold out-of-fold HistGradientBoosting classifier odds with equal class priors",
+    "events_per_class": 91766,
+    "full_D_min_mean": 0.17367031618109494,
+    "full_D_min_sd_across_folds": 0.004000829177984787,
+    "folds": [
+      {"fold":1,"shape_D_fermion_to_vector":0.3260123660139194,"shape_D_vector_to_fermion":0.19313277272351714,"full_D_fermion_to_vector":0.3030790942552457,"full_D_vector_to_fermion":0.1779338123459437,"full_D_min":0.1779338123459437},
+      {"fold":2,"shape_D_fermion_to_vector":0.3446837396307562,"shape_D_vector_to_fermion":0.1925397646681528,"full_D_fermion_to_vector":0.32039828699475115,"full_D_vector_to_fermion":0.1773896325738581,"full_D_min":0.1773896325738581},
+      {"fold":3,"shape_D_fermion_to_vector":0.330654777042995,"shape_D_vector_to_fermion":0.18407155817460846,"full_D_fermion_to_vector":0.3073853018775956,"full_D_vector_to_fermion":0.1696186982029922,"full_D_min":0.1696186982029922},
+      {"fold":4,"shape_D_fermion_to_vector":0.34290248559005876,"shape_D_vector_to_fermion":0.18850685103966133,"full_D_fermion_to_vector":0.318746031371681,"full_D_vector_to_fermion":0.17368878905353657,"full_D_min":0.17368878905353657},
+      {"fold":5,"shape_D_fermion_to_vector":0.3305603296812843,"shape_D_vector_to_fermion":0.18418265654018176,"full_D_fermion_to_vector":0.30729769439382,"full_D_vector_to_fermion":0.16972064872914416,"full_D_min":0.16972064872914416}
+    ],
+    "interpretation": "Approximate binning-independent likelihood-ratio cross-check; not the primary estimator."
+  },
+  "interpretation": "Primary result is the bias-corrected discrete detector KL. The classifier is an approximate independent cross-check. BH values are necessary lower bounds only."
+}

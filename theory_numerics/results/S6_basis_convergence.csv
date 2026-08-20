@@ -1,0 +1,5 @@
+sigma_k_over_m,L,segments,best_gap_approx,classification,best_gap_upper
+0.2,2,3,0.166,unresolved,
+0.2,2,10,0.155,unresolved,
+0.2,6,10,,explicit_overlap,1e-4
+0.2,12,10,,explicit_overlap,1e-4

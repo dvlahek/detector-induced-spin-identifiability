@@ -1,0 +1,12 @@
+{
+  "finite_bandwidth_grid": {
+    "sigma_k_over_m": [0.02,0.05,0.08,0.1,0.15,0.2,0.3,0.4,0.5],
+    "L": [0.25,0.5,1,2,3,4,6,8,12,16,24],
+    "points": 99
+  },
+  "monotone_status_counts": {"guaranteed": 46,"explicit_overlap": 32,"unresolved": 21},
+  "reference_point": {"sigma_k_over_m": 0.1,"L": 2},
+  "reported_certified_scaling": "L*(sigma_k/m)^2 ~ 0.04-0.05",
+  "reported_first_overlap_scaling": "L*(sigma_k/m)^2 ~ 0.24-0.32",
+  "provenance_note": "Publication-facing archived tables reconstructed from the final manuscript and final status-map figure. The exact original heavy optimizer script was not present in the active runtime when this public repository package was assembled."
+}

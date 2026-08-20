@@ -1,0 +1,14 @@
+Main:numberOfEvents = 100000
+Main:timesAllowErrors = 100
+Beams:frameType = 4
+# Beams:LHEF = <path-to-fermion.lhe>
+Beams:setProductionScalesFromLHEF = off
+PartonLevel:ISR = on
+PartonLevel:FSR = on
+HadronLevel:all = on
+Check:event = on
+Random:setSeed = on
+Random:seed = 20260824
+Next:numberShowInfo = 0
+Next:numberShowProcess = 0
+Next:numberShowEvent = 0

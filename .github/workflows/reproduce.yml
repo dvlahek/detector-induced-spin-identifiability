@@ -1,0 +1,58 @@
+name: Reproduce publication checkpoints
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install analysis dependencies
+        run: python -m pip install --quiet -r requirements.txt
+
+      - name: Verify finite-bandwidth archived tables
+        run: |
+          python theory_numerics/verify_publication_tables.py
+          python theory_numerics/plot_status_map.py
+
+      - name: Decode lossless public sufficient statistics
+        run: |
+          python - <<'PY'
+          import base64, gzip
+          from pathlib import Path
+          src = Path('collider/sufficient_statistics_v2.json.gz.b64').read_text().strip()
+          raw = gzip.decompress(base64.b64decode(src))
+          Path('collider/sufficient_statistics_v2_decoded.json').write_bytes(raw)
+          PY
+
+      - name: Reproduce public collider checkpoints
+        run: |
+          python collider/scripts/reproduce_public_statistics.py \
+            --statistics collider/sufficient_statistics_v2_decoded.json \
+            --archived-closure collider/results/fermion_vector_kl_validation_summary.json \
+            --archived-resource collider/results/architecture_kl_summary.csv \
+            --output reproduced_results/public_statistics.json
+
+      - name: Syntax-check full event-level analysis scripts
+        run: |
+          python -m py_compile collider/scripts/validate_fermion_vector_kl.py
+          python -m py_compile collider/scripts/resource_degradation_analysis.py
+
+      - name: Upload reproduced outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: reproduced-publication-checkpoints
+          path: |
+            reproduced_results/
+            theory_numerics/figures/S1_status_map_reproduced.png
+          retention-days: 30

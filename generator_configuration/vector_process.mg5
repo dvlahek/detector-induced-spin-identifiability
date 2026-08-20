@@ -1,0 +1,5 @@
+# The validated private workflow constructs a copied pinned-SM UFO named
+# sm_vector_closure and promotes vm (PDG 14) to an external massive invisible
+# state. The full-model import bypasses the copied restrict_default.dat.
+import model sm_vector_closure-full
+generate e+ e- > w+ w- / z ve ve~, (w+ > mu+ vm), (w- > mu- vm~)
