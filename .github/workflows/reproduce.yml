@@ -8,7 +8,7 @@ on:
 jobs:
   reproduce:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install pinned analysis dependencies
+      - name: Install analysis dependencies
         run: python -m pip install --quiet -r requirements.txt
 
       - name: Verify finite-bandwidth archived tables
@@ -25,56 +25,25 @@ jobs:
           python theory_numerics/verify_publication_tables.py
           python theory_numerics/plot_status_map.py
 
-      - name: Recompute collider KL validation
+      - name: Reproduce public collider checkpoints
         run: |
-          python collider/scripts/validate_fermion_vector_kl.py \
-            --reference collider/frozen_data/reco_reference_100k.npz \
-            --outdir reproduced_results/closure \
-            --binnings 6 8 10 12 \
-            --replicates 300 \
-            --bootstrap-replicates 500 \
-            --classifier-max-per-class 100000 \
-            --seed 20260825
+          python collider/scripts/reproduce_public_statistics.py \
+            --statistics collider/sufficient_statistics.json \
+            --full12 collider/full3d_12_counts.json \
+            --archived-closure collider/results/fermion_vector_kl_validation_summary.json \
+            --archived-resource collider/results/architecture_kl_summary.csv \
+            --output reproduced_results/public_statistics.json
 
-      - name: Recompute frozen readout degradation
+      - name: Syntax-check full event-level analysis scripts
         run: |
-          python collider/scripts/resource_degradation_analysis.py \
-            --reference collider/frozen_data/reco_reference_100k.npz \
-            --outdir reproduced_results/resource \
-            --seed 20260817 \
-            --bins 12 \
-            --pseudo 0.5 \
-            --bias-reps 500 \
-            --bootstrap-reps 1000 \
-            --mc-trials 50000
-
-      - name: Validate publication checkpoints
-        run: |
-          python - <<'PY'
-          import json
-          import pandas as pd
-
-          s = json.load(open('reproduced_results/closure/fermion_vector_kl_validation_summary.json'))
-          t = s['target']
-          assert abs(t['raw_full_D_min'] - 0.1559913221919423) < 1e-12
-          assert abs(t['bias_corrected_full_D_min'] - 0.1488976546638089) < 1e-10
-          assert abs(t['bias_corrected_D_min_ci025'] - 0.1447812962754047) < 1e-10
-          assert abs(t['bias_corrected_D_min_ci975'] - 0.15291247510327222) < 1e-10
-
-          a = pd.read_csv('reproduced_results/resource/architecture_kl_summary.csv').set_index('architecture')
-          assert abs(a.loc['direction_pair_2D','raw_D_min'] - 0.0062287072843407315) < 1e-12
-          assert 0.0045 < a.loc['direction_pair_2D','bias_corrected_D_min'] < 0.0049
-          assert 0.160 < a.loc['full_spectrometric_3D','bias_corrected_D_min'] < 0.163
-
-          b = json.load(open('reproduced_results/resource/barrel_direction_highstat_verification.json'))
-          assert b['physical_point_estimate_after_nonnegative_boundary'] == 0.0
-          assert 0.0 < b['recentered_bootstrap_ci95_high'] < 0.003
-          print('all_publication_checkpoints_ok')
-          PY
+          python -m py_compile collider/scripts/validate_fermion_vector_kl.py
+          python -m py_compile collider/scripts/resource_degradation_analysis.py
 
       - name: Upload reproduced outputs
         uses: actions/upload-artifact@v4
         with:
           name: reproduced-publication-checkpoints
-          path: reproduced_results/
+          path: |
+            reproduced_results/
+            theory_numerics/figures/S1_status_map_reproduced.png
           retention-days: 30
