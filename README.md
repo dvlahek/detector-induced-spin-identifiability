@@ -1,8 +1,12 @@
 # Detector-Induced Identifiability of Fundamental Spin
 
-Public code, numerical outputs, sufficient statistics, and publication-facing reproducibility material for the manuscript **Detector-Induced Identifiability of Fundamental Spin**.
+Public code, processed numerical data, sufficient statistics, and publication-facing provenance for the manuscript **Detector-Induced Identifiability of Fundamental Spin**.
 
-This repository is intentionally separated from the private MadGraph/PYTHIA/Delphes development repository. The private repository was used to produce the validated full-chain benchmark. This public repository contains the final analysis code, exact generator/detector provenance, publication outputs, and histogram sufficient statistics needed to verify the primary collider and detector-readout claims without exposing the development repository.
+This repository is intentionally separated from the private MadGraph/PYTHIA/Delphes development repository. The private repository was used to build and run the validated full-chain benchmark. Everything needed to verify the publication-facing numerical claims is collected here: finite-bandwidth validation code and tables, collider sufficient statistics, validated outputs, detector-readout analysis, exact process definitions, software versions, and reconstruction provenance.
+
+## Version
+
+Current publication snapshot: **v1.0.0**.
 
 ## Main publication checkpoints
 
@@ -37,16 +41,16 @@ The collider readout ablation is a separate detector-architecture study. It is *
 ```text
 theory_numerics/
   results/        finite-bandwidth publication tables
-  figures/        reproduced finite-bandwidth status map
+  figures/        finite-bandwidth status map
   monotone_closure.py
   verify_publication_tables.py
   plot_status_map.py
 
 collider/
-  sufficient_statistics.json
-  full3d_12_counts.json
+  sufficient_statistics_v2.json.gz.b64
   scripts/        publication analysis and public reproducer
   results/        validated numerical outputs
+  figures/        publication-facing collider figures
 
 generator_configuration/
   final process definitions, PYTHIA command files, model metadata,
@@ -61,21 +65,30 @@ Python 3.12 is recommended.
 python -m pip install -r requirements.txt
 python theory_numerics/verify_publication_tables.py
 python theory_numerics/plot_status_map.py
+
+python - <<'PY'
+import base64, gzip
+from pathlib import Path
+src = Path('collider/sufficient_statistics_v2.json.gz.b64').read_text().strip()
+Path('collider/sufficient_statistics_v2_decoded.json').write_bytes(
+    gzip.decompress(base64.b64decode(src))
+)
+PY
+
 python collider/scripts/reproduce_public_statistics.py \
-  --statistics collider/sufficient_statistics.json \
-  --full12 collider/full3d_12_counts.json \
+  --statistics collider/sufficient_statistics_v2_decoded.json \
   --archived-closure collider/results/fermion_vector_kl_validation_summary.json \
   --archived-resource collider/results/architecture_kl_summary.csv \
   --output reproduced_results/public_statistics.json
 ```
 
-The GitHub Actions workflow runs the same checks automatically.
+The GitHub Actions workflow runs the same checks automatically. It verifies the finite-bandwidth `46/32/21` classification, decodes the lossless collider sufficient statistics, recomputes the public collider checkpoints, syntax-checks the complete event-level analysis scripts, and uploads the reproduced outputs.
 
-The public collider reproducer verifies the deterministic raw histogram divergences exactly and performs a fresh finite-sample bias/bootstrap calibration from the public counts. The exact frozen publication values are additionally checked against the archived validated outputs. The out-of-fold classifier cross-check needs event-level observables, so its validated fold results are archived in `collider/results/fermion_vector_kl_validation_summary.json` rather than rerun by the public CI.
+The public collider reproducer verifies deterministic histogram divergences exactly and performs a fresh finite-sample bias/bootstrap calibration from the public counts. Exact frozen publication values are additionally checked against the archived validated outputs. The out-of-fold classifier cross-check needs event-level observables; its validated fold results are archived in `collider/results/fermion_vector_kl_validation_summary.json` rather than recomputed by the public CI.
 
 ## Finite-bandwidth archive
 
-`theory_numerics/results/` contains the publication-facing S1--S7 tables. The final monotone 99-point status classification is explicit and machine-checkable. Because the admissible Lipschitz classes are nested in `L`, an explicit counterexample found at `L0` remains admissible for every `L >= L0` at fixed detector bandwidth. A failed counterexample search is never promoted to a proof of separation.
+`theory_numerics/results/` contains the publication-facing S1-S7 tables. The final monotone 99-point status classification is explicit and machine-checkable. Because the admissible Lipschitz classes are nested in `L`, an explicit counterexample found at `L0` remains admissible for every `L >= L0` at fixed detector bandwidth. A failed counterexample search is never promoted to a proof of separation.
 
 ## Generator and detector provenance
 
@@ -94,4 +107,4 @@ The exact final process definitions and PYTHIA command files are in `generator_c
 
 ## Citation
 
-See `CITATION.cff`. A versioned archival DOI can be added to the manuscript Data Availability Statement after the submission release is archived.
+See `CITATION.cff`. The versioned GitHub Release `v1.0.0` is the publication snapshot; no external DOI archive is required for the manuscript's reproducibility statement.
