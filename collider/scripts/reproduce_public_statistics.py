@@ -2,9 +2,9 @@
 """Reproduce public collider checkpoints from histogram sufficient statistics.
 
 The event-level MadGraph/PYTHIA/Delphes development chain is intentionally not
-part of this public repository.  The archived histogram counts are sufficient
-to reproduce the primary discrete KL diagnostic, the readout-ablation raw KLs,
-and independent finite-sample bias/bootstrap calibrations.
+part of this public repository. The archived histogram counts are sufficient
+to reproduce the primary discrete KL diagnostic, readout-ablation raw KLs, and
+independent finite-sample bias/bootstrap calibrations.
 
 The out-of-fold classifier cross-check requires event-level observables and is
 therefore archived as a validated output rather than recomputed here.
@@ -16,6 +16,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 
 def kl(p, q):
@@ -106,26 +107,24 @@ def fresh_shape_calibration(cf, cv, nf, nv, seed, reps=500, boot_reps=1000):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--statistics", type=Path, required=True)
+    ap.add_argument("--full12", type=Path, required=True)
     ap.add_argument("--archived-closure", type=Path, required=True)
     ap.add_argument("--archived-resource", type=Path, required=True)
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
 
     d = json.loads(args.statistics.read_text())
+    full = json.loads(args.full12.read_text())
     nf = int(d["generated"]["fermion"])
     nv = int(d["generated"]["vector"])
 
-    full = d["histograms"]["full_spectrometric_3D"]
     cf = np.asarray(full["fermion_counts"], np.int64)
     cv = np.asarray(full["vector_counts"], np.int64)
     raw, bias, corr, lo, hi = fresh_full_calibration(
         cf, cv, nf, nv, seed=20260825, reps=300, boot_reps=500
     )
 
-    # Deterministic raw statistic must reproduce exactly from the public counts.
     assert abs(raw[2] - 0.1559913221919423) < 1e-12
-    # A fresh Monte Carlo calibration need not use the original consumed RNG
-    # stream, but it must reproduce the finite-N bias scale and positive gap.
     assert 0.005 < bias[2] < 0.0095
     assert 0.145 < corr[2] < 0.153
     assert lo[2] > 0.135
@@ -138,7 +137,7 @@ def main():
     }
     resource = {}
     for i, name in enumerate(expected_raw):
-        h = d["histograms"][name]
+        h = full if name == "full_spectrometric_3D" else d["histograms"][name]
         cfi = np.asarray(h["fermion_counts"], np.int64)
         cvi = np.asarray(h["vector_counts"], np.int64)
         nfi = int(h["fermion_accepted"])
@@ -171,14 +170,12 @@ def main():
     assert abs(bc[2]) < 2.5e-4
     assert bu[2] < 0.003
 
-    # Verify that the manuscript archive itself carries the exact frozen values.
     archived_closure = json.loads(args.archived_closure.read_text())
     target = archived_closure["target"]
     assert abs(target["bias_corrected_full_D_min"] - 0.1488976546638089) < 1e-15
     assert abs(target["bias_corrected_D_min_ci025"] - 0.1447812962754047) < 1e-15
     assert abs(target["bias_corrected_D_min_ci975"] - 0.15291247510327222) < 1e-15
 
-    import pandas as pd
     archived_resource = pd.read_csv(args.archived_resource).set_index("architecture")
     assert abs(archived_resource.loc["direction_pair_2D", "bias_corrected_D_min"] - 0.004677054428747011) < 1e-15
     assert abs(archived_resource.loc["full_spectrometric_3D", "bias_corrected_D_min"] - 0.16128791447730945) < 1e-15
@@ -199,7 +196,7 @@ def main():
             "fresh_corrected_D_min": float(bc[2]),
             "fresh_ci95": [float(bl[2]), float(bu[2])],
         },
-        "note": "Fresh Monte Carlo calibration uses the public sufficient statistics. Exact archived publication values are independently checked against the frozen output tables.",
+        "note": "Fresh Monte Carlo calibration uses public sufficient statistics. Exact archived publication values are independently checked against frozen output tables.",
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2))
