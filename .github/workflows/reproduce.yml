@@ -25,21 +25,20 @@ jobs:
           python theory_numerics/verify_publication_tables.py
           python theory_numerics/plot_status_map.py
 
-      - name: Decode lossless 12^3 closure counts
+      - name: Decode lossless public sufficient statistics
         run: |
           python - <<'PY'
           import base64, gzip
           from pathlib import Path
-          src = Path('collider/full3d_12_counts.json.gz.b64').read_text().strip()
+          src = Path('collider/sufficient_statistics_v2.json.gz.b64').read_text().strip()
           raw = gzip.decompress(base64.b64decode(src))
-          Path('collider/full3d_12_counts_decoded.json').write_bytes(raw)
+          Path('collider/sufficient_statistics_v2_decoded.json').write_bytes(raw)
           PY
 
       - name: Reproduce public collider checkpoints
         run: |
           python collider/scripts/reproduce_public_statistics.py \
-            --statistics collider/sufficient_statistics.json \
-            --full12 collider/full3d_12_counts_decoded.json \
+            --statistics collider/sufficient_statistics_v2_decoded.json \
             --archived-closure collider/results/fermion_vector_kl_validation_summary.json \
             --archived-resource collider/results/architecture_kl_summary.csv \
             --output reproduced_results/public_statistics.json
