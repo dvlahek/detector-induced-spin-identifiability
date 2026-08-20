@@ -9,6 +9,7 @@ from matplotlib.colors import ListedColormap, BoundaryNorm
 ROOT = Path(__file__).resolve().parent
 inp = ROOT / "results" / "S1_slope_bandwidth_certificates_monotone.csv"
 out = ROOT / "figures" / "S1_status_map_reproduced.png"
+out.parent.mkdir(parents=True, exist_ok=True)
 
 df = pd.read_csv(inp)
 sigmas = [0.02,0.05,0.08,0.10,0.15,0.20,0.30,0.40,0.50]
