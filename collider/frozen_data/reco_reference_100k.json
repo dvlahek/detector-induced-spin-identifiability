@@ -1,0 +1,12 @@
+{
+  "sqrt_s_GeV": 500.0,
+  "fermion_generated": 100000,
+  "vector_generated": 100000,
+  "fermion_accepted": 92758,
+  "vector_accepted": 91766,
+  "fermion_acceptance": 0.92758,
+  "vector_acceptance": 0.91766,
+  "observables": ["abs_cos_theta_mu_minus","abs_cos_theta_mu_plus","E_mumu_over_sqrt_s"],
+  "cuts": {"muon_pt_min_GeV": 10.0,"muon_abs_eta_max": 2.5},
+  "note": "Accepted reconstructed observables only; lost-event counts are generated minus accepted."
+}

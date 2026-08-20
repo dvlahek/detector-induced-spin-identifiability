@@ -1,0 +1,14 @@
+{
+  "architecture": "direction_pair_2D",
+  "eta_max": 0.8,
+  "fermion_events_in_acceptance": 43746,
+  "vector_events_in_acceptance": 39555,
+  "raw_D_min": 0.002288681067189543,
+  "estimated_bias_min": 0.0022898602301716225,
+  "bias_corrected_D_min_unconstrained": -1.179162982079679e-06,
+  "physical_point_estimate_after_nonnegative_boundary": 0.0,
+  "recentered_bootstrap_ci95_low_unconstrained": -0.0010078198058640951,
+  "recentered_bootstrap_ci95_high": 0.0011454259594123766,
+  "bias_calibration_replicates": 2000,
+  "bootstrap_replicates": 5000
+}
