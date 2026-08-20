@@ -2,9 +2,9 @@
 """Reproduce public collider checkpoints from histogram sufficient statistics.
 
 The event-level MadGraph/PYTHIA/Delphes development chain is intentionally not
-part of this public repository. The archived histogram counts are sufficient
-to reproduce the primary discrete KL diagnostic, readout-ablation raw KLs, and
-independent finite-sample bias/bootstrap calibrations.
+part of this public repository. The losslessly archived histogram counts are
+sufficient to reproduce the primary discrete KL diagnostic, readout-ablation
+raw KLs, and independent finite-sample bias/bootstrap calibrations.
 
 The out-of-fold classifier cross-check requires event-level observables and is
 therefore archived as a validated output rather than recomputed here.
@@ -107,19 +107,19 @@ def fresh_shape_calibration(cf, cv, nf, nv, seed, reps=500, boot_reps=1000):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--statistics", type=Path, required=True)
-    ap.add_argument("--full12", type=Path, required=True)
     ap.add_argument("--archived-closure", type=Path, required=True)
     ap.add_argument("--archived-resource", type=Path, required=True)
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
 
     d = json.loads(args.statistics.read_text())
-    full = json.loads(args.full12.read_text())
     nf = int(d["generated"]["fermion"])
     nv = int(d["generated"]["vector"])
 
+    full = d["full3d"]["12"]
     cf = np.asarray(full["fermion_counts"], np.int64)
     cv = np.asarray(full["vector_counts"], np.int64)
+    assert len(cf) == len(cv) == 12**3
     raw, bias, corr, lo, hi = fresh_full_calibration(
         cf, cv, nf, nv, seed=20260825, reps=300, boot_reps=500
     )
@@ -137,9 +137,10 @@ def main():
     }
     resource = {}
     for i, name in enumerate(expected_raw):
-        h = full if name == "full_spectrometric_3D" else d["histograms"][name]
+        h = d["architectures"][name]
         cfi = np.asarray(h["fermion_counts"], np.int64)
         cvi = np.asarray(h["vector_counts"], np.int64)
+        assert len(cfi) == len(cvi)
         nfi = int(h["fermion_accepted"])
         nvi = int(h["vector_accepted"])
         r, b, c, l, u = fresh_shape_calibration(
@@ -157,9 +158,12 @@ def main():
     assert 0.158 < resource["full_spectrometric_3D"]["fresh_corrected_D_min"] < 0.164
 
     barrel = d["direction_eta_scan"]["0.8"]
+    bcf = np.asarray(barrel["fermion_counts"], np.int64)
+    bcv = np.asarray(barrel["vector_counts"], np.int64)
+    assert len(bcf) == len(bcv) == 12**2
     br, bb, bc, bl, bu = fresh_shape_calibration(
-        np.asarray(barrel["fermion_counts"], np.int64),
-        np.asarray(barrel["vector_counts"], np.int64),
+        bcf,
+        bcv,
         int(barrel["fermion_accepted"]),
         int(barrel["vector_accepted"]),
         seed=20260817 + 8800,
@@ -196,7 +200,7 @@ def main():
             "fresh_corrected_D_min": float(bc[2]),
             "fresh_ci95": [float(bl[2]), float(bu[2])],
         },
-        "note": "Fresh Monte Carlo calibration uses public sufficient statistics. Exact archived publication values are independently checked against frozen output tables.",
+        "note": "Fresh Monte Carlo calibration uses public lossless sufficient statistics. Exact archived publication values are independently checked against frozen output tables.",
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2))
