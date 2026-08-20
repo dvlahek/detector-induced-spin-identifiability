@@ -1,0 +1,4 @@
+resource,reported_gap,note
+magnetic_only,<1e-21,"adversarial gap at sigma=0.10, L=2"
+charge_only,<5e-9,"adversarial gap at sigma=0.10, L=2"
+joint,0.404,"two-channel unit-covariance gap at sigma=0.10, L=2"
