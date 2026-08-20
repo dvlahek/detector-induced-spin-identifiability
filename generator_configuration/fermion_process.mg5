@@ -1,0 +1,2 @@
+import model MSSM_SLHA2
+generate e+ e- > x1+ x1- / z sve sve~, (x1+ > mu+ svm), (x1- > mu- svm~)

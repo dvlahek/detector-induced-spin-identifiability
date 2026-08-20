@@ -1,0 +1,26 @@
+{
+  "study_scope": "collider-level readout ablation; not the primitive magnetic/charge theorem resources",
+  "conditioning": "shape-only at fixed accepted event count N; total rate and accepted yield are nuisance parameters",
+  "baseline_acceptance": "pT_mu>10 GeV, |eta_mu|<2.5",
+  "bins_per_retained_coordinate": 12,
+  "jeffreys_pseudocount": 0.5,
+  "bias_replicates": 500,
+  "bootstrap_replicates": 1000,
+  "likelihood_ratio_trials_per_hypothesis": 50000,
+  "pinsker_convention": "uses upper 95% recentered bootstrap limit of bias-corrected minimum directional KL",
+  "seed": 20260817,
+  "barrel_highstat": {
+    "architecture": "direction_pair_2D",
+    "eta_max": 0.8,
+    "fermion_events_in_acceptance": 43746,
+    "vector_events_in_acceptance": 39555,
+    "raw_D_min": 0.002288681067189543,
+    "estimated_bias_min": 0.0022898602301716225,
+    "bias_corrected_D_min_unconstrained": -1.179162982079679e-06,
+    "physical_point_estimate_after_nonnegative_boundary": 0.0,
+    "recentered_bootstrap_ci95_low_unconstrained": -0.0010078198058640951,
+    "recentered_bootstrap_ci95_high": 0.0011454259594123766,
+    "bias_calibration_replicates": 2000,
+    "bootstrap_replicates": 5000
+  }
+}

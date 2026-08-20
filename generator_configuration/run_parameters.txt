@@ -1,0 +1,9 @@
+events_per_hypothesis=100000
+sqrt_s_GeV=500
+parent_mass_GeV=200
+invisible_mass_GeV=100
+generator_seed=20260824
+validation_seed=20260825
+production=photon_s_channel_only
+vector_vertex=pinned_SM_gamma_W_W_Yang_Mills
+primary_estimator=bias_calibrated_discrete_KL_3D_plus_lost

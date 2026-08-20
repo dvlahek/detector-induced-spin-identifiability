@@ -1,0 +1,18 @@
+{
+  "mg5_commit": "be1e7b273ca961c335ff2ee6da3688b5049b069e",
+  "fermion_model": "MSSM_SLHA2",
+  "vector_model": "sm_vector_closure",
+  "fermion_process": "generate e+ e- > x1+ x1- / z sve sve~, (x1+ > mu+ svm), (x1- > mu- svm~)",
+  "vector_process": "generate e+ e- > w+ w- / z ve ve~, (w+ > mu+ vm), (w- > mu- vm~)",
+  "production_restriction": "photon s-channel only; Z and t-channel exchange excluded",
+  "vector_em_vertex": "copied pinned-SM gamma-W-W Yang-Mills vertex",
+  "matched_invisible_mass_GeV": 100.0,
+  "events": 100000,
+  "seed": 20260824,
+  "sqrt_s_GeV": 500.0,
+  "parent_mass_GeV": 200.0,
+  "invisible_mass_GeV": 100.0,
+  "vector_auxiliary_MZ_GeV": 300.0,
+  "vector_auxiliary_Gf_GeVminus2": 7.544120778283774e-07,
+  "vector_note": "W-like benchmark only. MZ/GF are auxiliary inputs chosen so the pinned SM tree-level internal MW equals the matched parent mass. Z and neutrino t-channel production are excluded, so only the SM photon-vector vertex controls production."
+}
