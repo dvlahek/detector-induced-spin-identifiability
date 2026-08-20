@@ -20,6 +20,21 @@ jobs:
       - name: Install analysis dependencies
         run: python -m pip install --quiet -r requirements.txt
 
+      - name: Verify static nuisance-domain sensitivity
+        run: |
+          python theory_numerics/nuisance_domain_sensitivity.py
+          python - <<'PY'
+          import pandas as pd
+          p = 'theory_numerics/results/nuisance_domain_sensitivity.csv'
+          d = pd.read_csv(p).set_index('K')
+          assert int(d.loc['{2}', 'tau_protected']) == 1
+          assert int(d.loc['[0.5,3.5]', 'tau_protected']) == 1
+          assert int(d.loc['[0,4]', 'tau_protected']) == 2
+          assert int(d.loc['[-4,4]', 'tau_protected']) == 2
+          assert abs(float(d.loc['[0,4]', 'combined_margin']) - 0.5378414486981995) < 1e-12
+          print('nuisance_domain_checkpoints_ok')
+          PY
+
       - name: Verify finite-bandwidth archived tables
         run: |
           python theory_numerics/verify_publication_tables.py
@@ -55,4 +70,6 @@ jobs:
           path: |
             reproduced_results/
             theory_numerics/figures/S1_status_map_reproduced.png
+            theory_numerics/figures/nuisance_domain_sensitivity.png
+            theory_numerics/results/nuisance_domain_sensitivity.csv
           retention-days: 30
