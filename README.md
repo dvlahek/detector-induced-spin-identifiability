@@ -2,13 +2,22 @@
 
 Public code, processed numerical data, sufficient statistics, and publication-facing provenance for the manuscript **Detector-Induced Identifiability of Fundamental Spin**.
 
-This repository is intentionally separated from the private MadGraph/PYTHIA/Delphes development repository. The private repository was used to build and run the validated full-chain benchmark. Everything needed to verify the publication-facing numerical claims is collected here: finite-bandwidth validation code and tables, collider sufficient statistics, validated outputs, detector-readout analysis, exact process definitions, software versions, and reconstruction provenance.
+This repository is intentionally separated from the private MadGraph/PYTHIA/Delphes development repository. The private repository was used to build and run the validated full-chain benchmark. Everything needed to verify the publication-facing numerical claims is collected here: static nuisance-domain sensitivity, finite-bandwidth validation code and tables, collider sufficient statistics, validated outputs, detector-readout analysis, exact process definitions, software versions, and reconstruction provenance.
 
 ## Version
 
-Current publication snapshot: **v1.0.0**.
+Current publication snapshot: **v1.1.0**.
 
 ## Main publication checkpoints
+
+Static nuisance-domain sensitivity for the protected spin-1 fingerprint `(W_M,W_C)=(g^2,1-g)`:
+
+- magnetic-only uniform separation fails iff `0 in K`;
+- charge-only uniform separation fails iff `1 in K`;
+- the combined protected response remains separated for every nonempty compact `K`;
+- the minimum primitive support is `tau(K)=1` if at least one blind point is excluded and `tau(K)=2` only when both `0` and `1` are admitted;
+- for `K_R=[2-R,2+R]`, the transition to two required primitive resources occurs exactly at `R=2`;
+- global Euclidean closest approach: `g*=0.5897545123`, `Delta_MC,min=0.5378414487`.
 
 Finite-bandwidth protected-sector scan:
 
@@ -34,14 +43,15 @@ Detector-readout ablation at the same geometric acceptance:
 - one direction: about `0.00116`;
 - energy only: about `0.1527`.
 
-The collider readout ablation is a separate detector-architecture study. It is **not** identified with the primitive magnetic and charge-sensitive resources in the analytic protected-sector theorem.
+The collider readout ablation is a separate detector-architecture study. It is **not** identified with the primitive magnetic and charge-sensitive resources in the analytic protected-sector criterion.
 
 ## Repository layout
 
 ```text
 theory_numerics/
-  results/        finite-bandwidth publication tables
-  figures/        finite-bandwidth status map
+  results/        finite-bandwidth tables and nuisance-domain sensitivity CSV
+  figures/        reproduced status and nuisance-sensitivity figures
+  nuisance_domain_sensitivity.py
   monotone_closure.py
   verify_publication_tables.py
   plot_status_map.py
@@ -63,6 +73,7 @@ Python 3.12 is recommended.
 
 ```bash
 python -m pip install -r requirements.txt
+python theory_numerics/nuisance_domain_sensitivity.py
 python theory_numerics/verify_publication_tables.py
 python theory_numerics/plot_status_map.py
 
@@ -82,13 +93,13 @@ python collider/scripts/reproduce_public_statistics.py \
   --output reproduced_results/public_statistics.json
 ```
 
-The GitHub Actions workflow runs the same checks automatically. It verifies the finite-bandwidth `46/32/21` classification, decodes the lossless collider sufficient statistics, recomputes the public collider checkpoints, syntax-checks the complete event-level analysis scripts, and uploads the reproduced outputs.
+The GitHub Actions workflow runs the same checks automatically. It verifies the nuisance-domain criterion and representative interval checkpoints, verifies the finite-bandwidth `46/32/21` classification, decodes the lossless collider sufficient statistics, recomputes the public collider checkpoints, syntax-checks the complete event-level analysis scripts, and uploads the reproduced outputs.
 
 The public collider reproducer verifies deterministic histogram divergences exactly and performs a fresh finite-sample bias/bootstrap calibration from the public counts. Exact frozen publication values are additionally checked against the archived validated outputs. The out-of-fold classifier cross-check needs event-level observables; its validated fold results are archived in `collider/results/fermion_vector_kl_validation_summary.json` rather than recomputed by the public CI.
 
 ## Finite-bandwidth archive
 
-`theory_numerics/results/` contains the publication-facing S1-S7 tables. The final monotone 99-point status classification is explicit and machine-checkable. Because the admissible Lipschitz classes are nested in `L`, an explicit counterexample found at `L0` remains admissible for every `L >= L0` at fixed detector bandwidth. A failed counterexample search is never promoted to a proof of separation.
+`theory_numerics/results/` contains the publication-facing S1-S7 tables together with `nuisance_domain_sensitivity.csv`. The final monotone 99-point status classification is explicit and machine-checkable. Because the admissible Lipschitz classes are nested in `L`, an explicit counterexample found at `L0` remains admissible for every `L >= L0` at fixed detector bandwidth. A failed counterexample search is never promoted to a proof of separation.
 
 ## Generator and detector provenance
 
@@ -107,4 +118,4 @@ The exact final process definitions and PYTHIA command files are in `generator_c
 
 ## Citation
 
-See `CITATION.cff`. The versioned GitHub Release `v1.0.0` is the publication snapshot; no external DOI archive is required for the manuscript's reproducibility statement.
+See `CITATION.cff`. The versioned GitHub Release `v1.1.0` is the revised publication snapshot; no external DOI archive is required for the manuscript's reproducibility statement.
