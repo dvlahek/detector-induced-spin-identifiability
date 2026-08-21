@@ -1,0 +1,9 @@
+{
+  "sigma_k_over_m": 0.15,
+  "slope_bound_L": 8.0,
+  "max_abs_dG1_dx": 7.872652259377042,
+  "max_abs_dGQ_dx": 7.872652259377042,
+  "max_abs_dGC_dx": 7.927784804388963,
+  "sachs_lipschitz_admissible": true,
+  "overlap_root_abs_residual": 1.4849232954361469e-15
+}

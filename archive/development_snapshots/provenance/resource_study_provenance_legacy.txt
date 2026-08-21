@@ -1,4 +1,5 @@
-source_artifact=fermion-vector-100k-validated
+source_workflow_run=31995375143
+source_artifact=prx-fermion-vector-100k-validated
 source_events_per_hypothesis=100000
 analysis_commit=cbe53a8cfeb3ec22086a43baf8430b2297e739cf
 resource_seed=20260817

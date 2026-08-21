@@ -1,14 +1,23 @@
-# v1.0.0 - PRX submission snapshot
+# Publication 1.0
 
-Publication-facing reproducibility snapshot for **Detector-Induced Identifiability of Fundamental Spin**.
+Clean PRD publication baseline for **Whole-Class Certificates for
+Detector-Restricted Identifiability of Elementary-Particle Spin**.
 
-This release contains:
+This release:
 
-- the finite-bandwidth validation tables and explicit monotone-closure verifier for the 99-point `(sigma_k/m, L)` scan;
-- the archived `46 certified / 32 explicit overlap / 21 unresolved` classification;
-- collider sufficient statistics and validated outputs for the matched 100k-event spin-1/2 versus spin-1 closure;
-- the detector-readout degradation analysis and its finite-event error calculations;
-- exact final process definitions and MadGraph/PYTHIA/Delphes provenance needed to document the frozen benchmark;
-- CI that reproduces the publication checkpoints from the public archive.
+- defines and numerically validates the detector measures;
+- reports the `64 certified / 33 explicit overlap / 2 unresolved` map;
+- gives the full 99-point whole-class distance lower-bound table;
+- encloses the reference distance as
+  `0.4042553595 <= d_class <= 0.4042657175`;
+- verifies that the `(0.15,8)` overlap witness satisfies both covariant and
+  Sachs slope bounds;
+- preserves the finite-basis QCQP/SOS audits and both 1024-start unresolved
+  searches;
+- retains the lossless collider sufficient statistics and exact production
+  provenance;
+- archives earlier development workflows, release notes, scripts, and results
+  under `archive/development_snapshots/` while preserving historical tags.
 
-The private MadGraph/PYTHIA/Delphes development repository is intentionally not part of this release. It is not required to reproduce the publication-facing numerical checkpoints.
+The canonical tag is `publication-v1.0.0` because the repository already has a
+historical development tag named `v1.0.0`.

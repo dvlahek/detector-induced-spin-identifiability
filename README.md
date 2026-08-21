@@ -1,95 +1,65 @@
 # Whole-Class Certificates for Detector-Restricted Identifiability of Elementary-Particle Spin
 
-Public code, processed numerical data, sufficient statistics, and provenance
-for the PRD-focused manuscript **Whole-Class Certificates for
-Detector-Restricted Identifiability of Elementary-Particle Spin**.
+Clean publication 1.0 reproducibility repository for the PRD-focused manuscript.
+It contains the active whole-class calculations, machine-readable certificates,
+collider sufficient statistics, and generator/reconstruction provenance.
 
-The public reproduction path is deliberately separated from the private
-MadGraph/PYTHIA/Delphes development repository. Everything needed to verify the
-publication-facing numerical claims is collected here: whole-class and
-finite-basis certificates, finite-bandwidth tables, collider sufficient
-statistics, validated detector-readout outputs, exact process definitions,
-software versions, and reconstruction provenance.
+## Publication version
 
-## Version
+Current baseline: **publication 1.0** (`VERSION = 1.0.0`).
 
-Current fixed publication snapshot: **v1.5.0**.
+Fixed release:
+https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.0
 
-Permanent release URL:
-https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.5.0
+Historical tags `v1.0.0`, `v1.1.0`, `v1.4.0`, and `v1.5.0` remain intact.
+Their superseded active files have been moved to
+`archive/development_snapshots/` so the repository root exposes one current
+publication path without erasing development history.
 
-## Main publication checkpoints
+## Main checkpoints
 
-Static nuisance-domain sensitivity for the protected spin-1 fingerprint
-`(W_M,W_C)=(g^2,1-g)`:
+- 99 finite-bandwidth points: 64 whole-class certificates, 33 explicit
+  overlaps, and 2 unresolved points.
+- Magnetic positivity forces every explicit protected-origin overlap to the
+  broad-class blind value `g_M=0`; none is an overlap at the natural `g_M=2`
+  vector point.
+- At `(sigma_k/m,L)=(0.10,2)`, the unit-covariance class distance is tightly
+  enclosed by `0.4042553595 <= d_class <= 0.4042657175`.
+- The rigorous lower distance bound is tabulated on all 99 points and is
+  positive at exactly the same 64 certified points.
+- The explicit 32-segment overlap at `(0.15,8)` is admissible in both the
+  covariant and Sachs slope conventions: `max|G_C'|=7.927785 < 8`.
+- The same 1024-start, 32-segment search remains positive at `(0.08,24)` and
+  `(0.10,16)`; these remain search outcomes, not proofs.
+- The matched detector-level reference gives bias-corrected minimum KL
+  `0.1488976547`, with bootstrap interval `[0.1447812963,0.1529124751]`.
 
-- magnetic-only uniform separation fails iff `0 in K`;
-- charge-only uniform separation fails iff `1 in K`;
-- the combined protected response remains separated for every nonempty compact
-  `K`;
-- the minimum primitive support is `tau(K)=1` if at least one blind point is
-  excluded and `tau(K)=2` only when both `0` and `1` are admitted;
-- for `K_R=[2-R,2+R]`, the transition to two required primitive resources is
-  exactly at `R=2`;
-- global Euclidean closest approach: `g*=0.5897545123`,
-  `Delta_MC,min=0.5378414487`.
+The collider calculation is a fixed-energy detector-readout closure, not a
+gauge-complete vector theory and not a test of the analytic theorem.
 
-Finite-bandwidth protected-sector scan:
-
-- 99 `(sigma_k/m, L)` points;
-- 64 whole-class certificates;
-- 33 explicit-overlap points;
-- every explicit origin overlap is forced to the broad-class blind value
-  `g_M=0`; this is not an overlap at the natural `g_M=2` vector point;
-- 2 unresolved points: `(0.08,24)` and `(0.10,16)`;
-- the positivity reduction plus pointwise charge envelope certifies 18 of the
-  21 points unresolved by the earlier componentwise test;
-- a 32-segment profile explicitly establishes overlap at `(0.15,8)`, where the
-  eight-segment global QCQP minimum remains positive.
-- the explicit Gaussian charge measure gives `<x>_C=0.1034492843` at
-  `sigma_k/m=0.15`;
-- the derived whole-class unit-covariance distance bound at `(0.10,2)` is
-  `0.4042553595`;
-- imposing the same numerical slope bound in Sachs variables gives a reference
-  distance `0.4037104574` and 63 rather than 64 sufficient origin exclusions.
-
-Matched detector-level fermion-versus-vector closure:
-
-- fermion acceptance: `0.92758`;
-- vector acceptance: `0.91766`;
-- 12^3 + lost raw minimum KL: `0.1559913222`;
-- estimated finite-N plug-in bias: `0.0070936675`;
-- bias-corrected minimum KL: `0.1488976547`;
-- recentered-bootstrap 95% interval: `[0.1447812963, 0.1529124751]`;
-- classifier cross-check: `0.1736703 +/- 0.0040008`.
-
-The collider calculation is a fixed-energy detector-readout closure test, not
-a gauge-complete vector model and not a test of the analytic protected-sector
-theorem. Its readout ablation is also not identified with the primitive
-magnetic and charge-sensitive resources used in that theorem.
-
-## Repository layout
+## Active layout
 
 ```text
 theory_numerics/
-  finite_bandwidth_prd_v1_5.py
-  detector_measures_distance_v1_5.py
-  verify_publication_tables_v1_5.py
-  results/prd_v1_5/   machine-readable v1.5 certificates and searches
+  finite_bandwidth.py
+  detector_measures_distance.py
+  verify_publication_tables.py
   nuisance_domain_sensitivity.py
-  legacy v1.1 verification and plotting scripts
+  results/publication_v1_0/
 
 collider/
   sufficient_statistics_v2.json.gz.b64
-  scripts/              public reproducer and validation analyses
-  results/              validated numerical outputs
+  scripts/
+  results/
 
 generator_configuration/
-  exact process definitions, PYTHIA command files, model metadata,
-  software versions, detector-card provenance, and workflow provenance
+  exact process cards, software versions, seeds, and provenance
+
+archive/development_snapshots/
+  legacy workflows, release notes, scripts, and versioned numerical outputs
 ```
 
-## Reproduce the PRD v1.5 checkpoints
+## Reproduce publication 1.0
 
 Python 3.12 is recommended.
 
@@ -97,64 +67,26 @@ Python 3.12 is recommended.
 python -m pip install -r requirements.txt
 
 python theory_numerics/nuisance_domain_sensitivity.py
-python theory_numerics/finite_bandwidth_prd_v1_5.py \
+
+python theory_numerics/finite_bandwidth.py \
   --old-status theory_numerics/results/S1_slope_bandwidth_certificates_monotone_v1_1.csv \
-  --outdir reproduced_results/prd_v1_5 \
+  --outdir reproduced_results/publication_v1_0 \
   --unresolved-overlap-starts 1024
 
-python theory_numerics/detector_measures_distance_v1_5.py \
-  --outdir reproduced_results/prd_v1_5 \
+python theory_numerics/detector_measures_distance.py \
+  --outdir reproduced_results/publication_v1_0 \
   --figdir reproduced_results/figures
 
-python theory_numerics/verify_publication_tables_v1_5.py
-
-python - <<'PY'
-import base64, gzip
-from pathlib import Path
-src = Path('collider/sufficient_statistics_v2.json.gz.b64').read_text().strip()
-Path('collider/sufficient_statistics_v2_decoded.json').write_bytes(
-    gzip.decompress(base64.b64decode(src))
-)
-PY
-
-python collider/scripts/reproduce_public_statistics.py \
-  --statistics collider/sufficient_statistics_v2_decoded.json \
-  --archived-closure collider/results/fermion_vector_kl_validation_summary.json \
-  --archived-resource collider/results/architecture_kl_summary.csv \
-  --output reproduced_results/public_statistics.json
+python theory_numerics/verify_publication_tables.py \
+  --data reproduced_results/publication_v1_0
 ```
 
-The GitHub Actions workflow runs the same public checks. It verifies the
-explicit measure normalization, the derived distance and convergence tables,
-the 64-versus-63 coordinate audit, the `64/33/2` classification and the two
-unresolved-point search records, checks
-the static nuisance-domain criterion, decodes the lossless collider sufficient
-statistics, recomputes the public collider checkpoints, and syntax-checks the
-event-level analysis scripts.
-
-The finite-bandwidth classification is conservative. A positive analytic
-lower bound proves separation over the full anchored Lipschitz class, and an
-explicit zero proves overlap. Failed counterexample or certificate searches
-are never promoted to proofs; this is why two scan points remain unresolved.
-
-## Generator and detector provenance
-
-The validated private production workflow used:
-
-- MadGraph5_aMC@NLO 3.7.2 pinned commit
-  `be1e7b273ca961c335ff2ee6da3688b5049b069e`;
-- PYTHIA 8.312;
-- ROOT 6.40.02;
-- Delphes 3.5.1 with the CLICdet Stage-1 card;
-- exact integer seeds and analysis commits in the machine-readable metadata.
-
-The exact final process definitions and PYTHIA command files are in
-`generator_configuration/`. The private `MadGraphPythiaDelphesDV01`
-development repository is useful for production and CI, but is not required
-to verify the publication-facing numerical claims.
+The GitHub Actions workflow also decodes the lossless public collider
+sufficient statistics, recomputes the publication-facing collider checkpoints,
+and syntax-checks the event-level analyses.
 
 ## Citation
 
-See `CITATION.cff` and cite the fixed GitHub Release `v1.5.0`. A separate
-Zenodo deposit is not required for this repository's version-specific
-reproducibility citation.
+See `CITATION.cff` and cite the fixed GitHub release
+`publication-v1.0.0`. The release tag and immutable commit identify the exact
+publication snapshot.

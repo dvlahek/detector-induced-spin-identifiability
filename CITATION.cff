@@ -2,14 +2,14 @@ cff-version: 1.2.0
 message: "If you use this software or its numerical certificates, please cite this fixed release."
 title: "Whole-Class Certificates for Detector-Restricted Identifiability of Elementary-Particle Spin: Reproducibility Repository"
 type: software
+version: "1.0.0"
+date-released: 2026-08-21
 authors:
   - family-names: Vlahek
     given-names: Dino
     affiliation: "Faculty of Organization and Informatics, University of Zagreb"
 repository-code: "https://github.com/dvlahek/detector-induced-spin-identifiability"
-url: "https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.5.0"
-version: "1.5.0"
-date-released: 2026-08-21
+url: "https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.0"
 license: MIT
 keywords:
   - spin identifiability

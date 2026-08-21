@@ -1,4 +1,4 @@
-name: Reproduce publication checkpoints
+name: Reproduce publication 1.0 checkpoints
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   reproduce:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +19,9 @@ jobs:
 
       - name: Install analysis dependencies
         run: python -m pip install --quiet -r requirements.txt
+
+      - name: Verify archived publication tables
+        run: python theory_numerics/verify_publication_tables.py
 
       - name: Verify static nuisance-domain sensitivity
         run: |
@@ -35,54 +38,20 @@ jobs:
           print('nuisance_domain_checkpoints_ok')
           PY
 
-      - name: Verify legacy finite-bandwidth archive
+      - name: Reproduce finite-bandwidth classification
         run: |
-          python theory_numerics/verify_publication_tables.py
-          python theory_numerics/plot_status_map.py
-
-      - name: Reproduce PRD v1.5 finite-bandwidth classification
-        run: |
-          python theory_numerics/finite_bandwidth_prd_v1_5.py \
+          python theory_numerics/finite_bandwidth.py \
             --old-status theory_numerics/results/S1_slope_bandwidth_certificates_monotone_v1_1.csv \
-            --outdir reproduced_results/prd_v1_5 \
+            --outdir reproduced_results/publication_v1_0 \
             --unresolved-overlap-starts 1024
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          p = Path('reproduced_results/prd_v1_5/finite_bandwidth_prd_v1_5_summary.json')
-          d = json.loads(p.read_text())
-          assert d['status_counts'] == {
-              'guaranteed': 64,
-              'explicit_overlap': 33,
-              'unresolved': 2,
-          }
-          assert d['unresolved_points'] == [
-              {'sigma_k_over_m': 0.08, 'L': 24.0},
-              {'sigma_k_over_m': 0.1, 'L': 16.0},
-          ]
-          assert d['explicit_overlap']['target_value_t1'] < 0.0
-          assert all(not x['negative_profile_found']
-                     for x in d['unresolved_32segment_search'])
-          print('prd_v1_5_finite_bandwidth_checkpoints_ok')
-          PY
 
-      - name: Reproduce explicit measures and whole-class distance
+      - name: Reproduce measures and distance enclosure
         run: |
-          python theory_numerics/detector_measures_distance_v1_5.py \
-            --outdir reproduced_results/prd_v1_5 \
+          python theory_numerics/detector_measures_distance.py \
+            --outdir reproduced_results/publication_v1_0 \
             --figdir reproduced_results/figures
-          python theory_numerics/verify_publication_tables_v1_5.py
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          p = Path('reproduced_results/prd_v1_5/detector_measures_distance_v1_5_summary.json')
-          d = json.loads(p.read_text())
-          assert d['origin_envelope_positive_counts'] == {'G1': 64, 'GC': 63}
-          assert abs(d['reference_G1_unit_covariance']['whole_class_whitened_lower_bound']
-                     - 0.40425535950546276) < 2e-10
-          assert abs(d['sigma_0p15_mean_x_C'] - 0.10344928430838263) < 2e-12
-          print('prd_v1_5_measure_distance_checkpoints_ok')
-          PY
+          python theory_numerics/verify_publication_tables.py \
+            --data reproduced_results/publication_v1_0
 
       - name: Decode lossless public sufficient statistics
         run: |
@@ -102,7 +71,7 @@ jobs:
             --archived-resource collider/results/architecture_kl_summary.csv \
             --output reproduced_results/public_statistics.json
 
-      - name: Syntax-check full event-level analysis scripts
+      - name: Syntax-check event-level analyses
         run: |
           python -m py_compile collider/scripts/validate_fermion_vector_kl.py
           python -m py_compile collider/scripts/resource_degradation_analysis.py
@@ -110,10 +79,6 @@ jobs:
       - name: Upload reproduced outputs
         uses: actions/upload-artifact@v4
         with:
-          name: reproduced-publication-checkpoints
-          path: |
-            reproduced_results/
-            theory_numerics/figures/S1_status_map_reproduced.png
-            theory_numerics/figures/nuisance_domain_sensitivity.png
-            theory_numerics/results/nuisance_domain_sensitivity.csv
+          name: publication-v1.0-reproduced-checkpoints
+          path: reproduced_results/
           retention-days: 30

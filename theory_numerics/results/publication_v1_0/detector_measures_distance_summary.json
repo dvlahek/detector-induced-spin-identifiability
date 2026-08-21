@@ -1,0 +1,40 @@
+{
+  "origin_envelope_positive_counts": {
+    "G1": 64,
+    "GC": 63
+  },
+  "reference_G1_unit_covariance": {
+    "sigmaC_over_sigmaM": 1.0,
+    "rho": 0.0,
+    "whole_class_whitened_lower_bound": 0.40425535950546276,
+    "minimizing_anchor_gM": 0.5740210780930812,
+    "estimator_scale_for_3sigma": 0.13475178650182093,
+    "estimator_scale_for_5sigma": 0.08085107190109256
+  },
+  "reference_GC_unit_covariance": {
+    "whole_class_whitened_lower_bound": 0.40371045742479283,
+    "minimizing_anchor_gM": 0.5731619275400451
+  },
+  "sigma_0p15_mean_x_C": 0.10344928430838263,
+  "sigma_0p15_mean_x_C_over_sigma_squared": 4.59774596926145,
+  "reference_distance_bracket": {
+    "lower_bound": 0.40425535950546276,
+    "lower_bound_minimizing_anchor_gM": 0.5740210780930812,
+    "explicit_profile_upper_bound": 0.404265717523664,
+    "explicit_profile_minimizing_anchor_gM": 0.5739859131566527,
+    "explicit_profile_WM": 0.2677438808009649,
+    "explicit_profile_WC": 0.30289269495740834,
+    "bracket_width": 1.035801820126192e-05,
+    "relative_bracket_width": 2.562246351893314e-05
+  },
+  "sachs_overlap_witness_audit": {
+    "sigma_k_over_m": 0.15,
+    "slope_bound_L": 8.0,
+    "max_abs_dG1_dx": 7.872652259377042,
+    "max_abs_dGQ_dx": 7.872652259377042,
+    "max_abs_dGC_dx": 7.927784804388963,
+    "sachs_lipschitz_admissible": true,
+    "overlap_root_abs_residual": 1.4849232954361469e-15
+  },
+  "distance_grid_positive_count": 64
+}
