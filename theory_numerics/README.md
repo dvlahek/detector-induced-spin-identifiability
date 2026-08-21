@@ -15,6 +15,8 @@ overlaps, and 2 unresolved points. The calculation also supplies:
 - a direct Sachs-slope audit of the explicit overlap witness;
 - eight-segment QCQP and degree-2 SOS finite-basis audits;
 - 1024-start, 32-segment searches at the two unresolved points.
+- a nuisance-averaged estimator-space recovery audit plus a fixed
+  near-boundary-profile power column.
 
 Run the three commands in the repository README. Active archived outputs are
 in `results/publication_v1_0/`. Superseded scripts and versioned results are in

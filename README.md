@@ -6,10 +6,10 @@ collider sufficient statistics, and generator/reconstruction provenance.
 
 ## Publication version
 
-Current baseline: **publication 1.0** (`VERSION = 1.0.0`).
+Current baseline: **publication 1.0.1** (`VERSION = 1.0.1`).
 
 Fixed release:
-https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.0
+https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.1
 
 Historical tags `v1.0.0`, `v1.1.0`, `v1.4.0`, and `v1.5.0` remain intact.
 Their superseded active files have been moved to
@@ -43,6 +43,7 @@ gauge-complete vector theory and not a test of the analytic theorem.
 theory_numerics/
   finite_bandwidth.py
   detector_measures_distance.py
+  precision_recovery.py
   verify_publication_tables.py
   nuisance_domain_sensitivity.py
   results/publication_v1_0/
@@ -79,6 +80,9 @@ python theory_numerics/detector_measures_distance.py \
 
 python theory_numerics/verify_publication_tables.py \
   --data reproduced_results/publication_v1_0
+
+python theory_numerics/precision_recovery.py \
+  --output reproduced_results/S3_precision_based_recovery.csv
 ```
 
 The GitHub Actions workflow also decodes the lossless public collider
@@ -88,5 +92,5 @@ and syntax-checks the event-level analyses.
 ## Citation
 
 See `CITATION.cff` and cite the fixed GitHub release
-`publication-v1.0.0`. The release tag and immutable commit identify the exact
+`publication-v1.0.1`. The release tag and immutable commit identify the exact
 publication snapshot.

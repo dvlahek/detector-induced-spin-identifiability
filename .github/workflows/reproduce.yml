@@ -53,6 +53,20 @@ jobs:
           python theory_numerics/verify_publication_tables.py \
             --data reproduced_results/publication_v1_0
 
+      - name: Reproduce estimator-space recovery audit
+        run: |
+          python theory_numerics/precision_recovery.py \
+            --output reproduced_results/S3_precision_based_recovery.csv
+          python - <<'PY'
+          import numpy as np
+          import pandas as pd
+          expected = pd.read_csv('theory_numerics/results/S3_precision_based_recovery.csv')
+          actual = pd.read_csv('reproduced_results/S3_precision_based_recovery.csv')
+          assert list(actual.columns) == list(expected.columns)
+          assert np.allclose(actual.to_numpy(), expected.to_numpy(), rtol=0, atol=1e-12)
+          print('precision_recovery_checkpoints_ok')
+          PY
+
       - name: Decode lossless public sufficient statistics
         run: |
           python - <<'PY'

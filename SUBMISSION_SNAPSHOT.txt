@@ -8,4 +8,4 @@ whole-class distance and finite-basis certificates, coordinate-convention
 audit, detector-readout analysis, and exact generator/reconstruction provenance.
 
 Release URL:
-https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.0
+https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.1

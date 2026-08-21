@@ -1,4 +1,4 @@
-# Publication 1.0
+# Publication 1.0.1
 
 Clean PRD publication baseline for **Whole-Class Certificates for
 Detector-Restricted Identifiability of Elementary-Particle Spin**.
@@ -18,6 +18,11 @@ This release:
   provenance;
 - archives earlier development workflows, release notes, scripts, and results
   under `archive/development_snapshots/` while preserving historical tags.
+- corrects the legacy basis-convergence description at `(0.20,2)`;
+- states the nuisance distribution behind the estimator-space power audit and
+  adds power for the explicit near-boundary bracketing profile;
+- updates the published QTP reference and release metadata.
 
-The canonical tag is `publication-v1.0.0` because the repository already has a
-historical development tag named `v1.0.0`.
+The canonical patch tag is `publication-v1.0.1`; the immutable
+`publication-v1.0.0` baseline and all historical development tags remain
+available.
