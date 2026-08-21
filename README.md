@@ -4,17 +4,16 @@ Clean publication 1.0 reproducibility repository for the PRD-focused manuscript.
 It contains the active whole-class calculations, machine-readable certificates,
 collider sufficient statistics, and generator/reconstruction provenance.
 
-## Publication version
+## Publication baseline
 
-Current baseline: **publication 1.0.1** (`VERSION = 1.0.1`).
+The canonical publication baseline is **1.0.0** (`VERSION = 1.0.0`) on the
+default `main` branch:
 
-Fixed release:
-https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/publication-v1.0.1
+https://github.com/dvlahek/detector-induced-spin-identifiability
 
-Historical tags `v1.0.0`, `v1.1.0`, `v1.4.0`, and `v1.5.0` remain intact.
-Their superseded active files have been moved to
-`archive/development_snapshots/` so the repository root exposes one current
-publication path without erasing development history.
+Superseded development material is retained under
+`archive/development_snapshots/`; the repository root exposes one current
+publication path.
 
 ## Main checkpoints
 
@@ -91,6 +90,5 @@ and syntax-checks the event-level analyses.
 
 ## Citation
 
-See `CITATION.cff` and cite the fixed GitHub release
-`publication-v1.0.1`. The release tag and immutable commit identify the exact
-publication snapshot.
+The repository URL above is the canonical code and data location. See
+`CITATION.cff` for authorship metadata.

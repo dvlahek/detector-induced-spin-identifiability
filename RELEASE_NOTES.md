@@ -1,4 +1,4 @@
-# Publication 1.0.1
+# Publication baseline 1.0.0
 
 Clean PRD publication baseline for **Whole-Class Certificates for
 Detector-Restricted Identifiability of Elementary-Particle Spin**.
@@ -21,8 +21,7 @@ This release:
 - corrects the legacy basis-convergence description at `(0.20,2)`;
 - states the nuisance distribution behind the estimator-space power audit and
   adds power for the explicit near-boundary bracketing profile;
-- updates the published QTP reference and release metadata.
+- updates the published QTP reference and repository metadata.
 
-The canonical patch tag is `publication-v1.0.1`; the immutable
-`publication-v1.0.0` baseline and all historical development tags remain
-available.
+The canonical code and data location is the default `main` branch of
+https://github.com/dvlahek/detector-induced-spin-identifiability.
