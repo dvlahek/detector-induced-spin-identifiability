@@ -35,10 +35,36 @@ jobs:
           print('nuisance_domain_checkpoints_ok')
           PY
 
-      - name: Verify finite-bandwidth archived tables
+      - name: Verify legacy finite-bandwidth archive
         run: |
           python theory_numerics/verify_publication_tables.py
           python theory_numerics/plot_status_map.py
+
+      - name: Reproduce PRD v1.4 finite-bandwidth classification
+        run: |
+          python theory_numerics/finite_bandwidth_prd_v1_4.py \
+            --old-status theory_numerics/results/S1_slope_bandwidth_certificates_monotone_v1_1.csv \
+            --outdir reproduced_results/prd_v1_4 \
+            --unresolved-overlap-starts 1024
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('reproduced_results/prd_v1_4/finite_bandwidth_prd_v1_4_summary.json')
+          d = json.loads(p.read_text())
+          assert d['status_counts'] == {
+              'guaranteed': 64,
+              'explicit_overlap': 33,
+              'unresolved': 2,
+          }
+          assert d['unresolved_points'] == [
+              {'sigma_k_over_m': 0.08, 'L': 24.0},
+              {'sigma_k_over_m': 0.1, 'L': 16.0},
+          ]
+          assert d['explicit_overlap']['target_value_t1'] < 0.0
+          assert all(not x['negative_profile_found']
+                     for x in d['unresolved_32segment_search'])
+          print('prd_v1_4_finite_bandwidth_checkpoints_ok')
+          PY
 
       - name: Decode lossless public sufficient statistics
         run: |

@@ -1,5 +1,12 @@
-Detector-Induced Identifiability of Fundamental Spin
-Publication reproducibility snapshot: v1.0.0
-Prepared: 2026-08-20
+Whole-Class Certificates for Detector-Restricted Identifiability of Elementary-Particle Spin
+PRD publication reproducibility snapshot: v1.4.0
+Prepared: 2026-08-21
 
-The public repository contains the publication-facing code, processed numerical outputs, lossless sufficient statistics, finite-bandwidth validation archive, detector-readout analysis, and exact generator/reconstruction provenance required to verify the manuscript's numerical checkpoints.
+The fixed public GitHub release contains the publication-facing code,
+processed numerical outputs, lossless collider sufficient statistics,
+whole-class and finite-basis certificates, detector-readout analysis, and
+exact generator/reconstruction provenance required to verify the manuscript's
+numerical checkpoints.
+
+Release URL:
+https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.4.0
