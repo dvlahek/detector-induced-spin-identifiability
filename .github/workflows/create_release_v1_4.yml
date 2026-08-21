@@ -1,14 +1,6 @@
 name: Create v1.4.0 publication release
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - VERSION
-      - RELEASE_NOTES_v1.4.0.md
-      - CITATION.cff
-      - theory_numerics/**
-      - .github/workflows/create_release_v1_4.yml
   workflow_dispatch:
 
 permissions:

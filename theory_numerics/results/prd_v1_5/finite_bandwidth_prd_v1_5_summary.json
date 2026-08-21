@@ -1,0 +1,52 @@
+{
+  "status_counts": {
+    "guaranteed": 64,
+    "explicit_overlap": 33,
+    "unresolved": 2
+  },
+  "unresolved_points": [
+    {
+      "sigma_k_over_m": 0.08,
+      "L": 24.0
+    },
+    {
+      "sigma_k_over_m": 0.1,
+      "L": 16.0
+    }
+  ],
+  "old_unresolved_points": 21,
+  "old_unresolved_whole_class_certified": 18,
+  "old_unresolved_sos_certified": 14,
+  "all_old_unresolved_8segment_minima_positive": true,
+  "maximum_8segment_kkt_residual": 4.5451531427431746e-11,
+  "explicit_overlap": {
+    "sigma_k_over_m": 0.15,
+    "slope_bound_L": 8.0,
+    "n_segments": 32,
+    "target_value_t0": 1.0258623210770956,
+    "target_value_t1": -0.022060904854191515,
+    "root_t": 0.9840815324221303,
+    "root_value": 1.4849232954361469e-15,
+    "max_abs_slope_at_root": 7.872652259377042
+  },
+  "unresolved_32segment_search": [
+    {
+      "sigma_k_over_m": 0.08,
+      "slope_bound_L": 24.0,
+      "n_segments": 32,
+      "random_starts": 1024,
+      "target_value_t1": 0.08119180247077266,
+      "negative_profile_found": false,
+      "projected_kkt_residual": 0.0
+    },
+    {
+      "sigma_k_over_m": 0.1,
+      "slope_bound_L": 16.0,
+      "n_segments": 32,
+      "random_starts": 1024,
+      "target_value_t1": 0.05926831382000347,
+      "negative_profile_found": false,
+      "projected_kkt_residual": 0.0
+    }
+  ]
+}

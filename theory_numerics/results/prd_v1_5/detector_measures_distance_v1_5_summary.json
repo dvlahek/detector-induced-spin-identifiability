@@ -1,0 +1,20 @@
+{
+  "origin_envelope_positive_counts": {
+    "G1": 64,
+    "GC": 63
+  },
+  "reference_G1_unit_covariance": {
+    "sigmaC_over_sigmaM": 1.0,
+    "rho": 0.0,
+    "whole_class_whitened_lower_bound": 0.40425535950546276,
+    "minimizing_anchor_gM": 0.5740210780930812,
+    "estimator_scale_for_3sigma": 0.13475178650182093,
+    "estimator_scale_for_5sigma": 0.08085107190109256
+  },
+  "reference_GC_unit_covariance": {
+    "whole_class_whitened_lower_bound": 0.40371045742479283,
+    "minimizing_anchor_gM": 0.5731619275400451
+  },
+  "sigma_0p15_mean_x_C": 0.10344928430838263,
+  "sigma_0p15_mean_x_C_over_sigma_squared": 4.59774596926145
+}

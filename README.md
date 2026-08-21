@@ -13,10 +13,10 @@ software versions, and reconstruction provenance.
 
 ## Version
 
-Current fixed publication snapshot: **v1.4.0**.
+Current fixed publication snapshot: **v1.5.0**.
 
 Permanent release URL:
-https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.4.0
+https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.5.0
 
 ## Main publication checkpoints
 
@@ -39,11 +39,19 @@ Finite-bandwidth protected-sector scan:
 - 99 `(sigma_k/m, L)` points;
 - 64 whole-class certificates;
 - 33 explicit-overlap points;
+- every explicit origin overlap is forced to the broad-class blind value
+  `g_M=0`; this is not an overlap at the natural `g_M=2` vector point;
 - 2 unresolved points: `(0.08,24)` and `(0.10,16)`;
 - the positivity reduction plus pointwise charge envelope certifies 18 of the
   21 points unresolved by the earlier componentwise test;
 - a 32-segment profile explicitly establishes overlap at `(0.15,8)`, where the
   eight-segment global QCQP minimum remains positive.
+- the explicit Gaussian charge measure gives `<x>_C=0.1034492843` at
+  `sigma_k/m=0.15`;
+- the derived whole-class unit-covariance distance bound at `(0.10,2)` is
+  `0.4042553595`;
+- imposing the same numerical slope bound in Sachs variables gives a reference
+  distance `0.4037104574` and 63 rather than 64 sufficient origin exclusions.
 
 Matched detector-level fermion-versus-vector closure:
 
@@ -64,8 +72,10 @@ magnetic and charge-sensitive resources used in that theorem.
 
 ```text
 theory_numerics/
-  finite_bandwidth_prd_v1_4.py
-  results/prd_v1_4/   machine-readable v1.4 certificates and searches
+  finite_bandwidth_prd_v1_5.py
+  detector_measures_distance_v1_5.py
+  verify_publication_tables_v1_5.py
+  results/prd_v1_5/   machine-readable v1.5 certificates and searches
   nuisance_domain_sensitivity.py
   legacy v1.1 verification and plotting scripts
 
@@ -79,7 +89,7 @@ generator_configuration/
   software versions, detector-card provenance, and workflow provenance
 ```
 
-## Reproduce the PRD v1.4 checkpoints
+## Reproduce the PRD v1.5 checkpoints
 
 Python 3.12 is recommended.
 
@@ -87,10 +97,16 @@ Python 3.12 is recommended.
 python -m pip install -r requirements.txt
 
 python theory_numerics/nuisance_domain_sensitivity.py
-python theory_numerics/finite_bandwidth_prd_v1_4.py \
+python theory_numerics/finite_bandwidth_prd_v1_5.py \
   --old-status theory_numerics/results/S1_slope_bandwidth_certificates_monotone_v1_1.csv \
-  --outdir reproduced_results/prd_v1_4 \
+  --outdir reproduced_results/prd_v1_5 \
   --unresolved-overlap-starts 1024
+
+python theory_numerics/detector_measures_distance_v1_5.py \
+  --outdir reproduced_results/prd_v1_5 \
+  --figdir reproduced_results/figures
+
+python theory_numerics/verify_publication_tables_v1_5.py
 
 python - <<'PY'
 import base64, gzip
@@ -109,7 +125,9 @@ python collider/scripts/reproduce_public_statistics.py \
 ```
 
 The GitHub Actions workflow runs the same public checks. It verifies the
-`64/33/2` classification and the two unresolved-point search records, checks
+explicit measure normalization, the derived distance and convergence tables,
+the 64-versus-63 coordinate audit, the `64/33/2` classification and the two
+unresolved-point search records, checks
 the static nuisance-domain criterion, decodes the lossless collider sufficient
 statistics, recomputes the public collider checkpoints, and syntax-checks the
 event-level analysis scripts.
@@ -128,10 +146,7 @@ The validated private production workflow used:
 - PYTHIA 8.312;
 - ROOT 6.40.02;
 - Delphes 3.5.1 with the CLICdet Stage-1 card;
-- 100k closure run ID `31995375143`;
-- source commit `58210d4e7596a2752a3512dcf7908372d287b736`;
-- detector-readout workflow run ID `32001628799`;
-- readout-analysis commit `cbe53a8cfeb3ec22086a43baf8430b2297e739cf`.
+- exact integer seeds and analysis commits in the machine-readable metadata.
 
 The exact final process definitions and PYTHIA command files are in
 `generator_configuration/`. The private `MadGraphPythiaDelphesDV01`
@@ -140,6 +155,6 @@ to verify the publication-facing numerical claims.
 
 ## Citation
 
-See `CITATION.cff` and cite the fixed GitHub Release `v1.4.0`. A separate
+See `CITATION.cff` and cite the fixed GitHub Release `v1.5.0`. A separate
 Zenodo deposit is not required for this repository's version-specific
 reproducibility citation.

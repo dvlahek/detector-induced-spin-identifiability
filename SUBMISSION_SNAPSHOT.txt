@@ -1,12 +1,13 @@
 Whole-Class Certificates for Detector-Restricted Identifiability of Elementary-Particle Spin
-PRD publication reproducibility snapshot: v1.4.0
+PRD publication reproducibility snapshot: v1.5.0
 Prepared: 2026-08-21
 
 The fixed public GitHub release contains the publication-facing code,
 processed numerical outputs, lossless collider sufficient statistics,
-whole-class and finite-basis certificates, detector-readout analysis, and
+explicit detector measures, whole-class distance and finite-basis certificates,
+coordinate-convention audit, detector-readout analysis, and
 exact generator/reconstruction provenance required to verify the manuscript's
 numerical checkpoints.
 
 Release URL:
-https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.4.0
+https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.5.0

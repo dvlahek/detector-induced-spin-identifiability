@@ -7,8 +7,8 @@ authors:
     given-names: Dino
     affiliation: "Faculty of Organization and Informatics, University of Zagreb"
 repository-code: "https://github.com/dvlahek/detector-induced-spin-identifiability"
-url: "https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.4.0"
-version: "1.4.0"
+url: "https://github.com/dvlahek/detector-induced-spin-identifiability/releases/tag/v1.5.0"
+version: "1.5.0"
 date-released: 2026-08-21
 license: MIT
 keywords:
