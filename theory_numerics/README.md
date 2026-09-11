@@ -18,6 +18,6 @@ overlaps, and 2 unresolved points. The calculation also supplies:
 - a nuisance-averaged estimator-space recovery audit plus a fixed
   near-boundary-profile power column.
 
-Run the three commands in the repository README. Active archived outputs are
+Run the commands in the repository README. Active archived outputs are
 in `results/publication_v1_0/`. Superseded scripts and versioned results are in
 `../archive/development_snapshots/theory_numerics/`.

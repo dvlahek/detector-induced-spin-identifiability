@@ -2,7 +2,9 @@
 
 Clean publication 1.0 reproducibility repository for the PRD-focused manuscript.
 It contains the active whole-class calculations, machine-readable certificates,
-collider sufficient statistics, and generator/reconstruction provenance.
+collider sufficient statistics, and generator/reconstruction provenance. The
+public collider reproduction is count-level; event-level observables and the
+modified vector UFO are not distributed.
 
 ## Publication baseline
 
@@ -53,7 +55,7 @@ collider/
   results/
 
 generator_configuration/
-  exact process cards, software versions, seeds, and provenance
+  process definitions, software versions, exact seeds, and provenance
 
 archive/development_snapshots/
   legacy workflows, release notes, scripts, and versioned numerical outputs
@@ -85,7 +87,7 @@ python theory_numerics/precision_recovery.py \
 ```
 
 The GitHub Actions workflow also decodes the lossless public collider
-sufficient statistics, recomputes the publication-facing collider checkpoints,
+sufficient statistics, recomputes the reported collider checkpoints,
 and syntax-checks the event-level analyses.
 
 ## Citation

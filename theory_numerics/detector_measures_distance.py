@@ -12,9 +12,10 @@ different x need not assemble into a single anchored Lipschitz profile.  The
 formula is analytic; the numerical tables include grid/tail convergence so
 that the quadrature evaluation can be audited independently.
 
-Version 1.6 also supplies an explicit admissible upper profile at the reference
-point, evaluates the lower enclosure on the complete 99-point grid, and checks
-the published 32-segment overlap witness in Sachs Lipschitz coordinates.
+The current audit also supplies an explicit admissible upper profile at the
+reference point, evaluates the lower enclosure on the complete 99-point grid,
+and checks the published 32-segment overlap witness in Sachs Lipschitz
+coordinates.
 """
 
 from __future__ import annotations

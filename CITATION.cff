@@ -8,6 +8,7 @@ authors:
   - family-names: Vlahek
     given-names: Dino
     affiliation: "Faculty of Organization and Informatics, University of Zagreb"
+    orcid: "https://orcid.org/0000-0002-3911-8685"
 repository-code: "https://github.com/dvlahek/detector-induced-spin-identifiability"
 url: "https://github.com/dvlahek/detector-induced-spin-identifiability"
 license: MIT
