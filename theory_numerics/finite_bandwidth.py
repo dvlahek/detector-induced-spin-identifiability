@@ -16,7 +16,7 @@ The calculation separates three logically distinct statements.
 
 The script also constructs the 32-segment explicit overlap at
 (sigma_k/m,L)=(0.15,8), audits the two remaining unresolved points, and writes
-the version-neutral 64/33/2 status map used in the PRD package.
+the 64/33/2 classification reported in the accompanying manuscript.
 """
 
 from __future__ import annotations
