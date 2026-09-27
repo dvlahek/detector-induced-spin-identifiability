@@ -1,4 +1,4 @@
-# Frozen collider validation
+# Fixed-energy collider readout example
 
 The public collider package records the sufficient statistics and validated
 outputs exported from the frozen MadGraph5_aMC@NLO -> PYTHIA 8.312 -> Delphes
@@ -24,4 +24,4 @@ observables and scikit-learn, is preserved as an archived cross-check in
 `results/fermion_vector_kl_validation_summary.json`; it is not part of the
 public rerun path.
 
-The exact generator and detector provenance is documented in `../generator_configuration/`. The private development repository is not part of this public publication package.
+The exact generator and detector provenance is documented in `../generator_configuration/`. The public reproduction path is restricted to the published count-level sufficient statistics.

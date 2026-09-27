@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "Code and processed data accompanying the spin-identifiability manuscript."
-title: "Detector-Restricted Identifiability of Elementary-Particle Spin: Whole-Class Certificates and Exact Degeneracies — Reproducibility Code and Data"
+title: "Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data"
 type: software
-version: "1.1.0"
+version: "1.6.0"
 date-released: 2026-09-27
 authors:
   - family-names: Vlahek
