@@ -2,13 +2,13 @@
 
 Code and processed data for the manuscript *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies*.
 
-## Scientific question
+## Problem and model
 
-An elementary particle has a definite spin, but an experiment observes responses of a specified interaction and detector. The calculation asks which spin distinctions remain identifiable when the electromagnetic form factors are uncertain and the detector has finite momentum bandwidth. The detailed example compares charged spin-1/2 and spin-1 candidates in a calibrated magnetic and charge-sensitive response model.
+An experiment measures currents, polarization and reconstructed particles, not a spin label. Here we determine which electromagnetic responses distinguish charged spin-1/2 and spin-1 candidates after detector bandwidth and uncertain form factors are taken into account. The calculation concerns the calibrated magnetic and charge-sensitive response model defined in the manuscript.
 
-The absence of an internal rank-2 sector for spin 1/2 and the elementary-field constraint \(g_M+g_Q=1\) are theoretical inputs. The results here concern the detector resources and finite-bandwidth separation that follow from those inputs.
+The missing internal rank-2 sector of spin 1/2 and Haberzettl's elementary-field relation \(g_M+g_Q=1\) are theoretical inputs. The contribution here is the detector-resource criterion and its finite-bandwidth analysis over the admitted form-factor class.
 
-## Principal results
+## Results
 
 For the compact magnetic prior \(K=[1,3]\), the magnetic response has a strictly positive lower bound for every finite Gaussian bandwidth \(\sigma_k/m>0\) and finite Lipschitz constant \(L\). The accompanying 99-point calculation quantifies the margin over the bandwidth–smoothness grid; the smallest tabulated bound is approximately 0.005136 at \((0.50,24)\). The analytic statement is not limited to that grid.
 
@@ -16,9 +16,9 @@ For the broader \(g_M\in[-4,4]\) class, the same 99-point grid contains 64 whole
 
 At \((\sigma_k/m,L)=(0.10,2)\), the unit-covariance whole-class distance is enclosed by \(0.4042553595\le d_{\rm class}\le0.4042657175\).
 
-## Reproduction
+## Reproduce the calculations
 
-The current computational version is `1.6.0`. For a fixed computational snapshot, cite the commit SHA accompanying the manuscript. Python 3.12 is recommended.
+The manuscript cites code version `1.6.0` at commit [`80d3bfd8`](https://github.com/dvlahek/detector-induced-spin-identifiability/commit/80d3bfd8d87a4c011e651fdbd90345f22842441c). Use that commit for the exact submitted calculation. The older GitHub releases document earlier stages and are not the manuscript's computational version. Python 3.12 is recommended.
 
 From the repository root:
 
@@ -62,4 +62,4 @@ The collider example uses photon-channel production at one fixed energy. Its pub
 
 ## Citation and availability
 
-The default branch is the current code and data location cited by the manuscript. Authorship and software citation metadata are provided in [CITATION.cff](CITATION.cff). The code is released under the MIT license.
+The manuscript's fixed reference is the commit linked above. The default branch keeps the current code and data, including documentation updates. Software citation metadata are in [CITATION.cff](CITATION.cff), and the code is released under the MIT license.
