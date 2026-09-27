@@ -20,7 +20,7 @@ jobs:
       - name: Install analysis dependencies
         run: python -m pip install --quiet -r requirements.txt
 
-      - name: Verify archived publication tables
+      - name: Check manuscript theory tables
         run: python theory_numerics/verify_publication_tables.py
 
       - name: Verify static nuisance-domain sensitivity
