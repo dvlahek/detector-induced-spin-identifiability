@@ -11,6 +11,5 @@ This directory preserves superseded files from the development releases
   active provenance file keeps the scientific identifiers but removes obsolete
   submission-branding and transient workflow-run labels.
 
-The historical Git tags and GitHub releases remain unchanged. Publication 1.0
-uses only the unversioned active scripts and `results/publication_v1_0/` in the
-repository root.
+The historical Git tags and GitHub releases remain unchanged. The current manuscript uses only the active scripts and data named in the
+repository root README. Historical tags and releases remain unchanged.
