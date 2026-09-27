@@ -10,7 +10,7 @@ For \(K=[1,3]\), the magnetic response has the lower bound
 W_M\ge\int \max(1-Lx,0)^2\,d\nu_M(x)>0.
 \]
 
-The strict positivity holds for every finite Gaussian bandwidth and finite \(L\); the numerical grid evaluates the size of this analytic margin. Run `narrow_prior_magnetic_audit.py` from the repository root. The checked 99-row output is `results/narrow_prior_magnetic_margins.csv`.
+The strict positivity holds for every finite Gaussian bandwidth and finite \(L\); the numerical grid evaluates the size of this analytic margin. Run `narrow_prior_magnetic_audit.py` from the repository root. The 99-row reference output is [`results/narrow_prior_magnetic_margins.csv`](results/narrow_prior_magnetic_margins.csv).
 
 ## Broad nuisance class
 
@@ -18,4 +18,4 @@ For \(g_M\in[-4,4]\), `finite_bandwidth.py` evaluates a whole-Lipschitz charge e
 
 `detector_measures_distance.py` evaluates the normalized detector measures, the distance enclosure and the Sachs-coordinate check. `precision_recovery.py` provides the estimator-space audit. `verify_publication_tables.py` checks the tabulated publication results. Run the commands in the root README.
 
-Active broad-class results are stored in `results/publication_v1_0/`. The input `results/S1_slope_bandwidth_certificates_monotone_v1_1.csv` is retained because the reproduction command uses it. Earlier scripts and numerical snapshots remain under `archive/development_snapshots/`.
+The broad-class reference data are stored in `results/publication_v1_0/`. This directory name identifies the fixed numerical dataset used by the manuscript; it is not a separate, superseded manuscript. The input `results/S1_slope_bandwidth_certificates_monotone_v1_1.csv` is kept alongside the active scripts because the finite-bandwidth reproduction uses its earlier status labels. Superseded scripts and earlier result sets are under [`../archive/development_snapshots/`](../archive/development_snapshots/).
