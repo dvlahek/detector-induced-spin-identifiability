@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the publication v1.0 finite-bandwidth protected-sector classification.
+"""Compute the finite-bandwidth protected-sector classification reported in the manuscript.
 
 The calculation separates three logically distinct statements.
 

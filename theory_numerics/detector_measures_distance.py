@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""publication v1.0 detector-measure, distance, and coordinate-robustness audit.
+"""Detector measures, distance bounds, and form-factor coordinate checks.
 
 This driver makes the two normalized detector measures explicit, evaluates a
 whole-class rectangular enclosure of the protected fingerprint for every

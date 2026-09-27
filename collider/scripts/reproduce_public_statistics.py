@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""Reproduce public collider checkpoints from histogram sufficient statistics.
+"""Reproduce the collider histogram diagnostics from published counts.
 
-The event-level MadGraph/PYTHIA/Delphes development chain is intentionally not
-part of this public repository. The losslessly archived histogram counts are
-sufficient to reproduce the primary discrete KL diagnostic, readout-ablation
-raw KLs, and independent finite-sample bias/bootstrap calibrations.
-
-The out-of-fold classifier cross-check requires event-level observables and is
-therefore archived as a validated output rather than recomputed here.
+The lossless sufficient statistics contain the counts needed for the discrete
+KL diagnostic, readout ablations, and fresh bias and bootstrap calibration.
+The out-of-fold classifier requires event-level observables that are not
+distributed here. Its recorded result is checked separately.
 """
 from __future__ import annotations
 
@@ -200,7 +197,7 @@ def main():
             "fresh_corrected_D_min": float(bc[2]),
             "fresh_ci95": [float(bl[2]), float(bu[2])],
         },
-        "note": "Fresh Monte Carlo calibration uses public lossless sufficient statistics. Exact archived publication values are independently checked against frozen output tables.",
+        "note": "Fresh Monte Carlo calibration uses public sufficient statistics. The published reference values are checked against the stored output tables.",
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=2))

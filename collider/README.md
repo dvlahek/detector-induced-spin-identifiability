@@ -1,8 +1,6 @@
 # Fixed-energy collider readout example
 
-The public collider package records the sufficient statistics and validated
-outputs exported from the frozen MadGraph5_aMC@NLO -> PYTHIA 8.312 -> Delphes
-3.5.1 CLICdet-Stage1 benchmark.
+The collider directory contains the published histogram counts and output tables for the fixed-energy MadGraph5_aMC@NLO, PYTHIA 8.312 and Delphes 3.5.1 CLICdet Stage-1 example.
 
 The three accepted-event observables are
 
@@ -19,9 +17,6 @@ The primary full-channel estimator uses a 3D histogram plus one explicit lost-ev
 The full event-level analysis scripts are retained in `scripts/` and
 syntax-checked by CI. The event-level reconstructed sample itself is not needed
 to reproduce the reported histogram statistics and is not distributed here.
-The validated out-of-fold classifier result, which does require event-level
-observables and scikit-learn, is preserved as an archived cross-check in
-`results/fermion_vector_kl_validation_summary.json`; it is not part of the
-public rerun path.
+The out-of-fold classifier result requires event-level observables. Its recorded values are in `results/fermion_vector_kl_validation_summary.json`, but it cannot be rerun from the public histogram counts.
 
 The exact generator and detector provenance is documented in `../generator_configuration/`. The public reproduction path is restricted to the published count-level sufficient statistics.

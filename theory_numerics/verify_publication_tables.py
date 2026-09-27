@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-fast consistency checks for the publication v1.0 publication tables."""
+"""Check the numerical theory tables reported in the manuscript."""
 
 from __future__ import annotations
 
@@ -95,7 +95,7 @@ def main(data: Path) -> None:
     if not bool(sachs["sachs_lipschitz_admissible"]):
         raise AssertionError("explicit overlap is not Sachs-admissible")
 
-    print("Publication 1.0 checks passed")
+    print("manuscript_theory_tables_ok")
 
 
 if __name__ == "__main__":
