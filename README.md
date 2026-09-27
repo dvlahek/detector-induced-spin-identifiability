@@ -1,6 +1,6 @@
-# Detector-Restricted Identifiability of Elementary-Particle Spin
+# Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles
 
-Code and processed data for the manuscript *Detector-Restricted Identifiability of Elementary-Particle Spin: Whole-Class Certificates and Exact Degeneracies*.
+Code and processed data for the manuscript *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies*.
 
 ## Scientific question
 
@@ -18,7 +18,9 @@ At \((\sigma_k/m,L)=(0.10,2)\), the unit-covariance whole-class distance is encl
 
 ## Reproduction
 
-Python 3.12 is recommended. From the repository root:
+The current computational version is `1.6.0`. For a fixed computational snapshot, cite the commit SHA accompanying the manuscript. Python 3.12 is recommended.
+
+From the repository root:
 
 ```bash
 python -m pip install -r requirements.txt
