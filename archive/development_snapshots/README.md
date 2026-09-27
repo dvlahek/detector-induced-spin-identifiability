@@ -1,15 +1,10 @@
-# Development snapshot archive
+# Development archive
 
-This directory preserves superseded files from the development releases
-`v1.0.0`, `v1.1.0`, `v1.4.0`, and `v1.5.0`.
+Earlier analysis scripts, numerical tables, release notes and workflow definitions are retained here so the calculation history can be traced. They are not part of the reproduction commands for the current manuscript.
 
-- `workflows/` contains retired release-creation workflows and is outside
-  `.github/workflows/`, so the legacy automation cannot run.
-- `release_notes/` contains the corresponding historical notes.
-- `theory_numerics/` contains superseded scripts and versioned result trees.
-- `provenance/` retains the original internal workflow/artifact labels; the
-  active provenance file keeps the scientific identifiers but removes obsolete
-  submission-branding and transient workflow-run labels.
+- `theory_numerics/` contains earlier scripts and their corresponding numerical results.
+- `release_notes/` records the historical releases.
+- `workflows/` contains retired release scripts. They are outside `.github/workflows/` and cannot run as repository workflows.
+- `provenance/` preserves the original run and artifact labels.
 
-The historical Git tags and GitHub releases remain unchanged. The current manuscript uses only the active scripts and data named in the
-repository root README. Historical tags and releases remain unchanged.
+The active code and data are documented in the repository [README](../../README.md). Historical Git tags and releases remain available as fixed records of those earlier stages.
