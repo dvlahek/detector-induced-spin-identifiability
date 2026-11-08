@@ -60,6 +60,10 @@ The GitHub Actions workflow checks the published numerical checkpoints, the 99 c
 
 The collider example uses photon-channel production at one fixed energy. Its public count-level data reproduce the reported histogram diagnostics and readout ablations. The event-level sample and modified vector UFO are not distributed; the event-level classifier result is provided as a validated numerical record, not as a publicly rerunnable computation. This example does not implement the two primitive protected electromagnetic response blocks used in the analytic certificate.
 
+## Data availability
+
+The public and non-public parts of the reproducibility package are described in [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). The principal theory results and the reported collider histogram/readout results are publicly reproducible from the processed data in this repository.
+
 ## Citation and availability
 
 The manuscript's fixed reference is the commit linked above. The default branch keeps the current code and data, including documentation updates. Software citation metadata are in [CITATION.cff](CITATION.cff), and the code is released under the MIT license.
