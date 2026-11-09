@@ -1,26 +1,23 @@
-# Electromagnetic response and finite-bandwidth calculations
+# Active theoretical and numerical calculations
 
-This directory contains the active calculations for the protected spin-1/2 versus spin-1 response model. The dimensionless transfer is \(x=Q^2/m^2\). The Haberzettl current class has static anchors \(G_1(0)=1\), \(G_M(0)=g_M\) and \(G_Q(0)=1-g_M\). The robustness extension writes \(g_M+g_Q=1+\delta\), so \(G_Q(0)=1+\delta-g_M\), with the same anchored Lipschitz condition \(|G_i(x)-G_i(y)|\le L|x-y|\).
+## Current J. Phys. A analysis: **unfiltered $\alpha=0$**
 
-## Compact prior: a magnetic-only certificate
+The charge measure is $d\nu_C\propto\rho_0(r)r^2 x\,dr$ (normalized). A positive detector acceptance $A_C=1$ means the squared longitudinal-current response has **no additional momentum-dependent event filtering**. The magnetic measure remains unchanged. Analysis uses real anchored Lipschitz form factors and the specified $g_M+g_Q=1+\delta$ moment relation.
 
-For \(K=[1,3]\), the magnetic response has the lower bound
+**Frozen code snapshot:** [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
 
-\[
-W_M\ge\int \max(1-Lx,0)^2\,d\nu_M(x)>0.
-\]
+```bash
+python theory_numerics/spin_alpha0_compute.py
+python theory_numerics/spin_alpha0_qcqp.py
+python theory_numerics/spin_alpha0_power.py
+python theory_numerics/spin_alpha0_figures.py
+python theory_numerics/verify_alpha0_release.py
+```
 
-The strict positivity holds for every finite Gaussian bandwidth and finite \(L\), and it is independent of \(\delta\). The numerical grid evaluates the size of this analytic margin. Run `narrow_prior_magnetic_audit.py` from the repository root. The 99-row reference output is [`results/narrow_prior_magnetic_margins.csv`](results/narrow_prior_magnetic_margins.csv).
+Current results: [`results/alpha0/`](results/alpha0/). Scripts regenerate in ignored `reproduced_alpha0/` and are checked against the committed snapshot. The 99 cells are **63 certified / 33 overlap / 3 unresolved**; at $|\delta|\le0.10$, 61 are certified. Numerically evaluated positivity and SOS matrices do **not** constitute interval-arithmetic certification.
 
-## Broad nuisance class
+## Previous filtered-charge stage (archive)
 
-For \(g_M\in[-4,4]\), `finite_bandwidth.py` evaluates a whole-Lipschitz charge envelope and constructs explicit origin overlaps. The 99-point scan has 64 whole-class separation certificates, 33 explicit overlaps and two unresolved points. The global eight-segment QCQP, degree-2 SOS checks and 32-segment searches audit a finite basis; they are not substituted for whole-class proofs.
+Files such as `finite_bandwidth.py`, `detector_measures_distance.py`, `precision_recovery.py`, `delta_robustness_audit.py` and `results/publication_v1_0/` refer to the **older $\alpha=2$ model**. They are retained for provenance only and **must not** be used as the current unfiltered-model evidence. The magnetic-only audit is acceptance-independent and remains applicable.
 
-`delta_robustness_audit.py` enlarges the static relation to \(g_M+g_Q=1+\delta\) and computes whole-class bounds uniform over \(|\delta|\le\Delta\). The summary is stored in [`results/delta_robustness_summary.csv`](results/delta_robustness_summary.csv). `detector_measures_distance.py` evaluates the normalized detector measures, the distance enclosure and the Sachs-coordinate check. `precision_recovery.py` provides the estimator-space audit. `verify_publication_tables.py` checks the tabulated publication results. Run the commands in the root README.
-
-The broad-class reference data are stored in `results/publication_v1_0/`. This directory name identifies the fixed numerical dataset used by the manuscript; it is not a separate, superseded manuscript. The input `results/S1_slope_bandwidth_certificates_monotone_v1_1.csv` is kept alongside the active scripts because the finite-bandwidth reproduction uses its earlier status labels. Superseded scripts and earlier result sets are under [`../archive/development_snapshots/`](../archive/development_snapshots/).
-
-
-## Version 1.8.0 additional audits
-
-A chosen positive charge acceptance `A_C(k)=(2m/(E_k+m))**2` explains the normalized measure used by the manuscript. Run `charge_kernel_identity_check.py` to check the measure identity. Run `explicit_overlap_family_verify.py` to reproduce the signed endpoint witness for all 33 overlap cells. Run `acceptance_sensitivity_audit.py` to calculate four separate acceptance choices alpha=0,1,2,3; counts (certified, overlap, unresolved) are (63,33,3), (63,33,3), (64,33,2), (64,33,2). These sensitivity checks do not prove uniformity over an interval of alpha.
+See [scientific scope](../docs/SCOPE.md) and [full reproducibility instructions](../docs/REPRODUCIBILITY.md).

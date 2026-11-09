@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-message: "Please cite this research code and processed data using the frozen numerical snapshot referenced in the manuscript."
+message: "Code and processed data for the unfiltered-charge spin-identifiability manuscript."
 title: "Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data"
 type: software
-version: "1.8.0"
+version: "1.9.0"
 date-released: 2026-11-09
 authors:
   - family-names: Vlahek
@@ -10,13 +10,12 @@ authors:
     affiliation: "Faculty of Organization and Informatics, University of Zagreb"
     orcid: "https://orcid.org/0000-0002-3911-8685"
 repository-code: "https://github.com/dvlahek/detector-induced-spin-identifiability"
-url: "https://github.com/dvlahek/detector-induced-spin-identifiability"
+url: "https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b"
 license: MIT
 keywords:
   - spin identifiability
   - mathematical physics
-  - quantum field theory
+  - electromagnetic form factors
   - detector response
   - Lipschitz certificate
-  - electromagnetic form factors
   - reproducible research

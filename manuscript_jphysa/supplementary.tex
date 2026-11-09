@@ -30,13 +30,21 @@
 \renewcommand{\thetable}{S\Roman{table}}
 
 \setlength{\headheight}{15pt}
+% Author-prepared review PDF: replace template-only production headers.
+\renewcommand{\articletype}[1]{\par\noindent\textsf{\textbf{#1}}\par\medskip}
+\AtBeginDocument{%
+  \fancyhfoffset[L]{0pt}
+  \fancyhead[L]{\small Detector-restricted spin identifiability}
+  \fancyhead[R]{\small D. Vlahek}
+  \renewcommand{\headrulewidth}{0.3pt}
+}
 
 \begin{document}
 \articletype{Supplementary Material}
 \title{Supplementary Results}
-\author{Dino Vlahek}
+\author{Dino Vlahek}\par
 \affil{Laboratory for Data Mining and Intelligent Systems, Faculty of Organization and Informatics, University of Zagreb, Pavlinska 2, 42000 Vara\v{z}din, Croatia}
-\email{dvlahek@foi.hr}
+\par\email{dvlahek@foi.hr}\par
 
 \begin{abstract}
 Numerical protocols, nuisance-class robustness results, whole-class certificates, finite-basis audits, and estimator-space checks supporting the main article.\par
@@ -66,25 +74,25 @@ The admissible class is defined for every $x,y\ge0$ by
 \end{equation}
 The equivalent bound $|G_i'|\le L$ holds almost everywhere for the piecewise-linear constructions. The principal bounds are defined directly on the full anchored Lipschitz class.
 
-For $r=k/m$, $\widehat\sigma=\sigma_k/m$, $\omega_r=\sqrt{1+r^2}$, and $x=2(\omega_r-1)$, the common Gaussian baseline, the magnetic acceptance $A_M=1$, and the charge acceptance $A_C(k)=[2/(\omega_r+1)]^2$ chosen in the main article induce
+For $r=k/m$, $\widehat\sigma=\sigma_k/m$, $\omega_r=\sqrt{1+r^2}$, and $x=2(\omega_r-1)$, the common unfiltered Gaussian window chosen in the main article and the squared current kinematics induce
 \begin{align}
 \rho_0(r;\widehat\sigma)&=
 \frac{e^{-r^2/(2\widehat\sigma^2)}}{2\omega_r},\\
 \dd\nu_M&=\frac{\rho_0 r^2\,\dd r}{\int\rho_0 r^2\,\dd r},\\
-\dd\nu_C&=\frac{\rho_0[r/(\omega_r+1)]^2(x/4)\,\dd r}
-{\int\rho_0[r/(\omega_r+1)]^2(x/4)\,\dd r}.
+\dd\nu_C&=\frac{\rho_0r^2x\,\dd r}
+{\int\rho_0r^2x\,\dd r}.
 \end{align}
-The charge factor is obtained by multiplying the squared longitudinal-current rank-$2$ density $\rho_0r^2x$ by $A_C=4/(\omega_r+1)^2$ and removing a constant factor; it is not the unfiltered-current density. If $N_M$ and $N_C$ denote the two denominators above, the channel calibration, after the fixed rank-$2$ constants are removed, is $\widetilde W_a=N_a\overline W_a$. The charge coordinate is formed only after division of the Breit-frame rank-$2$ matrix coefficient by its known factor $2\eta/3=x/6$. These statements fix the relative normalization used before any covariance whitening. The displayed measures are the exact measures used in every finite-bandwidth table. Their numerical normalizations equal one to better than $3\times10^{-16}$ on the production grid. At $\widehat\sigma=0.15$, $\langle x\rangle_C=0.1034492843$, or $4.597746\widehat\sigma^2$.
+The charge factor is the unfiltered squared longitudinal-current rank-$2$ density $\rho_0r^2x$; no additional transfer-dependent detector efficiency is inserted. If $N_M$ and $N_C$ denote the two denominators above, the channel calibration, after the fixed rank-$2$ constants are removed, is $\widetilde W_a=N_a\overline W_a$. The charge coordinate is formed only after division of the Breit-frame rank-$2$ matrix coefficient by its known factor $2\eta/3=x/6$. These statements fix the relative normalization used before any covariance whitening. The displayed measures are the exact measures used in every finite-bandwidth table. Their numerical normalizations equal one to better than $3\times10^{-16}$ on the production grid. At $\widehat\sigma=0.15$, $\langle x\rangle_C=0.1054292265$.
 
-The nonnegative selection $A_C$ is part of the chosen detector architecture, not a universal prediction of the spin-$1$ current. To quantify this dependence, consider the alternative positive acceptances
+The unfiltered current-squared response is the main-text choice. To test its sensitivity to an additional momentum-dependent positive selection, consider
 \begin{equation}
 A_C^{(\alpha)}(k)=\left[\frac{2m}{E_k+m}\right]^\alpha,
 \qquad \alpha\in\{0,1,2,3\},
 \label{eq:acceptance-family}
 \end{equation}
-where $\alpha=2$ is the main-text model and $\alpha=0$ denotes no additional acceptance. For each $\alpha$ we recompute the pointwise full-Lipschitz charge envelope and evaluate the same two-kink witness family at every grid cell. Table~\ref{tab:acceptance-sensitivity} reports the resulting \emph{sufficient} certificates and constructive overlaps. No physical prior on $\alpha$ is inferred from this illustrative sensitivity calculation.
+where $\alpha=0$ is the main-text model and $\alpha>0$ describes separate optional charge-sector selections. For each $\alpha$ we recompute the pointwise full-Lipschitz charge envelope and evaluate the same two-kink witness family at every grid cell. Table~\ref{tab:acceptance-sensitivity} reports the resulting \emph{sufficient} certificates and constructive overlaps. No physical prior on $\alpha$ is inferred from this illustrative sensitivity calculation.
 
-The same 33 two-kink witnesses retain their endpoint sign changes across all four tested choices. For $\alpha=0$ and $1$, the additional unresolved point is $(\sigma_k/m,L)=(0.50,1)$. The magnetic-only lower bound and the static primitive-resource criterion do not involve $A_C$ and are unchanged. Other selections or uncertainty sets for $\alpha$ require their own analysis; these discrete checks do not establish a universal charge-channel result.
+The same 33 two-kink witnesses retain their endpoint sign changes across all four tested choices. For $\alpha=0$ and $1$, the boundary cell $(\sigma_k/m,L)=(0.50,1)$ remains unresolved; it becomes certified only for the $\alpha=2$ and $3$ choices. The magnetic-only lower bound and the static primitive-resource criterion are unchanged. Other selections or uncertainty sets for $\alpha$ require their own analysis; these discrete checks do not establish a universal charge-channel result.
 
 \begin{table}[h]
 \caption{Acceptance-sensitivity audit for the 99-point $(\sigma_k/m,L)$ grid. A certified point has a positive full-Lipschitz envelope; an overlap has a signed two-kink witness. A nonpositive envelope without a witness is unresolved, not proof of degeneracy. The counts are for each fixed $\alpha$ separately, not one certificate uniform in $\alpha$.}
@@ -101,7 +109,7 @@ $\alpha$ & certified & overlap & unresolved & $B_C(0.50,1)$ \\
 \end{ruledtabular}
 \end{table}
 
-The analysis uses three complementary methods. Componentwise moment bounds certify 46 points. The deterministic two-kink family described below gives all 33 explicit overlaps; eight-segment optimizations and the original 32-segment example provide independent checks. A positivity reduction supplies a sharper whole-class bound. We audit the remaining region with an exact finite-basis convex-QP reduction, a degree-$2$ SOS identity, and 32-segment searches. We report the domain dependence of the result separately in Sec.~\ref{sec:supp-K-sensitivity}.
+The analysis uses three complementary methods. Componentwise moment bounds certify 46 points. The deterministic two-kink family described below gives all 33 explicit overlaps; recomputed eight-segment optimizations provide a finite-basis audit. A positivity reduction supplies a sharper whole-class bound, and the degree-$2$ SOS identity provides additional finite-basis certificates. We report the domain dependence of the result separately in Sec.~\ref{sec:supp-K-sensitivity}.
 
 The high-resolution validation configuration is summarized in Table~\ref{tab:scan-config}.
 
@@ -157,7 +165,7 @@ and
 +\frac12|1-g|L_Q\langle x^2\rangle_C
 +\frac14L_Q^2\langle x^3\rangle_C.
 \end{align}
-These inequalities certify 46 grid points. The positivity envelope below certifies 18 additional points and gives 64 whole-class certificates in total.
+These inequalities certify 46 grid points. The positivity envelope below certifies 17 additional points and gives 63 whole-class certificates in total.
 
 \subsection{Whole-Lipschitz positivity reduction}
 
@@ -176,9 +184,9 @@ B_C(\sigma_k/m,L)=\int d\nu_C(x)\,h_L(x).
 \end{equation}
 The inner minimization is deterministic. At fixed $b$ the minimum over $a$ is on an interval endpoint. For either endpoint the objective is a convex quadratic in $b$, whose stationary point $-2a/x$ is clipped to the allowed interval. Under $\overline W_M=0$, every admissible profile obeys $\overline W_C\ge B_C$. Thus $B_C>0$ excludes a joint origin overlap in the complete anchored Lipschitz class, without a piecewise-linear truncation.
 
-The pointwise minimization relaxes the anchored functional problem because the minimizing values at different $x$ need not form one common continuous Lipschitz pair anchored at unity. The resulting analytic lower bound applies to the complete anchored Lipschitz class and can be conservative. A value $B_C\le0$ leaves the point undecided. This occurs at the two points retained as unresolved even though their finite piecewise-linear audit minima are positive.
+The pointwise minimization relaxes the anchored functional problem because the minimizing values at different $x$ need not form one common continuous Lipschitz pair anchored at unity. The resulting analytic lower bound applies to the complete anchored Lipschitz class and can be conservative. A value $B_C\le0$ leaves the point undecided. This occurs at the three points retained as unresolved even though their finite piecewise-linear audit minima are positive.
 
-This bound certifies 18 of the 21 points left inconclusive by the componentwise error box. The final $99$-point count is 64 certified, 33 explicit overlaps, and 2 unresolved. The remaining points are $(\sigma_k/m,L)=(0.08,24)$ and $(0.10,16)$.
+This bound certifies 17 of the 21 audited cells left inconclusive by the componentwise error box. The final 99-point count is 63 certified, 33 explicit overlaps, and 3 unresolved. The remaining points are $(\sigma_k/m,L)=(0.08,24)$, $(0.10,16)$, and $(0.50,1)$.
 
 \subsection{Whole-class distance enclosure}
 
@@ -197,13 +205,13 @@ b\in[1-g-Lx,1-g+Lx].
 Thus the whole function class at fixed $g$ is contained in the half-strip
 $[M_L(g),\infty)\times[C_L^-(g),C_L^+(g)]$. Minimizing the covariance-whitened norm over this half-strip and then over $g\in[-4,4]$ gives a valid lower bound on the distance of the complete class. This construction gives the bound reported in Table~\ref{tab:covariance}.
 
-At the reference point $(\sigma_k/m,L)=(0.10,2)$ and unit covariance shape, the analytic whole-class lower bound is $0.4042553595$ at $g=0.5740211$. The explicit admissible profiles $G_M=\operatorname{sgn}(g)\max(|g|-Lx,0)$, $G_1=1-Lx$, and $G_Q=1-g-Lx$ give the upper bound $0.4042657175$ at $g=0.5739859$. Thus
+At the reference point $(\sigma_k/m,L)=(0.10,2)$ and unit covariance shape, the analytic whole-class lower bound is $0.4034833471$ at $g=0.5735325$. The explicit admissible profiles $G_M=\operatorname{sgn}(g)\max(|g|-Lx,0)$, $G_1=1-Lx$, and $G_Q=1-g-Lx$ give the upper bound $0.4034946602$ at $g=0.5734946$. Thus
 \begin{equation}
-0.4042553595\le d_{\rm class}\le0.4042657175.
+0.4034833471\le d_{\rm class}\le0.4034946602.
 \end{equation}
-The bracket width is $1.0358\times10^{-5}$. Varying the spectral grid from $10001$ to $40001$ points and the Gaussian cutoff from $10\sigma_k$ to $14\sigma_k$ changes the lower endpoint by less than $7\times10^{-11}$. The convergence table reports all 18 combinations for the covariant and Sachs audits. The half-strip inequality is analytic. The printed decimal endpoints are numerical evaluations supported by these convergence checks. Formal interval arithmetic is not used.
+The bracket width is $1.13131\times10^{-5}$. The unfiltered measure was evaluated on a symmetric $20001$-point grid to $12\sigma_k$; the old filtered-measure convergence table is not reused. The half-strip inequality is analytic; printed decimal bounds remain numerical evaluations, not formal interval certificates.
 
-The same deterministic minimization was evaluated at all 99 bandwidth--smoothness points. Figure~\ref{fig:supp-distance-grid} shows the whole-class unit-covariance lower bound. Exactly 64 values are positive above $10^{-10}$, matching the binary whole-class certificate count. The 33 explicit overlaps and the 2 unresolved points have a zero enclosure bound.
+The same deterministic minimization was evaluated at all 99 bandwidth--smoothness points. Figure~\ref{fig:supp-distance-grid} shows the whole-class unit-covariance lower bound. Exactly 63 values are positive above $10^{-10}$, matching the binary whole-class certificate count. The 33 explicit overlaps and the 3 unresolved points have a zero enclosure bound.
 
 \begin{figure}[t]
 \centering
@@ -219,7 +227,7 @@ The primary nuisance class bounds the covariant vertex variables $(G_1,G_M,G_Q)$
 \overline W_C=\int\dd\nu_C\,
 G_Q\left(G_C+\frac{x}{12}G_Q\right).
 \end{equation}
-Imposing the same numerical $L$ on $(G_C,G_M,G_Q)$ defines a different function class. Repeating the exact-origin envelope replaces $ab+xb^2/4$ by $ab+xb^2/12$. Because $x\ge0$, the latter integrand is no larger for the same $(a,b)$ box, so the Sachs test cannot certify more points by construction. Figure~\ref{fig:supp-coordinate-audit} compares the two sufficient tests. They exclude the origin at 64 and 63 of the 99 grid points, respectively. Only $(0.50,1)$ changes. Its lower envelope is $0.002340$ in the covariant class and $-0.025233$ in the Sachs class. At the reference point the corresponding whole-class distance bounds are $0.404255$ and $0.403710$.
+Imposing the same numerical $L$ on $(G_C,G_M,G_Q)$ defines a different function class. Repeating the exact-origin envelope replaces $ab+xb^2/4$ by $ab+xb^2/12$. Because $x\ge0$, the latter integrand is no larger for the same $(a,b)$ box, so the Sachs test cannot certify more points by construction. Figure~\ref{fig:supp-coordinate-audit} compares the two sufficient tests. They exclude the origin at 63 and 62 of the 99 grid points, respectively. Only $(0.30,2)$ changes. Its lower envelopes are $+0.008404$ in the covariant class and $-0.005405$ in the Sachs class. At the reference point the corresponding whole-class distance lower bounds are $0.403483$ and $0.402935$.
 
 \begin{figure}[h]
 \centering
@@ -239,41 +247,40 @@ G_M^{(t)}(x)&=0,
 G_1^{(t)}(x)&=1+tL[\min(x,X)-2\min(x,h)],
 &0&\le t\le1.
 \end{align}
-The slopes of $G_1$ are $-tL$ on $(0,h)$, $+tL$ on $(h,X)$, and zero beyond $X$; the slopes of $G_Q$ are $-tL$ on $(0,X)$ and zero beyond. Thus each profile belongs to the complete anchored Lipschitz class for every $t\in[0,1]$. For the 33 previously classified overlap cells, direct continuous quadrature split at $h$ and $X$ gives $\overline W_C(0)>0$ and $\overline W_C(1)<0$. The smallest absolute negative endpoint magnitude on this set is $0.0220614$, attained at $(\widehat\sigma,L)=(0.15,8)$. Consequently, the intermediate-value theorem supplies an exact root for each of these 33 cells. The accompanying audit code and CSV contain all 33 endpoint pairs and numerical roots; their signs are independently numerically evaluated rather than formally interval-certified.
+The slopes of $G_1$ are $-tL$ on $(0,h)$, $+tL$ on $(h,X)$, and zero beyond $X$; the slopes of $G_Q$ are $-tL$ on $(0,X)$ and zero beyond. Thus each profile belongs to the complete anchored Lipschitz class for every $t\in[0,1]$. For the 33 previously classified overlap cells, direct continuous quadrature split at $h$ and $X$ gives $\overline W_C(0)>0$ and $\overline W_C(1)<0$. The smallest absolute negative endpoint magnitude on this set is $0.0474608$, attained at $(\widehat\sigma,L)=(0.15,8)$. Consequently, the intermediate-value theorem supplies an exact root for each of these 33 cells. The accompanying audit code and CSV contain all 33 endpoint pairs and numerical roots; their signs are independently numerically evaluated rather than formally interval-certified.
 
 At $(\sigma_k/m,L)=(0.15,8)$, the same family is represented by 32 equal-width segments for $G_1$ and $G_Q$. Scaling its slopes by $t\in[0,1]$ gives
 \begin{equation}
-\overline W_C(0)=1.0258623211,
+\overline W_C(0)=1.0263573066,
 \qquad
-\overline W_C(1)\simeq-0.0220613855.
+\overline W_C(1)\simeq-0.0474607720.
 \end{equation}
 The intermediate-value theorem therefore gives an exact root. Numerically,
 \begin{equation}
-t_\star\simeq0.9840811870,
+t_\star\simeq0.9667494646,
 \qquad
 |\overline W_C(t_\star)|\sim10^{-15}\quad\text{(unrounded numerical root)},
 \end{equation}
-using knot-split continuous quadrature. The maximum absolute covariant slope at the root is $7.8726495<8$. Its exact existence follows from the endpoint sign change, not from floating-point rounding. Transforming the same witness with $G_C=G_1+xG_Q/6$ gives
+using knot-split continuous quadrature. The maximum absolute covariant slope at the root is $7.7339957<8$. Its exact existence follows from the endpoint sign change, not from floating-point rounding. Transforming the same witness with $G_C=G_1+xG_Q/6$ gives
 \begin{equation}
-\max|G_C'|\simeq7.9277821<8,
+\max|G_C'|\simeq7.791093<8,
 \qquad
-\max|G_Q'|\simeq7.8726495<8.
+\max|G_Q'|\simeq7.733996<8.
 \end{equation}
-The displayed overlap therefore belongs to both the covariant and Sachs Lipschitz classes. The other 32 witnesses refer to the covariant class. The machine-readable audit stores all endpoint values and numerical roots; the original 32-segment witness also stores its slopes and the coordinate-derivative audit.
+The displayed overlap therefore belongs to both the covariant and Sachs Lipschitz classes. The other 32 witnesses refer to the covariant class. The machine-readable audit stores all endpoint values and numerical roots; an earlier filtered-measure 32-segment witness is retained in the archival repository but is not used to support the unfiltered result.
 
-\subsection{High-resolution searches at the two unresolved points}
-
-The same 32-segment alternating optimization was run with 1024 random starts at both points left undecided by the whole-class envelope. Table~\ref{tab:unresolved-searches} reports the lowest target value found. The search did not produce a negative profile. Because the optimization is finite basis, both points remain unresolved at the whole-class level.
-
+\subsection{The three unresolved cells}
+The unfiltered $\alpha=0$ classification retains three points with a nonpositive whole-class charge envelope and no signed two-kink witness. Their global eight-segment QCQP minima, recomputed with the unfiltered charge weight, are listed in Table~\ref{tab:unresolved-searches}. A positive finite-basis minimum is not a complete-Lipschitz separation certificate. The earlier 1024-start, 32-segment searches used the filtered $\alpha=2$ measure and are not presented as results for this version.
 \begin{table}[h]
-\caption{High-resolution adversarial searches at the two unresolved points. ``Negative found'' records if the search supplied an explicit overlap path.}
+\caption{Three unfiltered-charge unresolved cells and their eight-segment global QCQP minima. No negative profile is supplied by the tested family.}
 \label{tab:unresolved-searches}
 \begin{ruledtabular}
-\begin{tabular}{ccrcc}
-$\sigma_k/m$ & $L$ & starts & best $\overline W_C$ & negative found\\
+\begin{tabular}{ccc}
+$\sigma_k/m$ & $L$ & $q_{8,\min}$ \\
 \colrule
-0.08 & 24 & 1024 & 0.081192 & no\\
-0.10 & 16 & 1024 & 0.059268 & no\\
+0.08 & 24 & 0.201665 \\
+0.10 & 16 & 0.168785 \\
+0.50 & 1 & 0.105516 \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -294,7 +301,7 @@ The charge response is the QCQP
 +\bm v^{\mathsf T}Q\bm v,
 \qquad Q\succeq0,
 \end{equation}
-with $|u_i|,|v_i|\le L$. For fixed $\bm v$ the objective is linear in $\bm u$, so a global minimum has $\bm u$ at one of the $2^8$ box vertices. At each vertex the remaining problem in $\bm v$ is a convex box QP. All 21 points inconclusive under the componentwise test have positive global minima in this eight-segment basis. The largest projected KKT residual among the minimizing convex QPs is $4.6\times10^{-11}$.
+with $|u_i|,|v_i|\le L$. For fixed $\bm v$ the objective is linear in $\bm u$, so a global minimum has $\bm u$ at one of the $2^8$ box vertices. At each vertex the remaining problem in $\bm v$ is a convex box QP. All 21 points inconclusive under the componentwise test have positive global minima in this eight-segment basis. The box-QP stationary conditions are checked numerically for each retained minimizer.
 
 The separate degree-$2$ relaxation uses $\bm z=(\bm u,\bm v)$ and verifies
 \begin{equation}
@@ -304,7 +311,7 @@ S
 \begin{bmatrix}1\\\bm z\end{bmatrix}
 +\sum_i\lambda_i(L^2-z_i^2),
 \end{equation}
-with $S\succeq0$ and $\lambda_i\ge0$. Fourteen of the 21 unreduced bilinear QCQPs have a positive verified $\gamma$ at degree 2. The code saves the multipliers, coefficient residual, and minimum eigenvalue of $S$. Classification uses the analytic whole-class criteria and the explicit constructive overlaps. The finite-basis results serve as an optimizer audit.
+with $S\succeq0$ and $\lambda_i\ge0$. The present numerical SOS procedure finds explicitly feasible positive $\gamma$ for at least 12 of these 21 QCQPs at degree 2; nonpositive relaxations remain inconclusive. The accompanying audit records feasible multipliers and numerical PSD eigenvalues; no interval-arithmetic proof is claimed. Classification uses the analytic whole-class criteria and the explicit constructive overlaps. The finite-basis results serve as an optimizer audit.
 
 Table~\ref{tab:qcqp-sos} lists the complete 21-point audit and makes the difference between the pointwise whole-class relaxation and the finite-basis global minimum explicit.
 
@@ -312,30 +319,30 @@ Table~\ref{tab:qcqp-sos} lists the complete 21-point audit and makes the differe
 \caption{Independent audits of the 21 points inconclusive under the componentwise error box. $B_C$ is the whole-Lipschitz lower bound, $q_{8,\min}$ is the global eight-segment QCQP minimum, and $\gamma_2$ is the verified degree-$2$ SOS bound. A negative $\gamma_2$ is inconclusive.}
 \label{tab:qcqp-sos}
 \begin{ruledtabular}
-\begin{tabular}{rrrrl}
-$\sigma_k/m$ & $L$ & $B_C$ & $q_{8,\min}$ & $\gamma_2$ \\
+\begin{tabular}{rrrrr}
+ $\sigma_k/m$ & $L$ & $B_C$ & $q_{8,\min}$ & $\gamma_2$ \\
 \colrule
-0.05 & 24 & 0.528958 & 0.530381 & 0.526965 \\
-0.08 & 12 & 0.440044 & 0.446968 & 0.381094 \\
-0.08 & 16 & 0.297435 & 0.330924 & $-1.690505$ \\
-0.08 & 24 & $-0.063683$ & 0.203939 & $-4.548084$ \\
-0.10 & 6 & 0.542635 & 0.543476 & 0.517266 \\
-0.10 & 8 & 0.429613 & 0.437558 & 0.380571 \\
-0.10 & 12 & 0.201751 & 0.274455 & 0.171025 \\
-0.10 & 16 & $-0.096662$ & 0.183740 & $-0.333534$ \\
-0.15 & 3 & 0.520042 & 0.521313 & 0.519687 \\
-0.15 & 4 & 0.400160 & 0.411385 & 0.395919 \\
-0.15 & 6 & 0.147892 & 0.242360 & $-0.022636$ \\
-0.15 & 8 & $-0.195050$ & 0.066735 & $-0.330107$ \\
-0.20 & 2 & 0.479566 & 0.482431 & 0.425072 \\
-0.20 & 3 & 0.279596 & 0.312114 & 0.259058 \\
-0.20 & 4 & 0.043471 & 0.193927 & $-0.015636$ \\
-0.30 & 1 & 0.493896 & 0.495678 & 0.459653 \\
-0.30 & 2 & 0.064195 & 0.189657 & 0.027782 \\
-0.40 & 0.5 & 0.612343 & 0.612430 & 0.609785 \\
-0.40 & 1 & 0.274549 & 0.308172 & 0.164008 \\
-0.50 & 0.5 & 0.486229 & 0.488604 & 0.476631 \\
-0.50 & 1 & 0.002340 & 0.158993 & $-0.007264$ \\
+0.05 & 24 & +0.528073 & 0.529525 & +0.477418 \\
+0.08 & 12 & +0.437478 & 0.444632 & +0.367941 \\
+0.08 & 16 & +0.293838 & 0.328346 & -1.699812 \\
+0.08 & 24 & -0.071651 & 0.201665 & -4.584437 \\
+0.10 & 6 & +0.539342 & 0.540250 & +0.521080 \\
+0.10 & 8 & +0.425626 & 0.433961 & +0.409686 \\
+0.10 & 12 & +0.194773 & 0.270423 & -2.398336 \\
+0.10 & 16 & -0.109403 & 0.168785 & -4.746728 \\
+0.15 & 3 & +0.512922 & 0.514393 & +0.498379 \\
+0.15 & 4 & +0.391381 & 0.403673 & +0.372641 \\
+0.15 & 6 & +0.131619 & 0.233573 & -0.060163 \\
+0.15 & 8 & -0.225228 & 0.031703 & -0.335393 \\
+0.20 & 2 & +0.467238 & 0.470767 & +0.411731 \\
+0.20 & 3 & +0.260776 & 0.298145 & +0.240227 \\
+0.20 & 4 & +0.011023 & 0.178925 & -0.047168 \\
+0.30 & 1 & +0.471370 & 0.473952 & +0.464464 \\
+0.30 & 2 & +0.008404 & 0.161144 & -0.767694 \\
+0.40 & 0.5 & +0.584146 & 0.584312 & +0.578576 \\
+0.40 & 1 & +0.224277 & 0.269906 & +0.196749 \\
+0.50 & 0.5 & +0.441320 & 0.445665 & +0.374005 \\
+0.50 & 1 & -0.111793 & 0.105516 & -0.138762 \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -436,18 +443,18 @@ Table~\ref{tab:delta-robustness} shows the resulting sensitivity. The $33$ expli
 \begin{tabular}{rrrrrr}
 $\Delta$ & certified & overlap & unresolved & $B_C^{\rm ref}$ & $D^{\rm ref}$\\
 \colrule
-0 & 64 & 33 & 2 & 0.829718 & 0.404255\\
-0.05 & 62 & 33 & 4 & 0.783512 & 0.370384\\
-0.10 & 61 & 33 & 5 & 0.737365 & 0.337071\\
-0.25 & 59 & 33 & 7 & 0.599286 & 0.241028\\
-0.50 & 55 & 33 & 11 & 0.370353 & 0.099564\\
-0.75 & 45 & 33 & 21 & 0.142285 & 0.009978\\
-0.90 & 31 & 33 & 35 & $-0.001469$ & 0\\
+0.00 & 63 & 33 & 3 & +0.828236 & 0.403483\\
+0.05 & 61 & 33 & 5 & +0.782066 & 0.369644\\
+0.10 & 61 & 33 & 5 & +0.735957 & 0.336361\\
+0.25 & 59 & 33 & 7 & +0.597992 & 0.240405\\
+0.50 & 55 & 33 & 11 & +0.369261 & 0.099080\\
+0.75 & 45 & 33 & 21 & +0.141370 & 0.009804\\
+0.90 & 31 & 33 & 35 & -0.002478 & 0.000000\\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
-At the reference point, the uniform charge envelope remains positive until $\Delta\simeq0.898566$. This number characterizes the stated pointwise whole-class relaxation and is not an empirical bound on an anomalous coupling. In the standard CP-even $WW\gamma$ convention, $\delta=2\lambda_\gamma$ \cite{HagiwaraPecceiZeppenfeldHikasa1987}. The static protected distance remains positive for every $\Delta<1$ and reaches zero when the allowed domain first contains the common blind point $(g_M,\delta)=(0,-1)$.
+At the reference point, the uniform charge envelope remains positive until $\Delta\simeq0.897582$. This number characterizes the stated pointwise whole-class relaxation and is not an empirical bound on an anomalous coupling. In the standard CP-even $WW\gamma$ convention, $\delta=2\lambda_\gamma$ \cite{HagiwaraPecceiZeppenfeldHikasa1987}. The static protected distance remains positive for every $\Delta<1$ and reaches zero when the allowed domain first contains the common blind point $(g_M,\delta)=(0,-1)$.
 
 % ============================================================
 \section{Covariance-shape sensitivity}
@@ -472,18 +479,18 @@ where $r_\Sigma=\sigma(W_C)/\sigma(W_M)$. Table~\ref{tab:covariance} gives the w
 \begin{tabular}{ccccc}
 $r_\Sigma$ & $\rho$ & lower bound & $\varepsilon_{3\sigma}$ & $\varepsilon_{5\sigma}$\\
 \colrule
-0.5 & 0 & 0.5552 & 0.1851 & 0.1110\\
-0.5 & 0.5 & 0.4573 & 0.1524 & 0.0915\\
-0.5 & -0.5 & 0.7705 & 0.2568 & 0.1541\\
-1 & 0 & 0.4043 & 0.1348 & 0.0809\\
-1 & 0.5 & 0.3306 & 0.1102 & 0.0661\\
-1 & -0.5 & 0.5702 & 0.1901 & 0.1140\\
-2 & 0 & 0.2584 & 0.0861 & 0.0517\\
-2 & 0.5 & 0.2154 & 0.0718 & 0.0431\\
-2 & -0.5 & 0.3538 & 0.1179 & 0.0708\\
-4 & 0 & 0.1509 & 0.0503 & 0.0302\\
-4 & 0.5 & 0.1295 & 0.0432 & 0.0259\\
-4 & -0.5 & 0.1990 & 0.0663 & 0.0398\\
+0.5 & 0 & 0.5541 & 0.1847 & 0.1108\\
+0.5 & 0.5 & 0.4564 & 0.1521 & 0.0913\\
+0.5 & -0.5 & 0.7689 & 0.2563 & 0.1538\\
+1 & 0 & 0.4035 & 0.1345 & 0.0807\\
+1 & 0.5 & 0.3299 & 0.1100 & 0.0660\\
+1 & -0.5 & 0.5691 & 0.1897 & 0.1138\\
+2 & 0 & 0.2579 & 0.0860 & 0.0516\\
+2 & 0.5 & 0.2150 & 0.0717 & 0.0430\\
+2 & -0.5 & 0.3532 & 0.1177 & 0.0706\\
+4 & 0 & 0.1506 & 0.0502 & 0.0301\\
+4 & 0.5 & 0.1293 & 0.0431 & 0.0259\\
+4 & -0.5 & 0.1986 & 0.0662 & 0.0397\\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -496,7 +503,7 @@ Statistical recovery is evaluated directly in calibrated fingerprint space using
 \begin{equation}
 \widehat{\bm W}\sim\mathcal N(\bm W,\varepsilon^2\Sigma_{\rm shape}).
 \end{equation}
-At $\sigma_k/m=0.10$, $L=2$, and $\Sigma_{\rm shape}=I$, the profile-distance statistic is calibrated to a $5\%$ false-positive rate under spin $1/2$. The 30000-point inference cloud draws $g\sim\mathrm{Unif}[-4,4]$ and each of the 24 slopes of $(G_1,G_M,G_Q)$ independently from $\mathrm{Unif}[-2,2]$. The 10000-point truth cloud is drawn independently from the same distribution. The first power column in Table~\ref{tab:power} is therefore nuisance averaged. The second power column uses the explicit admissible profile with $g=0.5739859$ and $(\overline W_M,\overline W_C)=(0.2677439,0.3028927)$, which supplies the upper endpoint of the tight class-distance bracket.
+At $\sigma_k/m=0.10$, $L=2$, and $\Sigma_{\rm shape}=I$, the profile-distance statistic is calibrated to a $5\%$ false-positive rate under spin $1/2$. The 30000-point inference cloud draws $g\sim\mathrm{Unif}[-4,4]$ and each of the 24 slopes of $(G_1,G_M,G_Q)$ independently from $\mathrm{Unif}[-2,2]$. The 10000-point truth cloud is drawn independently from the same distribution. The first power column in Table~\ref{tab:power} is therefore nuisance averaged. The second power column uses the explicit admissible profile with $g=0.5734946$ and $(\overline W_M,\overline W_C)=(0.2672378,0.3023109)$, which supplies the upper endpoint of the tight class-distance bracket.
 
 \begin{table}[h]
 \caption{Estimator-space spin-$1$ recovery at the reference finite-bandwidth point. ``Cloud'' denotes the stated nuisance average. ``Near boundary'' denotes the fixed explicit bracketing profile. The uncertainty scale $\varepsilon$ is an estimator-space scale.}
@@ -505,10 +512,10 @@ At $\sigma_k/m=0.10$, $L=2$, and $\Sigma_{\rm shape}=I$, the profile-distance st
 \begin{tabular}{cccc}
 $\varepsilon$ & power, cloud & power, near boundary & AUC, cloud\\
 \colrule
-0.50 & 0.881 & 0.166 & 0.969\\
-0.30 & 0.961 & 0.358 & 0.992\\
-0.20 & 0.992 & 0.630 & 0.998\\
-0.15 & 0.999 & 0.826 & 0.9997\\
+0.50 & 0.881 & 0.166 & 0.9690\\
+0.30 & 0.961 & 0.357 & 0.9916\\
+0.20 & 0.992 & 0.629 & 0.9982\\
+0.15 & 0.999 & 0.824 & 0.9997\\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
@@ -519,13 +526,13 @@ $\varepsilon$ & power, cloud & power, near boundary & AUC, cloud\\
 % ============================================================
 
 \subsection{Primitive-resource ablation}
-At $\sigma_k/m=0.10$ and $L=2$, independent adversarial optimizations give a magnetic-only gap below $10^{-21}$ and a charge-only gap below $5\times10^{-9}$. The independently derived two-channel unit-covariance bracket is $0.404255\le d_{\rm class}\le0.404266$. The finite-width ablation preserves the broad-class static structure. Each primitive coordinate can be tuned away separately, while the pair remains separated at the reference point.
+At $\sigma_k/m=0.10$ and $L=2$, the magnetic-only blind point is exact by choosing $g_M=G_M\equiv0$. The charge-only block admits the anchored choice $G_Q\equiv0$ at $g_M=1$ on $\delta=0$, giving an exact zero independently of the charge weight. The independently derived two-channel unit-covariance bracket is $0.403483\le d_{\rm class}\le0.403495$. The finite-width ablation preserves the broad-class static structure. Each primitive coordinate can be tuned away separately, while the pair remains separated at the reference point.
 
 \subsection{Expanded moment-relation negative control}
 In the deformation $g_M+g_Q=1+\delta$, the point $g_M=0$ and $\delta=-1$ gives $g_Q=0$ and therefore reaches the protected origin. This is the first common blind point of the two primitive responses. The control isolates the role of the moment-relation nuisance class from the representation-theoretic fact that spin $1$ permits a rank-$2$ sector.
 
 \subsection{Adversarial basis convergence}
-The constructive overlap search is repeated at $\sigma_k/m=0.20$ with $3,4,6,8,$ and $10$ piecewise-linear segments. For $L=6$ and $L=12$, the best gaps stabilize below $10^{-4}$, supporting the explicit-overlap classification. At $L=2$, the best gap decreases from approximately $0.166$ to $0.155$ as the basis is enlarged. The componentwise moment bound is inconclusive there. The whole-Lipschitz envelope gives $B_C(0.20,2)=0.479566>0$ and certifies the full class. The basis-convergence sequence is an optimizer audit, while the analytic envelope provides the whole-class certificate.
+An archived $3,4,6,8,10$-segment convergence sequence at $\sigma_k/m=0.20$ used the filtered $\alpha=2$ charge measure and is not presented as an unfiltered-measure test. The new unfiltered eight-segment QCQP minimum at $L=2$ is positive. The unfiltered exact-overlap claims instead follow from the explicit two-kink signed witnesses. The componentwise moment bound is inconclusive there. The whole-Lipschitz envelope gives $B_C(0.20,2)=0.467238>0$ and certifies the full class. The basis-convergence sequence is an optimizer audit, while the analytic envelope provides the whole-class certificate.
 
 \subsection{Standard Model $W$ point}
 On the reference $\delta=0$ slice, the scan includes $g_M=2$, so the static relation gives $g_Q=-1$. The corresponding protected static fingerprint is
@@ -537,7 +544,7 @@ with unit-covariance distance $\sqrt{17}$ from the spin-$1/2$ origin. This point
 % ============================================================
 \section{Reproducibility}
 % ============================================================
-The public repository contains the numerical scripts, processed data, and metadata used by the theoretical analysis. The \path{theory_numerics/} workflow regenerates the finite-bandwidth classification, distance bounds, overlap and unresolved-point searches, coordinate checks, compact-prior magnetic margins, estimator-space results, and the $\delta$-robustness audit. The repository README provides the public reproduction commands. The two-kink check, its complete 33-row signed witness CSV, and the acceptance-sensitivity audit are versioned in the public repository and supplied in the accompanying reproducibility package; they are distinct from the original finite-basis search output.
+The unfiltered-charge scripts and processed numerical data for this manuscript are publicly available at the frozen repository commit cited by the main article. The release reproduces the $\alpha=0$ classification, distance enclosures, constructive overlaps, covariance checks, QCQP/SOS numerical audits, estimator-space results, and $\delta$-robustness calculation. The current code/data are under \texttt{theory\_numerics/} and its \texttt{results/alpha0/} directory. Earlier filtered-charge scripts and results are retained as historical provenance, not as evidence for the unfiltered tables.
 
 \FloatBarrier
 \section*{References}

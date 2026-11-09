@@ -1,13 +1,11 @@
-# Data availability and provenance
+# Data and code availability
 
-All **processed numerical outputs and scripts required for the current Journal of Physics A theoretical analysis** are public in this repository. The primary folders are [`theory_numerics/`](theory_numerics/) and [`theory_numerics/results/`](theory_numerics/results/). See the [results-to-evidence map](docs/RESULTS.md) for the precise files behind each claim and the [reproducibility guide](docs/REPRODUCIBILITY.md) for commands.
+The present J. Phys. A submission candidate uses the **unfiltered longitudinal charge response** ($\alpha=0$). The reproducibility scripts and processed numerical data are available at the fixed commit [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
 
-**Frozen analysis/code-data snapshot:** [`5c48258f69758818e3ed524cb4d7c1e9d5697811`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/5c48258f69758818e3ed524cb4d7c1e9d5697811). Documentation on the moving default branch may subsequently change. The analysis is version `1.8.0` and does not yet have an asserted archival DOI.
+The primary evidence is under `theory_numerics/results/alpha0/` with calculation scripts `theory_numerics/spin_alpha0_*.py`. It includes 99-point classification, 33 signed witnesses, moment-deformation scan, covariance-distance bounds, QCQP/SOS numerical checks, and estimator-space power.
 
-The available results cover the 99-point finite-bandwidth classification, 33 constructive overlap witnesses, whole-class distance enclosures, magnetic-only margins, coordinate-convention checks, finite-basis QCQP/SOS diagnostics, estimator-space audits, $\delta$ robustness and four fixed charge-acceptance choices. The figures and LaTeX source of the manuscript are in [`manuscript_jphysa/`](manuscript_jphysa/).
+The earlier `theory_numerics/results/publication_v1_0/` and old scripts reproduce an **archival filtered-charge ($\alpha=2$)** model and are **not** the source for current manuscript values. Older code is retained for transparency and comparison.
 
-**Important limits:** The numerical results are conditional on the explicitly defined positive detector-response architecture and admitted form-factor/nuisance classes. Analytic whole-class inequalities are distinguished from numerically evaluated brackets and sign checks; the two unresolved points remain unresolved. No nonpublic event-level inputs are needed to reproduce the **main theoretical manuscript**.
+All results relevant to this conditional theoretical manuscript are computed from public scripts and parameters; no non-public collider event records are required. Auxiliary collider folders are not a validation claim for the current manuscript.
 
-The folders [`collider/`](collider/) and [`generator_configuration/`](generator_configuration/) contain an **auxiliary fixed-energy development benchmark** only. Public count-level sufficient statistics and selected reported numerical checkpoints are present, but the full event-level sample and modified vector UFO are not distributed. Consequently, not every historical event-level analysis can be regenerated from the public repository, and the auxiliary collider study is **not** part of the present manuscript's validation chain.
-
-Earlier scripts and results are retained in [`archive/development_snapshots/`](archive/development_snapshots/) for provenance. See [version history](CHANGELOG.md) and [snapshot guidance](docs/RELEASES.md) before citing older artifacts.
+No formally interval-certified numerical sign or completed scattering apparatus is claimed.

@@ -1,24 +1,12 @@
-# Research snapshot and releases
+# Research snapshots and releases
 
-## Current analysis
+## Current manuscript candidate
 
-- **Version in the manuscript:** `1.8.0`.
-- **Frozen code/data commit:** [`5c48258f69758818e3ed524cb4d7c1e9d5697811`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/5c48258f69758818e3ed524cb4d7c1e9d5697811).
-- **Publication status:** manuscript prepared for submission, **not yet published**.
-- **DOI:** none asserted for this snapshot.
+- **Scientific code/data version:** `1.9.0`, primary **unfiltered $\alpha=0$**.
+- **Frozen numerical commit:** [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
+- **Manuscript:** prepared for J. Phys. A submission; neither published nor accepted.
+- **DOI:** none has been assigned to this research snapshot.
 
-A version in `VERSION`/`CITATION.cff` or a Git commit **does not automatically constitute a GitHub Release**. Existing PRX/PRD-labelled releases describe earlier development milestones and are intentionally retained for provenance.
+A Git commit and `CITATION.cff` version do not automatically create a GitHub Release. To create a release, use GitHub → Releases → Draft a new release and create tag `v1.9.0` targeting the *frozen scientific commit*, not whichever documentation commit happens to be latest on `main`. Suggested title: **v1.9.0 — Unfiltered-charge J. Phys. A numerical snapshot**.
 
-## Make the current snapshot visible as a formal GitHub Release
-
-When publishing a formal release, open **GitHub → Releases → Draft a new release** and create a `v1.8.0` tag **targeting the frozen SHA above**, not whichever commit is latest on `main`.
-
-Suggested title: **v1.8.0 — J. Phys. A research reproducibility snapshot**
-
-Suggested notes: *Frozen mathematical/numerical code and processed results for detector-restricted spin identifiability, including the acceptance-kernel identity, 33 constructive two-kink witnesses, and four fixed-charge-acceptance sensitivity audits. The analysis is model conditional; historical collider code is auxiliary provenance.*
-
-Check the exact tagged SHA, passing CI and citation metadata. Optionally archive the formal GitHub Release in Zenodo to obtain an **actual** DOI; add that DOI only after it exists.
-
-## Historical provenance
-
-Older releases (`v1.0.0`, `v1.4.0`, `v1.5.0` and `publication-v1.0.x`) are not the current manuscript's version and do not imply journal acceptance. Historical notes and scripts are under [`archive/development_snapshots/`](../archive/development_snapshots/).
+The older v1.8.0 commit `5c48258f...` is a **filtered $\alpha=2$** model, retained for traceability. Earlier PRX/PRD-tagged releases reflect development history, not editorial decisions. A Zenodo DOI can be added only after an actual deposit exists.
