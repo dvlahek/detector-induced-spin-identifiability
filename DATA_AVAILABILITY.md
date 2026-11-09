@@ -1,12 +1,13 @@
-# Data availability
+# Data availability and provenance
 
-The current J. Phys. A manuscript uses the public scripts and processed numerical data under `theory_numerics/`.
+All **processed numerical outputs and scripts required for the current Journal of Physics A theoretical analysis** are public in this repository. The primary folders are [`theory_numerics/`](theory_numerics/) and [`theory_numerics/results/`](theory_numerics/results/). See the [results-to-evidence map](docs/RESULTS.md) for the precise files behind each claim and the [reproducibility guide](docs/REPRODUCIBILITY.md) for commands.
 
-These files reproduce the compact-prior magnetic margins, the broad-class finite-bandwidth classification, explicit overlap witnesses, distance enclosures, coordinate checks, estimator-space audits, and the robustness calculation for `g_M + g_Q = 1 + delta`.
+**Frozen analysis/code-data snapshot:** [`5c48258f69758818e3ed524cb4d7c1e9d5697811`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/5c48258f69758818e3ed524cb4d7c1e9d5697811). Documentation on the moving default branch may subsequently change. The analysis is version `1.8.0` and does not yet have an asserted archival DOI.
 
-No non-public event-level data are required for the results reported in the current manuscript.
+The available results cover the 99-point finite-bandwidth classification, 33 constructive overlap witnesses, whole-class distance enclosures, magnetic-only margins, coordinate-convention checks, finite-basis QCQP/SOS diagnostics, estimator-space audits, $\delta$ robustness and four fixed charge-acceptance choices. The figures and LaTeX source of the manuscript are in [`manuscript_jphysa/`](manuscript_jphysa/).
 
-The `collider/` and `generator_configuration/` directories are retained as auxiliary project provenance and are not part of the current manuscript's validation chain.
+**Important limits:** The numerical results are conditional on the explicitly defined positive detector-response architecture and admitted form-factor/nuisance classes. Analytic whole-class inequalities are distinguished from numerically evaluated brackets and sign checks; the two unresolved points remain unresolved. No nonpublic event-level inputs are needed to reproduce the **main theoretical manuscript**.
 
+The folders [`collider/`](collider/) and [`generator_configuration/`](generator_configuration/) contain an **auxiliary fixed-energy development benchmark** only. Public count-level sufficient statistics and selected reported numerical checkpoints are present, but the full event-level sample and modified vector UFO are not distributed. Consequently, not every historical event-level analysis can be regenerated from the public repository, and the auxiliary collider study is **not** part of the present manuscript's validation chain.
 
-The v1.8.0 numerical snapshot includes `theory_numerics/explicit_overlap_family_verify.py`, `theory_numerics/acceptance_sensitivity_audit.py`, and `theory_numerics/charge_kernel_identity_check.py` together with their CSV/JSON outputs. The finite-bandwidth claims are conditional on the specified nonnegative charge-acceptance architecture; alternative alpha choices are shown separately as a sensitivity study. No experimental apparatus or collider detection claim is inferred from these checks.
+Earlier scripts and results are retained in [`archive/development_snapshots/`](archive/development_snapshots/) for provenance. See [version history](CHANGELOG.md) and [snapshot guidance](docs/RELEASES.md) before citing older artifacts.

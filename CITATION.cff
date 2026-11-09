@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Code and processed data accompanying the spin-identifiability manuscript."
+message: "Please cite this research code and processed data using the frozen numerical snapshot referenced in the manuscript."
 title: "Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data"
 type: software
 version: "1.8.0"
@@ -14,8 +14,9 @@ url: "https://github.com/dvlahek/detector-induced-spin-identifiability"
 license: MIT
 keywords:
   - spin identifiability
+  - mathematical physics
   - quantum field theory
   - detector response
   - Lipschitz certificate
   - electromagnetic form factors
-  - collider readout
+  - reproducible research
