@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "Code and processed data for the unfiltered-charge spin-identifiability manuscript."
-title: "Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data"
+message: "Cite this repository when using its numerical code and processed data."
+title: "Detector-Restricted Spin Identifiability: Numerical Code and Data"
 type: software
 version: "1.9.0"
 date-released: 2026-11-09

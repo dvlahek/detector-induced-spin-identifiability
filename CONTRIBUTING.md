@@ -1,13 +1,13 @@
 # Reproducibility reports and contributions
 
-The repository is a reproducible research artifact associated with a mathematical-physics manuscript. It is not a general-purpose spin-determination package.
+The repository is a reproducible research artifact providing numerical code and data for a mathematical-physics calculation. It is not a general-purpose spin-determination package.
 
 If a calculation fails, open a GitHub issue with the following details.
 
 1. Exact commit SHA and the command you ran.
 2. Operating system, Python version and `python -m pip freeze`.
 3. Expected and actual output, including the first relevant traceback.
-4. The affected manuscript equation, figure or evidence table.
+4. The affected calculation, output table or verification check.
 
 A minimal initial check is:
 

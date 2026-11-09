@@ -1,6 +1,6 @@
 # Development archive
 
-Earlier analysis scripts, numerical tables, release notes and workflow definitions are retained here so the calculation history can be traced. They are not part of the reproduction commands for the current manuscript.
+Earlier analysis scripts, numerical tables, release notes and workflow definitions are retained here so the calculation history can be traced. They are not part of the reproduction commands for the current numerical release.
 
 - `theory_numerics/` contains earlier scripts and their corresponding numerical results.
 - `release_notes/` records the historical releases.

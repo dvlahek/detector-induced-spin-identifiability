@@ -2,7 +2,7 @@
 
 ## Environment and immutable source
 
-Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f) when reproducing the manuscript. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
+Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f) when reproducing the fixed numerical results. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
 
 ```bash
 git clone https://github.com/dvlahek/detector-induced-spin-identifiability.git
@@ -44,15 +44,3 @@ This uses a seeded 48-segment alternating optimization with 200 starts for the k
 
 The SOS checks use floating-point feasibility, not interval arithmetic.
 
-## Build the manuscript
-
-Install a LaTeX distribution with `pdflatex` and `biber`. In `manuscript_jphysa/`, remove stale `.bbl` and `.bcf` files or start from a clean checkout. For **each** of `main` and `supplementary`, run:
-
-```bash
-pdflatex -interaction=nonstopmode main.tex
-biber main
-pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode main.tex
-```
-
-Repeat using `supplementary.tex` and `biber supplementary`. Check that the CMS citations and the code reference resolve to the scientific snapshot above.

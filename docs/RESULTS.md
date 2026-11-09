@@ -2,7 +2,7 @@
 
 The primary detector model has $A_C(k)=1$ and uses the charge measure $d\nu_C\propto\rho_0(r)r^2x\,dr$. See [Scientific scope](SCOPE.md) for physical assumptions and excluded claims.
 
-| Manuscript result | Reproducing code | Fixed data |
+| Scientific result | Reproducing code | Fixed data |
 | --- | --- | --- |
 | All-finite-bandwidth magnetic margin with a nonblind moment prior | [`narrow_prior_magnetic_audit.py`](../theory_numerics/narrow_prior_magnetic_audit.py) | [Magnetic margins](../theory_numerics/results/narrow_prior_magnetic_margins.csv) |
 | **63** sufficient certificates, **33** overlaps, **3** unresolved | [`spin_alpha0_compute.py`](../theory_numerics/spin_alpha0_compute.py) | [99-cell table](../theory_numerics/results/alpha0/classification_99_alpha0.csv) |
@@ -18,7 +18,7 @@ The primary detector model has $A_C(k)=1$ and uses the charge measure $d\nu_C\pr
 
 ## Charge-acceptance sensitivity
 
-The illustrative fixed-acceptance family $A_C^{(\alpha)}(k)=[2m/(E_k+m)]^{\alpha}$ gives these grid counts. The main manuscript uses $\alpha=0$.
+The illustrative fixed-acceptance family $A_C^{(\alpha)}(k)=[2m/(E_k+m)]^{\alpha}$ gives these grid counts. The reference implementation uses $\alpha=0$.
 
 | $\alpha$ | Certified | Constructed overlaps | Unresolved |
 | ---: | ---: | ---: | ---: |
