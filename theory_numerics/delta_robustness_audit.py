@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
@@ -30,6 +31,7 @@ SIGMAS=(0.02,0.05,0.08,0.10,0.15,0.20,0.30,0.40,0.50)
 SLOPES=(0.25,0.5,1.0,2.0,3.0,4.0,6.0,8.0,12.0,16.0,24.0)
 DELTAS=(0.0,0.05,0.10,0.25,0.50,0.75,0.90)
 
+@lru_cache(maxsize=None)
 def detector_measures(sigma: float, grid_n: int=20001, tail: float=12.0):
     k=np.linspace(-tail*sigma,tail*sigma,grid_n)
     e=np.sqrt(1.0+k*k)
