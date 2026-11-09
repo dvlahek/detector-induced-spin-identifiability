@@ -18,7 +18,7 @@ At \((\sigma_k/m,L)=(0.10,2)\), the \(\delta=0\) unit-covariance whole-class dis
 
 ## Reproduce the calculations
 
-The manuscript cites code version `1.6.0` at commit [`80d3bfd8`](https://github.com/dvlahek/detector-induced-spin-identifiability/commit/80d3bfd8d87a4c011e651fdbd90345f22842441c). Use that commit for the exact submitted calculation. The older GitHub releases document earlier stages and are not the manuscript's computational version. Python 3.12 is recommended.
+The current J. Phys. A computational version is `1.7.0`. The manuscript cites a fixed commit SHA so the submitted calculation remains reproducible even if the default branch later changes. Older GitHub releases document earlier stages and are not the current manuscript version. Python 3.12 is recommended.
 
 From the repository root:
 
@@ -70,4 +70,4 @@ The data used by the current manuscript are described in [DATA_AVAILABILITY.md](
 
 ## Citation and availability
 
-The manuscript's fixed reference is the commit linked above. The default branch keeps the current code and data, including documentation updates. Software citation metadata are in [CITATION.cff](CITATION.cff), and the code is released under the MIT license.
+The manuscript's software reference records the fixed submission commit. The default branch keeps the current code and data, including documentation updates. Software citation metadata are in [CITATION.cff](CITATION.cff), and the code is released under the MIT license.
