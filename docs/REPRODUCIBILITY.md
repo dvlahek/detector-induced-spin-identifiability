@@ -11,21 +11,25 @@ git checkout 93c70ed482443730c1abc6c2891732fb1bd5bd4f
 python -m pip install -r requirements.txt
 ```
 
-## Run
+## Run the cited snapshot
 
 ```bash
-python reproduce.py --mode smoke
-python reproduce.py --mode full
+python theory_numerics/spin_alpha0_compute.py
+python theory_numerics/spin_alpha0_qcqp.py
+python theory_numerics/spin_alpha0_power.py
+python theory_numerics/spin_alpha0_figures.py
+python theory_numerics/verify_alpha0_release.py
+python theory_numerics/verify_48segment_quadrature.py
 ```
 
-The smoke mode checks the frozen 63/33/3 grid, the 46 componentwise certificates, the saved high-resolution profiles and independent knot-split quadrature. Full mode recomputes the primary 99-point classification, seven $\Delta$ scans, covariance bounds, QCQP/SOS audits, estimator-space power and figures, then compares generated data with the fixed reference tables.
+The commands regenerate the primary 99-point classification, seven $\Delta$ scans, covariance bounds, QCQP/SOS audits, estimator-space power and figures, then verify the saved tables and independently integrate the 48-segment witness profiles. On the current default branch, the convenience wrapper `python reproduce.py --mode full` performs the same primary workflow.
 
 The scripts write to `theory_numerics/reproduced_alpha0/` and keep the repository reference data unchanged. The regenerated figures use Matplotlib. Power calculations use a fixed pseudorandom seed and specified finite inference and truth clouds.
 
 ## Optional high-resolution search
 
 ```bash
-python reproduce.py --mode highres
+python theory_numerics/alpha0_48segment_audit.py --out theory_numerics/reproduced_alpha0 --starts 200
 ```
 
 This uses a seeded 48-segment alternating optimization with 200 starts for the known overlap $(0.15,8)$ and the three unresolved cells $(0.08,24)$, $(0.10,16)$ and $(0.50,1)$. The frozen profile arrays and independent quadrature are stored in `theory_numerics/results/alpha0/alpha0_48segments_profiles.json` and `alpha0_48segments_quadrature.csv`. It may find a negative witness at the known-overlap control, but positive optimized values do not establish separation.
