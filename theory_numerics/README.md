@@ -19,3 +19,8 @@ For \(g_M\in[-4,4]\), `finite_bandwidth.py` evaluates a whole-Lipschitz charge e
 `delta_robustness_audit.py` enlarges the static relation to \(g_M+g_Q=1+\delta\) and computes whole-class bounds uniform over \(|\delta|\le\Delta\). The summary is stored in [`results/delta_robustness_summary.csv`](results/delta_robustness_summary.csv). `detector_measures_distance.py` evaluates the normalized detector measures, the distance enclosure and the Sachs-coordinate check. `precision_recovery.py` provides the estimator-space audit. `verify_publication_tables.py` checks the tabulated publication results. Run the commands in the root README.
 
 The broad-class reference data are stored in `results/publication_v1_0/`. This directory name identifies the fixed numerical dataset used by the manuscript; it is not a separate, superseded manuscript. The input `results/S1_slope_bandwidth_certificates_monotone_v1_1.csv` is kept alongside the active scripts because the finite-bandwidth reproduction uses its earlier status labels. Superseded scripts and earlier result sets are under [`../archive/development_snapshots/`](../archive/development_snapshots/).
+
+
+## Version 1.8.0 additional audits
+
+A chosen positive charge acceptance `A_C(k)=(2m/(E_k+m))**2` explains the normalized measure used by the manuscript. Run `charge_kernel_identity_check.py` to check the measure identity. Run `explicit_overlap_family_verify.py` to reproduce the signed endpoint witness for all 33 overlap cells. Run `acceptance_sensitivity_audit.py` to calculate four separate acceptance choices alpha=0,1,2,3; counts (certified, overlap, unresolved) are (63,33,3), (63,33,3), (64,33,2), (64,33,2). These sensitivity checks do not prove uniformity over an interval of alpha.

@@ -16,9 +16,15 @@ For the broader \(g_M\in[-4,4]\) class, the same 99-point grid contains 64 whole
 
 At \((\sigma_k/m,L)=(0.10,2)\), the \(\delta=0\) unit-covariance whole-class distance is enclosed by \(0.4042553595\le d_{\rm class}\le0.4042657175\). For the enlarged class \(|\delta|\le0.10\), 61 of the 99 points retain a whole-class certificate and the reference charge-envelope lower bound is 0.737365. The compact-prior magnetic theorem is independent of \(\delta\).
 
+## Calibrated charge acceptance and robustness (v1.8.0)
+
+The model uses a positive, channel-dependent acceptance A_C(k)=[2m/(E_k+m)]^2. This is a chosen detector architecture, not a universal consequence of the spin-one current. The two-kink witness family provides constructive origin overlaps in all 33 designated cells. A fixed-alpha sensitivity audit tests A_C^(alpha) for alpha=0,1,2,3 with certified/overlap/unresolved counts 63/33/3, 63/33/3, 64/33/2, 64/33/2. These are separate model checks, not a certificate uniform in alpha. The main mathematical result for the magnetic channel is acceptance-independent.
+
+Reproduction files: `theory_numerics/explicit_overlap_family_verify.py`, `theory_numerics/acceptance_sensitivity_audit.py`, `theory_numerics/charge_kernel_identity_check.py` and processed CSV/JSON files under `theory_numerics/results/`. Full source of the manuscript and figures is under `manuscript_jphysa/` in the submission branch, with bibliography pointing to the immutable numerical-code commit.
+
 ## Reproduce the calculations
 
-The current J. Phys. A computational version is `1.7.0`. The manuscript cites a fixed commit SHA so the submitted calculation remains reproducible even if the default branch later changes. Older GitHub releases document earlier stages and are not the current manuscript version. Python 3.12 is recommended.
+The current J. Phys. A computational version is `1.8.0`. The manuscript cites a fixed commit SHA so the submitted calculation remains reproducible even if the default branch later changes. Older GitHub releases document earlier stages and are not the current manuscript version. Python 3.12 is recommended.
 
 From the repository root:
 
@@ -71,3 +77,12 @@ The data used by the current manuscript are described in [DATA_AVAILABILITY.md](
 ## Citation and availability
 
 The manuscript's software reference records the fixed submission commit. The default branch keeps the current code and data, including documentation updates. Software citation metadata are in [CITATION.cff](CITATION.cff), and the code is released under the MIT license.
+
+
+Additional J. Phys. A v1.8.0 checks:
+
+```bash
+python theory_numerics/charge_kernel_identity_check.py
+python theory_numerics/explicit_overlap_family_verify.py
+python theory_numerics/acceptance_sensitivity_audit.py
+```

@@ -89,6 +89,30 @@ jobs:
           PY
 
 
+      - name: Verify accepted charge kernel and constructive overlaps
+        run: |
+          python theory_numerics/charge_kernel_identity_check.py
+          python theory_numerics/explicit_overlap_family_verify.py
+          python theory_numerics/acceptance_sensitivity_audit.py
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          root = Path('theory_numerics')
+          with (root/'results/acceptance_sensitivity_99point.csv').open() as fh:
+              expected = list(csv.DictReader(fh))
+          with (root/'acceptance_sensitivity_99point.csv').open() as fh:
+              actual = list(csv.DictReader(fh))
+          assert len(expected) == len(actual) == 396
+          for x, y in zip(expected, actual):
+              assert (x['alpha'], x['sigma_k_over_m'], x['L'], x['status']) == (y['alpha'], y['sigma_k_over_m'], y['L'], y['status'])
+              assert abs(float(x['BC'])-float(y['BC'])) < 3e-9
+              assert abs(float(x['W_C_t1'])-float(y['W_C_t1'])) < 3e-9
+          with (root/'explicit_overlap_family_results.csv').open() as fh:
+              rows = list(csv.DictReader(fh))
+          assert len(rows) == 33 and all(float(row['W_C_t1']) < 0 for row in rows)
+          print('v1.8.0_acceptance_and_overlap_pass')
+          PY
+
       - name: Reproduce measures and distance enclosure
         run: |
           python theory_numerics/detector_measures_distance.py \

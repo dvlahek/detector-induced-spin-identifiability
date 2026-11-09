@@ -1,0 +1,33 @@
+{
+  "summary": [
+    {
+      "alpha": 0,
+      "certified": 63,
+      "overlap": 33,
+      "unresolved": 3,
+      "B_C_0p5_L1": -0.1117940656652
+    },
+    {
+      "alpha": 1,
+      "certified": 63,
+      "overlap": 33,
+      "unresolved": 3,
+      "B_C_0p5_L1": -0.05192375925995
+    },
+    {
+      "alpha": 2,
+      "certified": 64,
+      "overlap": 33,
+      "unresolved": 2,
+      "B_C_0p5_L1": 0.002339902635794
+    },
+    {
+      "alpha": 3,
+      "certified": 64,
+      "overlap": 33,
+      "unresolved": 2,
+      "B_C_0p5_L1": 0.05154398440845
+    }
+  ],
+  "method": "fixed-alpha positive acceptance, knot-split quadrature, full-Lipschitz sufficient envelope, two-kink constructive witness"
+}
