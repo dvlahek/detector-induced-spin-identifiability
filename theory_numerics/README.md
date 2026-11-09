@@ -1,23 +1,25 @@
-# Active theoretical and numerical calculations
+# Numerical implementation
 
-## Current J. Phys. A analysis: **unfiltered $\alpha=0$**
+The scripts in this directory support the spin-1/2 versus spin-1 detector-response analysis. The primary charge model uses the squared longitudinal-current measure $d\nu_C\propto\rho_0r^2x\,dr$ and $A_C=1$.
 
-The charge measure is $d\nu_C\propto\rho_0(r)r^2 x\,dr$ (normalized). A positive detector acceptance $A_C=1$ means the squared longitudinal-current response has **no additional momentum-dependent event filtering**. The magnetic measure remains unchanged. Analysis uses real anchored Lipschitz form factors and the specified $g_M+g_Q=1+\delta$ moment relation.
+## Entry point
 
-**Frozen code snapshot:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
+From the repository root:
 
 ```bash
-python theory_numerics/spin_alpha0_compute.py
-python theory_numerics/spin_alpha0_qcqp.py
-python theory_numerics/spin_alpha0_power.py
-python theory_numerics/spin_alpha0_figures.py
-python theory_numerics/verify_alpha0_release.py
+python reproduce.py --mode smoke
+python reproduce.py --mode full
+python reproduce.py --mode highres
 ```
 
-Current results: [`results/alpha0/`](results/alpha0/). Scripts regenerate in ignored `reproduced_alpha0/` and are checked against the committed snapshot. The 99 cells are **63 certified / 33 overlap / 3 unresolved**; at $|\delta|\le0.10$, 61 are certified. Numerically evaluated positivity and SOS matrices do **not** constitute interval-arithmetic certification.
+- **Smoke** checks the saved primary classification and independently integrates four saved 48-segment profiles.
+- **Full** regenerates the primary finite-width tables, covariance audits, QCQP/SOS checks, power calculations and figures.
+- **Highres** runs the optional seeded 48-segment optimization. Its positive results do not establish separation.
 
-## Previous filtered-charge stage (archive)
+Reference data: [`results/alpha0/`](results/alpha0/). Generated outputs: `reproduced_alpha0/` (ignored by Git).
 
-Files such as `finite_bandwidth.py`, `detector_measures_distance.py`, `precision_recovery.py`, `delta_robustness_audit.py` and `results/publication_v1_0/` refer to the **older $\alpha=2$ model**. They are retained for provenance only and **must not** be used as the current unfiltered-model evidence. The magnetic-only audit is acceptance-independent and remains applicable.
+## Evidence and assumptions
 
-See [scientific scope](../docs/SCOPE.md) and [full reproducibility instructions](../docs/REPRODUCIBILITY.md).
+The analytic magnetic and charge-envelope bounds cover the stated anchored Lipschitz class. The finite-basis QCQP, numerical SOS and multistart searches are complementary checks, not replacements for those analytic bounds. A negative response gives a constructive overlap witness after its sign is verified. A positive local optimum leaves separation undecided.
+
+See the [evidence map](../docs/RESULTS.md) and [full reproduction procedure](../docs/REPRODUCIBILITY.md).

@@ -1,12 +1,9 @@
-# Research snapshots and releases
+# Versioning and citation
 
-## Current manuscript candidate
+**Current scientific snapshot:** [`93c70ed482443730c1abc6c2891732fb1bd5bd4f`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f).
 
-- **Scientific code/data version:** `1.9.0`, primary **unfiltered $\alpha=0$**.
-- **Frozen numerical commit:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
-- **Manuscript:** prepared for J. Phys. A submission; neither published nor accepted.
-- **DOI:** none has been assigned to this research snapshot.
+**Manuscript software version:** 1.9.0. The above SHA identifies the exact frozen computations, including the 48-segment verification data. Development commits on `main` may contain later documentation changes and should not replace the frozen source in academic citations.
 
-A Git commit and `CITATION.cff` version do not automatically create a GitHub Release. To create a release, use GitHub → Releases → Draft a new release and create tag `v1.9.0` targeting the *frozen scientific commit*, not whichever documentation commit happens to be latest on `main`. Suggested title: **v1.9.0 — Unfiltered-charge J. Phys. A numerical snapshot**.
+A version number or GitHub commit alone does not imply that a GitHub Release or archival DOI exists. As of the preparation of this document, no Zenodo DOI is assigned. To publish an official GitHub release, create a tag pointing to the complete final source version and use GitHub's Releases interface. If Zenodo is connected, it can archive the tagged release and provide a citable DOI.
 
-The older v1.8.0 commit `5c48258f...` is a **filtered $\alpha=2$** model, retained for traceability. Earlier PRX/PRD-tagged releases reflect development history, not editorial decisions. A Zenodo DOI can be added only after an actual deposit exists.
+No paper acceptance or publication is claimed by the software version.

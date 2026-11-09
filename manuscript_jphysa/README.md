@@ -1,20 +1,18 @@
-# J. Phys. A manuscript source — unfiltered charge (v1.9.0)
+# Manuscript sources
 
-This is the submitted-candidate LaTeX source for the main article and Supplementary Material. The manuscript is **not yet published or peer-reviewed**.
+The files `main.tex`, `supplementary.tex`, `references.bib`, `iopjournal.cls` and `figures/` build the article and its Supplementary Material. The manuscript is prepared for journal review and has not been accepted or published.
 
-**Frozen numerical code and data:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080). This immutable commit contains the primary unfiltered (`alpha=0`) results; it must not be confused with the earlier filtered-charge v1.8.0 snapshot.
+The numerical data and software are archived at the [fixed scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f). All manuscript results use the primary $\alpha=0$ detector model.
 
-Build from this directory:
+## Clean PDF build
+
+Use a LaTeX distribution containing `pdflatex` and `biber`. Start from a clean checkout or remove `.bbl` and `.bcf` files. In this directory, for each document:
 
 ```bash
 pdflatex -interaction=nonstopmode main.tex
 biber main
 pdflatex -interaction=nonstopmode main.tex
 pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode supplementary.tex
-biber supplementary
-pdflatex -interaction=nonstopmode supplementary.tex
-pdflatex -interaction=nonstopmode supplementary.tex
 ```
 
-The IOP class is included for standalone compilation. The typesetting placeholders are suppressed for review PDF builds. The cover letter is separate from the public research-code repository.
+Repeat the same sequence with `supplementary`. Confirm that the CMS citations and the software reference are numbered, not shown as BibLaTeX citation keys. The paper's numerical source citation points to the fixed commit above.
