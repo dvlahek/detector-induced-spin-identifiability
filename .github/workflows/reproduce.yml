@@ -67,6 +67,28 @@ jobs:
             --outdir reproduced_results/publication_v1_0 \
             --unresolved-overlap-starts 1024
 
+      - name: Reproduce delta robustness audit
+        run: |
+          python theory_numerics/delta_robustness_audit.py \
+            --status theory_numerics/results/publication_v1_0/finite_bandwidth_status.csv \
+            --magnetic-reference theory_numerics/results/narrow_prior_magnetic_margins.csv \
+            --outdir reproduced_results/delta_robustness
+          python - <<'PY'
+          import numpy as np
+          import pandas as pd
+          expected = pd.read_csv('theory_numerics/results/delta_robustness_summary.csv')
+          actual = pd.read_csv('reproduced_results/delta_robustness/delta_robustness_summary.csv')
+          assert list(actual.columns) == list(expected.columns)
+          assert np.allclose(actual.to_numpy(), expected.to_numpy(), rtol=0, atol=2e-9)
+          row = actual[np.isclose(actual.Delta, 0.10)].iloc[0]
+          assert int(row.guaranteed) == 61
+          assert int(row.explicit_overlap) == 33
+          assert int(row.unresolved) == 5
+          assert abs(float(row.reference_charge_lower_bound) - 0.7373650571577479) < 2e-9
+          print('delta_robustness_checkpoints_ok')
+          PY
+
+
       - name: Reproduce measures and distance enclosure
         run: |
           python theory_numerics/detector_measures_distance.py \
