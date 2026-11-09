@@ -1,4 +1,4 @@
-name: Reproduce spin-identifiability results
+name: Reproduce J. Phys. A unfiltered charge results
 
 on:
   push:
@@ -8,159 +8,39 @@ on:
 jobs:
   reproduce:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
-
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Install analysis dependencies
-        run: python -m pip install --quiet -r requirements.txt
-
-      - name: Check manuscript theory tables
-        run: python theory_numerics/verify_publication_tables.py
-
-      - name: Verify static nuisance-domain sensitivity
+      - name: Install scientific dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Recompute unfiltered whole-class results and witnesses
+        run: python theory_numerics/spin_alpha0_compute.py
+      - name: Recompute 21 QCQP minima and SOS checks
+        run: python theory_numerics/spin_alpha0_qcqp.py
+      - name: Recompute seeded estimator-space power
+        run: python theory_numerics/spin_alpha0_power.py
+      - name: Rebuild numerical figures
+        run: python theory_numerics/spin_alpha0_figures.py
+      - name: Check frozen code/data regression targets
+        run: python theory_numerics/verify_alpha0_release.py
+      - name: Independent magnetic-only margin audit
         run: |
-          python theory_numerics/nuisance_domain_sensitivity.py
+          python theory_numerics/narrow_prior_magnetic_audit.py --output reproduced_results/narrow_prior_magnetic_margins.csv
           python - <<'PY'
-          import pandas as pd
-          p = 'theory_numerics/results/nuisance_domain_sensitivity.csv'
-          d = pd.read_csv(p).set_index('K')
-          assert int(d.loc['{2}', 'tau_protected']) == 1
-          assert int(d.loc['[0.5,3.5]', 'tau_protected']) == 1
-          assert int(d.loc['[0,4]', 'tau_protected']) == 2
-          assert int(d.loc['[-4,4]', 'tau_protected']) == 2
-          assert abs(float(d.loc['[0,4]', 'combined_margin']) - 0.5378414486981995) < 1e-12
-          print('nuisance_domain_checkpoints_ok')
+          import numpy as np, pandas as pd
+          old=pd.read_csv('theory_numerics/results/narrow_prior_magnetic_margins.csv')
+          new=pd.read_csv('reproduced_results/narrow_prior_magnetic_margins.csv')
+          assert len(old)==len(new)==99
+          assert old.columns.tolist()==new.columns.tolist()
+          assert np.allclose(old.to_numpy(),new.to_numpy(),rtol=1e-9,atol=1e-11)
+          print('PASS magnetic-only 99-grid margins')
           PY
-
-      - name: Verify finite-bandwidth magnetic margin for K=[1,3]
-        run: |
-          python theory_numerics/narrow_prior_magnetic_audit.py \
-            --output reproduced_results/narrow_prior_magnetic_margins.csv
-          python - <<'PY'
-          import numpy as np
-          import pandas as pd
-          from pathlib import Path
-          original = pd.read_csv("theory_numerics/results/narrow_prior_magnetic_margins.csv")
-          reproduced = pd.read_csv("reproduced_results/narrow_prior_magnetic_margins.csv")
-          assert len(original) == len(reproduced) == 99
-          assert original.columns.tolist() == reproduced.columns.tolist()
-          assert np.allclose(reproduced.to_numpy(), original.to_numpy(), rtol=1e-9, atol=1e-11)
-          margins = reproduced["magnetic_only_lower_bound"]
-          assert margins.gt(0).all()
-          worst = reproduced.loc[margins.idxmin()]
-          assert np.isclose(worst["sigma_k_over_m"], 0.50)
-          assert np.isclose(worst["L"], 24)
-          assert np.isclose(worst["magnetic_only_lower_bound"], 0.005136150961363, atol=1e-10)
-          print("narrow_prior_99_margins_ok")
-          PY
-
-      - name: Reproduce finite-bandwidth classification
-        run: |
-          python theory_numerics/finite_bandwidth.py \
-            --old-status theory_numerics/results/S1_slope_bandwidth_certificates_monotone_v1_1.csv \
-            --outdir reproduced_results/publication_v1_0 \
-            --unresolved-overlap-starts 1024
-
-      - name: Reproduce delta robustness audit
-        run: |
-          python theory_numerics/delta_robustness_audit.py \
-            --status theory_numerics/results/publication_v1_0/finite_bandwidth_status.csv \
-            --magnetic-reference theory_numerics/results/narrow_prior_magnetic_margins.csv \
-            --outdir reproduced_results/delta_robustness
-          python - <<'PY'
-          import numpy as np
-          import pandas as pd
-          expected = pd.read_csv('theory_numerics/results/delta_robustness_summary.csv')
-          actual = pd.read_csv('reproduced_results/delta_robustness/delta_robustness_summary.csv')
-          assert list(actual.columns) == list(expected.columns)
-          assert np.allclose(actual.to_numpy(), expected.to_numpy(), rtol=0, atol=2e-9)
-          row = actual[np.isclose(actual.Delta, 0.10)].iloc[0]
-          assert int(row.guaranteed) == 61
-          assert int(row.explicit_overlap) == 33
-          assert int(row.unresolved) == 5
-          assert abs(float(row.reference_charge_lower_bound) - 0.7373650571577479) < 2e-9
-          print('delta_robustness_checkpoints_ok')
-          PY
-
-
-      - name: Verify accepted charge kernel and constructive overlaps
-        run: |
-          python theory_numerics/charge_kernel_identity_check.py
-          python theory_numerics/explicit_overlap_family_verify.py
-          python theory_numerics/acceptance_sensitivity_audit.py
-          python - <<'PY'
-          import csv, json
-          from pathlib import Path
-          root = Path('theory_numerics')
-          with (root/'results/acceptance_sensitivity_99point.csv').open() as fh:
-              expected = list(csv.DictReader(fh))
-          with (root/'acceptance_sensitivity_99point.csv').open() as fh:
-              actual = list(csv.DictReader(fh))
-          assert len(expected) == len(actual) == 396
-          for x, y in zip(expected, actual):
-              assert (x['alpha'], x['sigma_k_over_m'], x['L'], x['status']) == (y['alpha'], y['sigma_k_over_m'], y['L'], y['status'])
-              assert abs(float(x['BC'])-float(y['BC'])) < 3e-9
-              assert abs(float(x['W_C_t1'])-float(y['W_C_t1'])) < 3e-9
-          with (root/'explicit_overlap_family_results.csv').open() as fh:
-              rows = list(csv.DictReader(fh))
-          assert len(rows) == 33 and all(float(row['W_C_t1']) < 0 for row in rows)
-          print('v1.8.0_acceptance_and_overlap_pass')
-          PY
-
-      - name: Reproduce measures and distance enclosure
-        run: |
-          python theory_numerics/detector_measures_distance.py \
-            --outdir reproduced_results/publication_v1_0 \
-            --figdir reproduced_results/figures
-          python theory_numerics/verify_publication_tables.py \
-            --data reproduced_results/publication_v1_0
-
-      - name: Reproduce estimator-space recovery audit
-        run: |
-          python theory_numerics/precision_recovery.py \
-            --output reproduced_results/S3_precision_based_recovery.csv
-          python - <<'PY'
-          import numpy as np
-          import pandas as pd
-          expected = pd.read_csv('theory_numerics/results/S3_precision_based_recovery.csv')
-          actual = pd.read_csv('reproduced_results/S3_precision_based_recovery.csv')
-          assert list(actual.columns) == list(expected.columns)
-          assert np.allclose(actual.to_numpy(), expected.to_numpy(), rtol=0, atol=1e-12)
-          print('precision_recovery_checkpoints_ok')
-          PY
-
-      - name: Decode lossless public sufficient statistics
-        run: |
-          python - <<'PY'
-          import base64, gzip
-          from pathlib import Path
-          src = Path('collider/sufficient_statistics_v2.json.gz.b64').read_text().strip()
-          raw = gzip.decompress(base64.b64decode(src))
-          Path('collider/sufficient_statistics_v2_decoded.json').write_bytes(raw)
-          PY
-
-      - name: Reproduce public collider checkpoints
-        run: |
-          python collider/scripts/reproduce_public_statistics.py \
-            --statistics collider/sufficient_statistics_v2_decoded.json \
-            --archived-closure collider/results/fermion_vector_kl_validation_summary.json \
-            --archived-resource collider/results/architecture_kl_summary.csv \
-            --output reproduced_results/public_statistics.json
-
-      - name: Syntax-check event-level analyses
-        run: |
-          python -m py_compile collider/scripts/validate_fermion_vector_kl.py
-          python -m py_compile collider/scripts/resource_degradation_analysis.py
-
-      - name: Upload reproduced outputs
+      - name: Upload regenerated numerical results
         uses: actions/upload-artifact@v4
         with:
-          name: spin-identifiability-reproduced-results
-          path: reproduced_results/
+          name: spin-jphysa-alpha0-results
+          path: theory_numerics/reproduced_alpha0/
           retention-days: 30

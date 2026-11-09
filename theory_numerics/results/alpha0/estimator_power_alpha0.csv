@@ -1,0 +1,5 @@
+epsilon,cloud_averaged_spin1_power,near_boundary_profile_power,cloud_averaged_roc_auc
+0.5,0.88125,0.1655,0.96897528125
+0.3,0.961,0.35725,0.991559734375
+0.2,0.99175,0.629,0.998205078125
+0.15,0.99875,0.824125,0.999737171875

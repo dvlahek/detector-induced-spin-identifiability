@@ -1,10 +1,20 @@
-# J. Phys. A manuscript source (v1.8.0)
+# J. Phys. A manuscript source — unfiltered charge (v1.9.0)
 
-The source for the 26-page main article and the supplementary article is here, with the original provided IOP class and all figure assets.
+This is the submitted-candidate LaTeX source for the main article and Supplementary Material. The manuscript is **not yet published or peer-reviewed**.
 
-The bibliographic code/data reference points to the immutable numerical commit:
-`5c48258f69758818e3ed524cb4d7c1e9d5697811`.
+**Frozen numerical code and data:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080). This immutable commit contains the primary unfiltered (`alpha=0`) results; it must not be confused with the earlier filtered-charge v1.8.0 snapshot.
 
-Build in this directory with `pdflatex main.tex; biber main; pdflatex main.tex; pdflatex main.tex` (and equivalently `supplementary`). The source intentionally does not include the editorial cover letter.
+Build from this directory:
 
-The physically selected positive charge acceptance `A_C=(2m/(E_k+m))^2` is a model choice. The appendix reports fixed-architecture sensitivity for alpha=0,1,2,3; this is not an experimental detector realization.
+```bash
+pdflatex -interaction=nonstopmode main.tex
+biber main
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode supplementary.tex
+biber supplementary
+pdflatex -interaction=nonstopmode supplementary.tex
+pdflatex -interaction=nonstopmode supplementary.tex
+```
+
+The IOP class is included for standalone compilation. The typesetting placeholders are suppressed for review PDF builds. The cover letter is separate from the public research-code repository.

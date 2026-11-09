@@ -1,21 +1,19 @@
 # Research artifact changelog
 
-Version fields describe research-code milestones, not necessarily tagged GitHub Releases. Use the **fixed commit** cited in the manuscript for exact reproduction.
+Version fields indicate scientific code stages, not necessarily tagged GitHub releases. For quantitative reproduction cite the **frozen SHA**.
 
-## 1.8.0 — 2026-11-09 (current scientific snapshot)
+## 1.9.0 — 2026-11-09 (current J. Phys. A submission candidate)
 
-- Made the positive charge-sector acceptance explicit in the detector model and verified its spectral density identity.
-- Added deterministic two-kink constructive witnesses across 33 overlap cells.
-- Audited four fixed acceptance exponents, $\alpha=0,1,2,3$.
-- Aligned manuscript source, supplemental results and reproducibility data.
-- **Frozen code/data:** [`5c48258f`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/5c48258f69758818e3ed524cb4d7c1e9d5697811).
+- Switched the primary charge-channel model to the **unfiltered squared-current measure** $d\nu_C\propto\rho_0 r^2x\,dr$ ($A_C=1$, $\alpha=0$).
+- Recalculated the main 99-point classification (63/33/3), $\delta$ robustness, class-distance bracket, covariance and Sachs audits, estimator-space power, 21 QCQP minima and numerical SOS feasibility checks.
+- Rebuilt figures and manuscript source, removed IOP editorial placeholders, corrected bibliography to frozen alpha=0 commit.
+- Preserved the old filtered-charge results without rewriting their history.
+- Frozen scientific code/data: [`46271df7ba4b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
 
-## 1.7.0 — 2026-11-09
+## 1.8.0 — 2026-11-09 (archived $\alpha=2$ model)
 
-- Added the $g_M+g_Q=1+\delta$ nuisance deformation and uniform robustness audit.
-- Kept the all-finite-bandwidth magnetic theorem independent of $\delta$.
-- Separated the current theory manuscript from auxiliary collider development.
+The earlier filtered charge acceptance $A_C=[2m/(E_k+m)]^2$ gave 64/33/2 on the 99-point grid. Its scientific data were frozen at [`5c48258f`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/5c48258f69758818e3ed524cb4d7c1e9d5697811). They are not the primary results of the current manuscript.
 
-## Earlier milestones (historical)
+## Earlier development
 
-GitHub Releases tagged `publication-v1.0.0`/`publication-v1.0.1` and `v1.5.0`/`v1.4.0` retain previous computational and PRD/PRX-era provenance, **not publication claims**. See [`docs/RELEASES.md`](docs/RELEASES.md) and [`archive/development_snapshots/`](archive/development_snapshots/).
+Releases tagged v1.0.0, v1.4.0, v1.5.0, and publication-v1.0.x preserve historical PRX/PRD-era materials and do not imply journal acceptance.

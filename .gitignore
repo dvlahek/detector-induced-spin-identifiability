@@ -3,4 +3,7 @@ __pycache__/
 .DS_Store
 reproduced_results/
 .ipynb_checkpoints/
+theory_numerics/reproduced_alpha0/
+theory_numerics/acceptance_sensitivity_99point.csv
+theory_numerics/acceptance_sensitivity_summary.json
 theory_numerics/figures/
