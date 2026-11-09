@@ -6,7 +6,7 @@ Code and processed data for the manuscript *Detector-Restricted Identifiability 
 
 An experiment measures currents, polarization and reconstructed particles, not a spin label. Here we determine which electromagnetic responses distinguish charged spin-1/2 and spin-1 candidates after detector bandwidth and uncertain form factors are taken into account. The calculation concerns the calibrated magnetic and charge-sensitive response model defined in the manuscript.
 
-The missing internal rank-2 sector of spin 1/2 and Haberzettl's elementary-field relation \(g_M+g_Q=1\) are theoretical inputs. The contribution here is the detector-resource criterion and its finite-bandwidth analysis over the admitted form-factor class.
+The missing internal rank-2 sector of spin 1/2 and Haberzettl's elementary-field relation \(g_M+g_Q=1\) define the reference current class. The current analysis also tests the deformation \(g_M+g_Q=1+\delta\). The contribution is the detector-resource criterion and its finite-bandwidth analysis over complete admitted form-factor classes.
 
 ## Results
 
@@ -14,7 +14,7 @@ For the compact magnetic prior \(K=[1,3]\), the magnetic response has a strictly
 
 For the broader \(g_M\in[-4,4]\) class, the same 99-point grid contains 64 whole-class separation certificates, 33 explicit origin overlaps and two unresolved points. The two unresolved cases are \((0.08,24)\) and \((0.10,16)\). The positive certificates use magnetic positivity and a pointwise charge envelope. Explicit overlaps use admissible continuous form factors. Finite-basis QCQP, SOS and multistart searches are recorded separately from these whole-class conclusions.
 
-At \((\sigma_k/m,L)=(0.10,2)\), the unit-covariance whole-class distance is enclosed by \(0.4042553595\le d_{\rm class}\le0.4042657175\).
+At \((\sigma_k/m,L)=(0.10,2)\), the \(\delta=0\) unit-covariance whole-class distance is enclosed by \(0.4042553595\le d_{\rm class}\le0.4042657175\). For the enlarged class \(|\delta|\le0.10\), 61 of the 99 points retain a whole-class certificate and the reference charge-envelope lower bound is 0.737365. The compact-prior magnetic theorem is independent of \(\delta\).
 
 ## Reproduce the calculations
 
@@ -35,6 +35,12 @@ python theory_numerics/finite_bandwidth.py \
   --outdir reproduced_results/publication_v1_0 \
   --unresolved-overlap-starts 1024
 
+# Uniform robustness to g_M + g_Q = 1 + delta
+python theory_numerics/delta_robustness_audit.py \
+  --status theory_numerics/results/publication_v1_0/finite_bandwidth_status.csv \
+  --magnetic-reference theory_numerics/results/narrow_prior_magnetic_margins.csv \
+  --outdir reproduced_results/delta_robustness
+
 # Detector measures, distance bounds and coordinate comparison
 python theory_numerics/detector_measures_distance.py \
   --outdir reproduced_results/publication_v1_0 \
@@ -49,20 +55,18 @@ python theory_numerics/precision_recovery.py \
   --output reproduced_results/S3_precision_based_recovery.csv
 ```
 
-The GitHub Actions workflow checks the published numerical checkpoints, the 99 compact-prior margins and the public collider sufficient statistics. The generated files are written to `reproduced_results/`, except for the static nuisance-domain script, which updates its designated results CSV.
+The GitHub Actions workflow checks the manuscript numerical checkpoints, the 99 compact-prior margins, and the \(\delta\)-robustness summary. The collider directory is retained as an auxiliary development record and is not part of the current J. Phys. A manuscript. The generated files are written to `reproduced_results/`, except for the static nuisance-domain script, which updates its designated results CSV.
 
 ## Repository contents
 
 - `theory_numerics/`: form-factor calculations, certified bounds, constructive overlaps, numerical audits and their processed results.
-- `collider/`: fixed-energy detector-readout example, public sufficient statistics and reconstructed-level validation.
-- `generator_configuration/`: process definitions, model metadata, software versions, detector card provenance and seeds.
+- `collider/`: auxiliary fixed-energy readout study retained for provenance; it is not used by the current manuscript.
+- `generator_configuration/`: provenance for that auxiliary collider study.
 - `archive/development_snapshots/`: earlier computational snapshots retained for provenance; current reproduction uses the active scripts above.
-
-The collider example uses photon-channel production at one fixed energy. Its public count-level data reproduce the reported histogram diagnostics and readout ablations. The event-level sample and modified vector UFO are not distributed; the event-level classifier result is provided as a validated numerical record, not as a publicly rerunnable computation. This example does not implement the two primitive protected electromagnetic response blocks used in the analytic certificate.
 
 ## Data availability
 
-The public and non-public parts of the reproducibility package are described in [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). The principal theory results and the reported collider histogram/readout results are publicly reproducible from the processed data in this repository.
+The data used by the current manuscript are described in [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md). The theoretical results are publicly reproducible from the processed data and scripts in `theory_numerics/`.
 
 ## Citation and availability
 
