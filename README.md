@@ -8,7 +8,7 @@
 
 **Manuscript:** *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies* — prepared for journal submission; **not yet published or peer-reviewed**.  
 **Author:** Dino Vlahek (Faculty of Organization and Informatics, University of Zagreb).  
-**Frozen scientific code/data:** [`46271df7ba4b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).  
+**Frozen scientific code/data:** [`f711505b03b1`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).  
 **Primary charge channel:** unfiltered squared-current response, $A_C(k)=1$ ($\alpha=0$).
 
 [Manuscript sources](manuscript_jphysa/) · [Evidence map](docs/RESULTS.md) · [Reproduce](docs/REPRODUCIBILITY.md) · [Scope](docs/SCOPE.md) · [Citation](#citation)
@@ -63,6 +63,6 @@ The results are generated in the ignored `theory_numerics/reproduced_alpha0/` di
 
 Use [`CITATION.cff`](CITATION.cff) or GitHub's *Cite this repository* control, citing the immutable science commit rather than changing `main`:
 
-> Vlahek, D. (2026). *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data*, v1.9.0, commit [`46271df7ba4b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080), GitHub.
+> Vlahek, D. (2026). *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data*, v1.9.0, commit [`f711505b03b1`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080), GitHub.
 
 No DOI is asserted. The MIT license covers repository code; see [data availability](DATA_AVAILABILITY.md) and [contribution guidance](CONTRIBUTING.md).
