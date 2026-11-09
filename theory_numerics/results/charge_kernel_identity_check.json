@@ -1,0 +1,50 @@
+{
+  "PASS": true,
+  "m": 1,
+  "sigma_k_over_m": 0.15,
+  "statement": "A_C=(2/(omega+1))^2, 0<A_C<=1, weighted raw charge measure =16 times paper numerator",
+  "samples": [
+    {
+      "r": 0.001,
+      "acceptance": 0.9999995000003122,
+      "accepted_over_paper": 16.0,
+      "effect_anisotropy": -3.599998871682081e-13,
+      "predicted": -3.5999988754233027e-13
+    },
+    {
+      "r": 0.03,
+      "acceptance": 0.9995502529656389,
+      "accepted_over_paper": 16.000000000000004,
+      "effect_anisotropy": -2.9151802438480943e-07,
+      "predicted": -2.915180243848268e-07
+    },
+    {
+      "r": 0.1,
+      "acceptance": 0.9950310328778381,
+      "accepted_over_paper": 16.0,
+      "effect_anisotropy": -3.588805900879913e-05,
+      "predicted": -3.58880590088007e-05
+    },
+    {
+      "r": 0.3,
+      "acceptance": 0.957381835995044,
+      "accepted_over_paper": 16.0,
+      "effect_anisotropy": -0.0028374827221754606,
+      "predicted": -0.0028374827221754593
+    },
+    {
+      "r": 1.0,
+      "acceptance": 0.6862915010152397,
+      "accepted_over_paper": 16.0,
+      "effect_anisotropy": -0.2827922061357857,
+      "predicted": -0.2827922061357856
+    },
+    {
+      "r": 3.0,
+      "acceptance": 0.23088615702040688,
+      "accepted_over_paper": 15.999999999999995,
+      "effect_anisotropy": -10.224449047363871,
+      "predicted": -10.224449047363873
+    }
+  ]
+}
