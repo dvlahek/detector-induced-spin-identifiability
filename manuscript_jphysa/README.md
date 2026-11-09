@@ -6,13 +6,12 @@ The numerical data and software are archived at the [fixed scientific commit](ht
 
 ## Clean PDF build
 
-Use a LaTeX distribution containing `pdflatex` and `biber`. Start from a clean checkout or remove `.bbl` and `.bcf` files. In this directory, for each document:
+With a LaTeX distribution that provides `pdflatex`, `biber` and `pdftotext`, run from the repository root:
 
 ```bash
-pdflatex -interaction=nonstopmode main.tex
-biber main
-pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode main.tex
+bash manuscript_jphysa/build_clean.sh
 ```
 
-Repeat the same sequence with `supplementary`. Confirm that the CMS citations and the software reference are numbered, not shown as BibLaTeX citation keys. The paper's numerical source citation points to the fixed commit above.
+The script compiles both documents in a fresh temporary directory using the complete `pdflatex → biber → pdflatex → pdflatex` sequence. It writes `main_biber.pdf` and `supplementary_biber.pdf` to `submission_pdfs/` and stops if citation keys remain unresolved or the manuscript points to the outdated filtered-charge code snapshot.
+
+To select another output directory, pass its path as the first argument. The sources and frozen numerical snapshot are never modified by this build.
