@@ -2,12 +2,12 @@
 
 ## Environment and immutable source
 
-Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/2421638e1311dd2319a269d5c98dcfa94cb57970) when reproducing the fixed numerical results. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
+Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b) when reproducing the fixed numerical results. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
 
 ```bash
 git clone https://github.com/dvlahek/detector-induced-spin-identifiability.git
 cd detector-induced-spin-identifiability
-git checkout 2421638e1311dd2319a269d5c98dcfa94cb57970
+git checkout e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b
 python -m pip install -r requirements.txt
 ```
 

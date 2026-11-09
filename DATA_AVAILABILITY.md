@@ -1,6 +1,6 @@
 # Code and numerical data
 
-The complete code and processed data for the spin-identifiability calculations are publicly available at the [frozen scientific source](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/2421638e1311dd2319a269d5c98dcfa94cb57970).
+The complete code and processed data for the spin-identifiability calculations are publicly available at the [frozen scientific source](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b).
 
 The reference implementation is in [`theory_numerics/`](theory_numerics/). The primary datasets under [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) include 99-point classification, 33 constructive overlap paths, covariance-distance bounds, moment-deformation scans, QCQP/SOS results, estimator-space power, 48-segment profiles and quadrature convergence.
 
