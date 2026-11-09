@@ -4,7 +4,7 @@ import json,math,csv
 import numpy as np
 from scipy.integrate import quad
 ROOT=Path(__file__).resolve().parent
-cases=json.loads((ROOT/'results'/'alpha0_48segments_profiles.json').read_text())['cases']
+cases=json.loads((ROOT/'results'/'alpha0'/'alpha0_48segments_profiles.json').read_text())['cases']
 rows=[]
 for a in cases:
  sig=float(a['sigma_k_over_m']);L=float(a['L']);N=int(a['n_segments'])
@@ -29,5 +29,18 @@ for a in cases:
  rows.append(row)
  print(row)
 assert all(row['sign_ok'] and row['slopes_within_L'] for row in rows)
-with (ROOT/'results'/'alpha0_48segments_quadrature.csv').open('w',newline='') as out:
+output=ROOT/'reproduced_alpha0'/'alpha0_48segments_quadrature.csv'
+output.parent.mkdir(parents=True,exist_ok=True)
+with output.open('w',newline='') as out:
  writer=csv.DictWriter(out,rows[0].keys());writer.writeheader();writer.writerows(rows)
+
+# Independently validate the cited saved profile integrals.
+reference=ROOT/'results'/'alpha0'/'alpha0_48segments_quadrature.csv'
+with reference.open(newline='') as handle:
+ frozen=list(csv.DictReader(handle))
+assert len(rows)==len(frozen)==4
+for row,record in zip(rows,frozen):
+ assert row['case']==record['case']
+ assert abs(row['W_C_quad']-float(record['W_C_quad']))<1e-7
+ assert row['sign_ok'] and row['slopes_within_L']
+print('PASS alpha0 48-segment frozen-profile quadrature')
