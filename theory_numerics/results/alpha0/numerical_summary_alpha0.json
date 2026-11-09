@@ -1,0 +1,95 @@
+{
+  "reference": {
+    "D_lower": 0.40348334713215966,
+    "g_lower": 0.5735324533596,
+    "upper": {
+      "distance": 0.4034946602267405,
+      "g": 0.5734945875028215,
+      "W_M": 0.26723779683344034,
+      "W_C": 0.3023109339324359
+    },
+    "Sachs_lower": 0.40293544155800964,
+    "g_sachs": 0.5726677421742914
+  },
+  "counts": {
+    "certified": 63,
+    "overlap": 33,
+    "unresolved": 3
+  },
+  "componentwise_count_estimate": 46,
+  "sachs_count": 62,
+  "delta": [
+    {
+      "Delta": 0,
+      "certified": 63,
+      "overlap": 33,
+      "unresolved": 3,
+      "BC_ref": 0.8282362566759891,
+      "D_ref": 0.40348334714950757,
+      "g_D_ref": 0.5735326875938642
+    },
+    {
+      "Delta": 0.05,
+      "certified": 61,
+      "overlap": 33,
+      "unresolved": 5,
+      "BC_ref": 0.7820662819612374,
+      "D_ref": 0.3696436694007673,
+      "g_D_ref": 0.5560001590045242
+    },
+    {
+      "Delta": 0.1,
+      "certified": 61,
+      "overlap": 33,
+      "unresolved": 5,
+      "BC_ref": 0.73595691731532,
+      "D_ref": 0.33636080405841745,
+      "g_D_ref": 0.537692680555158
+    },
+    {
+      "Delta": 0.25,
+      "certified": 59,
+      "overlap": 33,
+      "unresolved": 7,
+      "BC_ref": 0.5979924799697716,
+      "D_ref": 0.24040464502297898,
+      "g_D_ref": 0.4772309610854157
+    },
+    {
+      "Delta": 0.5,
+      "certified": 55,
+      "overlap": 33,
+      "unresolved": 11,
+      "BC_ref": 0.3692613237792671,
+      "D_ref": 0.09907971858422182,
+      "g_D_ref": 0.3466816523565621
+    },
+    {
+      "Delta": 0.75,
+      "certified": 45,
+      "overlap": 33,
+      "unresolved": 21,
+      "BC_ref": 0.14136953009714853,
+      "D_ref": 0.009803772821156504,
+      "g_D_ref": 0.1459260230283216
+    },
+    {
+      "Delta": 0.9,
+      "certified": 31,
+      "overlap": 33,
+      "unresolved": 35,
+      "BC_ref": -0.002478124417468199,
+      "D_ref": 0.0,
+      "g_D_ref": -2.7019841666953182e-08
+    }
+  ],
+  "witness_critical": {
+    "sigma_k_over_m": 0.15,
+    "L": 8.0,
+    "W_C_t0": 1.026357306614843,
+    "W_C_t1": -0.04746077199282065,
+    "t_root": 0.966749464580107,
+    "max_abs_slope": 7.733995716640856
+  },
+  "runtime_s": 4.59
+}
