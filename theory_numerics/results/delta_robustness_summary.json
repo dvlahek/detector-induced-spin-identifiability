@@ -1,0 +1,9 @@
+{
+  "relation": "g_M + g_Q = 1 + delta",
+  "standard_TGC_mapping": "delta = 2 lambda_gamma",
+  "reference_point": {"sigma_k_over_m": 0.1, "L": 2.0},
+  "reference_certificate_zero_at_Delta": 0.8985656241429417,
+  "delta_zero_counts": {"guaranteed": 64, "explicit_overlap": 33, "unresolved": 2},
+  "magnetic_K_1_3_independent_of_delta": true,
+  "overlap_witnesses_at_delta_zero_remain_admissible_for_all_Delta_ge_0": true
+}
