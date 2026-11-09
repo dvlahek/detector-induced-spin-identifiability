@@ -1,14 +1,9 @@
 # Data availability
 
-The public repository contains the code and processed numerical data used for the principal results in the manuscript, including the finite-bandwidth certificates, explicit overlap construction, distance bounds, compact-prior magnetic margins, estimator-space checks, and the sufficient statistics used for the reported collider histogram and readout-ablation results.
+The current J. Phys. A manuscript uses the public scripts and processed numerical data under `theory_numerics/`.
 
-For the collider example, `collider/sufficient_statistics_v2.json.gz.b64` is a lossless archive of the count-level sufficient statistics used by the public reproducer. The repository also records the process definitions, software versions, seeds, detector provenance, and model-construction metadata under `generator_configuration/`.
+These files reproduce the compact-prior magnetic margins, the broad-class finite-bandwidth classification, explicit overlap witnesses, distance enclosures, coordinate checks, estimator-space audits, and the robustness calculation for `g_M + g_Q = 1 + delta`.
 
-Two intermediate event-level artifacts are not part of the public archive:
+No non-public event-level data are required for the results reported in the current manuscript.
 
-- the reconstructed event sample used for the out-of-fold classifier cross-check;
-- the derived vector UFO used for the auxiliary hard-event generation chain.
-
-The public reproducibility package was frozen at the processed sufficient-statistics level used for the reported collider histogram and readout results. The classifier and hard-event-generation checks are therefore documented as auxiliary validation records and are not used to establish the principal theoretical conclusions. Their scripts, metadata, seeds, and derived numerical summaries are public.
-
-If the journal editors or peer reviewers require the non-public intermediate artifacts during review, they can be provided privately by the author without undue restriction or delay.
+The `collider/` and `generator_configuration/` directories are retained as auxiliary project provenance and are not part of the current manuscript's validation chain.
