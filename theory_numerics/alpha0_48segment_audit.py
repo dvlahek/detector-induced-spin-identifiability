@@ -92,5 +92,5 @@ def run(out,starts):
     pd.DataFrame(rows).to_csv(out/'alpha0_48segments.csv',index=False)
     (out/'alpha0_48segments_profiles.json').write_text(json.dumps({'cases':allcases},indent=2))
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--out',type=Path,default=Path('results'));p.add_argument('--starts',type=int,default=200)
+    p=argparse.ArgumentParser();p.add_argument('--out',type=Path,default=Path('theory_numerics/reproduced_alpha0'));p.add_argument('--starts',type=int,default=200)
     args=p.parse_args();run(args.out,args.starts)
