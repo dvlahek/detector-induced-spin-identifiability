@@ -4,7 +4,7 @@
 
 The charge measure is $d\nu_C\propto\rho_0(r)r^2 x\,dr$ (normalized). A positive detector acceptance $A_C=1$ means the squared longitudinal-current response has **no additional momentum-dependent event filtering**. The magnetic measure remains unchanged. Analysis uses real anchored Lipschitz form factors and the specified $g_M+g_Q=1+\delta$ moment relation.
 
-**Frozen code snapshot:** [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
+**Frozen code snapshot:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
 
 ```bash
 python theory_numerics/spin_alpha0_compute.py

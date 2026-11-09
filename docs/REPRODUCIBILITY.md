@@ -1,6 +1,6 @@
 # Reproduce the J. Phys. A numerical results (v1.9.0)
 
-**Code/data SHA:** [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b). This revision uses the **unfiltered $\alpha=0$** charge measure. Older scripts under `theory_numerics/` and datasets under `results/publication_v1_0/` are filtered $\alpha=2$ provenance and are not part of the current numerical reproduction.
+**Code/data SHA:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080). This revision uses the **unfiltered $\alpha=0$** charge measure. Older scripts under `theory_numerics/` and datasets under `results/publication_v1_0/` are filtered $\alpha=2$ provenance and are not part of the current numerical reproduction.
 
 ## Environment
 
@@ -9,7 +9,7 @@ Python 3.12 is recommended. Dependencies are range-pinned rather than fully lock
 ```bash
 git clone https://github.com/dvlahek/detector-induced-spin-identifiability.git
 cd detector-induced-spin-identifiability
-git checkout 46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b
+git checkout f711505b03b1a01ad4d4be8a50ce4d46dbda2080
 python -m pip install -r requirements.txt
 ```
 

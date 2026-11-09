@@ -3,7 +3,7 @@
 ## Current manuscript candidate
 
 - **Scientific code/data version:** `1.9.0`, primary **unfiltered $\alpha=0$**.
-- **Frozen numerical commit:** [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
+- **Frozen numerical commit:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
 - **Manuscript:** prepared for J. Phys. A submission; neither published nor accepted.
 - **DOI:** none has been assigned to this research snapshot.
 

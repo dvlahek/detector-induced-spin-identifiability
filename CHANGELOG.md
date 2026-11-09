@@ -8,7 +8,7 @@ Version fields indicate scientific code stages, not necessarily tagged GitHub re
 - Recalculated the main 99-point classification (63/33/3), $\delta$ robustness, class-distance bracket, covariance and Sachs audits, estimator-space power, 21 QCQP minima and numerical SOS feasibility checks.
 - Rebuilt figures and manuscript source, removed IOP editorial placeholders, corrected bibliography to frozen alpha=0 commit.
 - Preserved the old filtered-charge results without rewriting their history.
-- Frozen scientific code/data: [`46271df7ba4b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
+- Frozen scientific code/data: [`46271df7ba4b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
 
 ## 1.8.0 — 2026-11-09 (archived $\alpha=2$ model)
 

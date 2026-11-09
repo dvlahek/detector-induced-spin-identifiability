@@ -1,6 +1,6 @@
 # Data and code availability
 
-The present J. Phys. A submission candidate uses the **unfiltered longitudinal charge response** ($\alpha=0$). The reproducibility scripts and processed numerical data are available at the fixed commit [`46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/46271df7ba4b94cfa6ad2af7f2627209c1e0ae7b).
+The present J. Phys. A submission candidate uses the **unfiltered longitudinal charge response** ($\alpha=0$). The reproducibility scripts and processed numerical data are available at the fixed commit [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).
 
 The primary evidence is under `theory_numerics/results/alpha0/` with calculation scripts `theory_numerics/spin_alpha0_*.py`. It includes 99-point classification, 33 signed witnesses, moment-deformation scan, covariance-distance bounds, QCQP/SOS numerical checks, and estimator-space power.
 
