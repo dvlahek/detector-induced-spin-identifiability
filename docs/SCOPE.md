@@ -8,6 +8,6 @@ The work studies **model-conditional identifiability**, not a universal operatio
 
 **Numerical evidence:** positive envelope evaluations and signed witness endpoints are numerical, not formally validated interval proofs. Finite-basis QCQP positivity does not establish separation over the entire Lipschitz function class. SOS certificates are floating-point numerical feasibility checks.
 
-**Acceptances:** the primary charge model has $A_C(k)=1$; the previous $A_C(k)=[2m/(E_k+m)]^2$ is now an **optional sensitivity case** ($\alpha=2$), not a physics-derived preferred filter. The four fixed $\alpha$ cases do not establish a theorem uniform over continuous $\alpha$.
+**Acceptances:** the primary charge model has $A_C(k)=1$; the family $A_C^{(\alpha)}(k)=[2m/(E_k+m)]^\alpha$ provides **optional fixed-acceptance sensitivity cases** ($\alpha=1,2,3$), not a preferred physics-derived selection. The four fixed $\alpha$ cases do not establish a theorem uniform over continuous $\alpha$.
 
-The historic collider/ and generator_configuration/ code records an auxiliary development stage and is not validation of the current theoretical result.
+Auxiliary collider and generator scripts are available as separate provenance, but do not validate the detector model used for the present theoretical claims.

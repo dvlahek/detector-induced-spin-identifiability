@@ -1,39 +1,54 @@
-# Reproduce the J. Phys. A numerical results (v1.9.0)
+# Reproduce the numerical results
 
-**Code/data SHA:** [`f711505b03b1a01ad4d4be8a50ce4d46dbda2080`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080). This revision uses the **unfiltered $\alpha=0$** charge measure. Older scripts under `theory_numerics/` and datasets under `results/publication_v1_0/` are filtered $\alpha=2$ provenance and are not part of the current numerical reproduction.
+## Environment and immutable source
 
-## Environment
-
-Python 3.12 is recommended. Dependencies are range-pinned rather than fully lockfile-pinned; report exact versions for cross-platform comparisons.
+Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f) when reproducing the manuscript. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
 
 ```bash
 git clone https://github.com/dvlahek/detector-induced-spin-identifiability.git
 cd detector-induced-spin-identifiability
-git checkout f711505b03b1a01ad4d4be8a50ce4d46dbda2080
+git checkout 93c70ed482443730c1abc6c2891732fb1bd5bd4f
 python -m pip install -r requirements.txt
 ```
 
-## Reproduce and compare the frozen primary results
+## Run
 
 ```bash
-python theory_numerics/spin_alpha0_compute.py
-python theory_numerics/spin_alpha0_qcqp.py
-python theory_numerics/spin_alpha0_power.py
-python theory_numerics/spin_alpha0_figures.py
-python theory_numerics/verify_alpha0_release.py
+python reproduce.py --mode smoke
+python reproduce.py --mode full
 ```
 
-Outputs are written under ignored `theory_numerics/reproduced_alpha0/`. The verifier compares regenerated results with [`theory_numerics/results/alpha0/`](../theory_numerics/results/alpha0/), asserting 63/33/3, 46 componentwise certificates, 62 Sachs certificates, the seven $\Delta$ counts, 21 positive finite-basis QCQP minima and at least 12 positive numerical SOS feasibility checks.
+The smoke mode checks the frozen 63/33/3 grid, the 46 componentwise certificates, the saved high-resolution profiles and independent knot-split quadrature. Full mode recomputes the primary 99-point classification, seven $\Delta$ scans, covariance bounds, QCQP/SOS audits, estimator-space power and figures, then compares generated data with the fixed reference tables.
 
-The 33 witness signs are evaluated with knot-split quadrature; their exact roots follow by continuity if those signs hold. The SOS matrix data are numerical, not interval-arithmetic certificates. Figure generation requires Matplotlib; estimator power uses a fixed random seed, specified finite sampling and nearest-neighbor cloud evaluation.
+The scripts write to `theory_numerics/reproduced_alpha0/` and keep the repository reference data unchanged. The regenerated figures use Matplotlib. Power calculations use a fixed pseudorandom seed and specified finite inference and truth clouds.
 
-## Auxiliary and archived calculations
-
-The magnetic-only theorem is independently checked with:
+## Optional high-resolution search
 
 ```bash
-python theory_numerics/narrow_prior_magnetic_audit.py \
-  --output reproduced_results/narrow_prior_magnetic_margins.csv
+python reproduce.py --mode highres
 ```
 
-The four fixed $\alpha$ detector-acceptance cases are available in [`theory_numerics/results/alpha0/acceptance_sensitivity_99point.csv`](../theory_numerics/results/alpha0/acceptance_sensitivity_99point.csv). The earlier $\alpha=2$ analysis remains available at commit `5c48258f69758818e3ed524cb4d7c1e9d5697811` for historical comparison, **not** as current evidence.
+This uses a seeded 48-segment alternating optimization with 200 starts for the known overlap $(0.15,8)$ and the three unresolved cells $(0.08,24)$, $(0.10,16)$ and $(0.50,1)$. The frozen profile arrays and independent quadrature are stored in `theory_numerics/results/alpha0/alpha0_48segments_profiles.json` and `alpha0_48segments_quadrature.csv`. It may find a negative witness at the known-overlap control, but positive optimized values do not establish separation.
+
+## Verification criteria
+
+- 99 grid cells consist of 63 whole-class sufficient certificates, 33 signed overlap constructions and 3 unresolved cases.
+- At $|\delta|\le0.10$, 61 grid cells retain positive whole-class bounds.
+- The reference distance is enclosed between 0.4034833471 and 0.4034946602.
+- The numerical degree-2 SOS audit has 12 positive saved feasible lower bounds among 21 finite-basis QCQPs.
+- The 48-segment negative control is negative when independently integrated. The three unresolved cases are not promoted to positive theorems.
+
+The SOS checks use floating-point feasibility, not interval arithmetic.
+
+## Build the manuscript
+
+Install a LaTeX distribution with `pdflatex` and `biber`. In `manuscript_jphysa/`, remove stale `.bbl` and `.bcf` files or start from a clean checkout. For **each** of `main` and `supplementary`, run:
+
+```bash
+pdflatex -interaction=nonstopmode main.tex
+biber main
+pdflatex -interaction=nonstopmode main.tex
+pdflatex -interaction=nonstopmode main.tex
+```
+
+Repeat using `supplementary.tex` and `biber supplementary`. Check that the CMS citations and the code reference resolve to the scientific snapshot above.

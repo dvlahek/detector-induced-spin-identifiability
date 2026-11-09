@@ -63,26 +63,24 @@
 \par\keywords{charged-particle spin, identifiability, detector bandwidth, electromagnetic form factors, inverse problems, quantum field theory}
 
 \begin{abstract}
-A particle's spin is intrinsic, but identifying it requires responses that a detector can access. We study charged spin-$1/2$ and spin-$1$ candidates through calibrated magnetic and charge-sensitive rank-$2$ responses. The absence of an internal rank-$2$ sector for spin $1/2$ and Haberzettl's elementary-field moment relation define a reference current class. We determine the primitive detector resources needed to distinguish the two classes with uncertain electromagnetic form factors and test robustness under the deformation $g_M+g_Q=1+\delta$. For $g_M\in[1,3]$, the magnetic channel alone separates the full anchored Lipschitz class at every finite Gaussian bandwidth and finite Lipschitz bound, independently of $\delta$. On the $\delta=0$ slice, the broader class $g_M\in[-4,4]$ contains $63$ whole-class certified points, $33$ exact overlaps, and three unresolved points on a $99$-point bandwidth--smoothness grid. A uniform $|\delta|\le0.10$ enlargement retains $61$ whole-class certificates, while all existing overlap witnesses remain admissible. The result makes the dependence of spin identifiability on detector architecture and the admitted nuisance class explicit at finite resolution.
+A particle's spin is defined by its representation, while its identification depends on the responses measured by a detector. We examine charged spin-$1/2$ and spin-$1$ candidates using magnetic and charge-sensitive rank-$2$ responses derived from electromagnetic currents. The analysis combines the absence of internal rank $2$ for spin $1/2$ with the spin-$1$ moment relation $g_M+g_Q=1$. We establish the number of primitive detector channels required for separation and evaluate the complete class of anchored Lipschitz form factors at finite Gaussian bandwidth. When $g_M\in[1,3]$, the magnetic response separates the two classes for every finite bandwidth and Lipschitz bound. This result also holds under the deformation $g_M+g_Q=1+\delta$. For the broader interval $g_M\in[-4,4]$ and $\delta=0$, the $99$-point bandwidth--smoothness grid contains $63$ sufficient whole-class certificates, $33$ explicit overlaps and three unresolved cases. The uniform extension $|\delta|\le0.10$ retains $61$ certificates. The resulting bounds identify the detector resources and form-factor restrictions needed for spin separation.
 \end{abstract}
 
 % ============================================================
 \section{Introduction}
 \label{sec:introduction}
 
-A detector does not read out a particle's spin directly. It records currents, decay products, polarization-dependent rates, and reconstructed momenta. Spin itself is a representation label of the Poincar\'e group \cite{Wigner1939}. The problem is to determine which information about that label survives the available interactions and detector responses.
+Spin identifies a representation of the Poincar\'e group \cite{Wigner1939}. In practice, an experiment measures particle currents, decay distributions and polarization-dependent observables. The observed response depends on the interaction, detector resolution and accessible measurement channels. Consequently, different spin representations may produce identical observations within a restricted measurement scheme. Their distinction then requires another measured response or an additional physical constraint on the candidate models.
 
-Two different spin classes can give the same measured response when the detector is blind to their distinguishing component. More data then reproduce the same distribution more precisely. A different physical response, or an independently justified restriction on the candidate models, is needed to separate the classes.
+Restricted-measurement distinguishability studies the discrimination of quantum states under limited measurements \cite{MatthewsWehnerWinter2009}. Informational completeness considers the measurements required to reconstruct states \cite{Finkelstein2004,FlammiaSilberfarbCaves2005,BaldwinDeutschKalev2016}. Complete-experiment methods address amplitude reconstruction \cite{ArenhoevelFix2014,TiatorWorkmanWunderlichHaberzettl2017,KroenertWunderlichAfzalThiel2021}, while quantum-system identification studies model recovery from measured dynamics \cite{BurgarthYuasa2012,BurgarthYuasa2014,LeghtasTuriniciRabitzRouchon2012}. Restricted channels and reference-frame descriptions provide related operational settings \cite{CaretteGlowackiLoveridge2023,SiddiquiWang2026,DuEtAl2026}. Here we consider identification of the spin representation for a fixed class of electromagnetic currents and detector responses.
 
-Several established frameworks touch different parts of this question. Restricted-measurement distinguishability asks how well quantum states can be separated when only a limited measurement family is available \cite{MatthewsWehnerWinter2009}. Informational completeness studies which measurement sets determine states within specified classes \cite{Finkelstein2004,FlammiaSilberfarbCaves2005,BaldwinDeutschKalev2016}. Complete-experiment analyses seek minimal sets of observables sufficient to reconstruct reaction amplitudes \cite{ArenhoevelFix2014,TiatorWorkmanWunderlichHaberzettl2017,KroenertWunderlichAfzalThiel2021}. Quantum-system identification and observability address recovery of dynamical models from input-output records \cite{BurgarthYuasa2012,BurgarthYuasa2014,LeghtasTuriniciRabitzRouchon2012}. Operational equivalence and measurement-resource limitations also appear in recent work on quantum reference frames and restricted channels \cite{CaretteGlowackiLoveridge2023,SiddiquiWang2026,DuEtAl2026}. We focus on the elementary-particle spin label within a specified current and detector-response class.
+The Quantum Temporal Probabilities (QTP) framework assigns measurement probabilities through contractions of QFT correlation functions and detector kernels \cite{AnastopoulosSavvidou2015I,AnastopoulosSavvidou2015II,AnastopoulosSavvidou2022}. The detector state, interaction, spectral response and pointer resolution enter this construction. Relativistic spin and polarization measurements have also been considered within this framework \cite{KoliopoulouAnastopoulosSavvidou2026}. We use the resulting positivity structure to specify calibrated electromagnetic response channels. The analysis concerns these response channels and does not require a complete process-specific scattering detector.
 
-The Quantum Temporal Probabilities (QTP) framework makes the detector dependence explicit. Measured probabilities are contractions of QFT correlation functions with a kernel containing the detector state, spectrum, coupling, and pointer coarse graining \cite{AnastopoulosSavvidou2015I,AnastopoulosSavvidou2015II,AnastopoulosSavvidou2022}. Recent work has applied this construction to relativistic spin and polarization measurements \cite{KoliopoulouAnastopoulosSavvidou2026}. We use this structure to motivate the detector-relative response map and positivity of the calibrated response blocks. The identifiability results require the positive measures specified below and do not depend on a complete process-specific QTP realization. We ask the inverse question and determine which representations remain compatible with a measured response.
+We study charged spin-$1/2$ and spin-$1$ particles. Their electromagnetic form factors admit established multipole decompositions \cite{Lorce2009Part1,Lorce2009NaturalMoments,CotognoLorceLowdonMorales2020,CosynVera2025,HuangTanWangYu2026}. An internal rank-$2$ tensor is absent for spin $1/2$. For spin $1$, the elementary-current regularity conditions yield a relation between magnetic and quadrupole moments \cite{Haberzettl2019}. We investigate how these representation and current constraints affect discrimination after finite spectral averaging and under uncertain form factors.
 
-Our example compares charged spin-$1/2$ and spin-$1$ particles. Electromagnetic multipole decompositions are established \cite{Lorce2009Part1,Lorce2009NaturalMoments,CotognoLorceLowdonMorales2020,CosynVera2025,HuangTanWangYu2026}. Spin $1/2$ has no internal rank-$2$ sector, and Haberzettl's elementary-field current relation constrains the magnetic and quadrupole moments of spin $1$ \cite{Haberzettl2019}. These facts alone do not determine which detector response separates the two classes once finite bandwidth and uncertain form factors are included. We formulate that question as separation of complete detector-response model sets.
+We first define an architecture-aware measure of the number of primitive detector channels required for separation. We then derive finite-bandwidth bounds for magnetic and charge-sensitive responses over anchored Lipschitz form factors. For a magnetic-moment interval around the tree-level value $g_M=2$ \cite{FerraraPorratiTelegdi1992,BrodskyHiller1992,HagiwaraPecceiZeppenfeldHikasa1987}, one magnetic channel is sufficient at every finite bandwidth. The broader moment interval includes the magnetic blind point and requires a joint analysis. We obtain whole-class separation certificates, construct exact response overlaps and evaluate their sensitivity to the deformation $g_M+g_Q=1+\delta$.
 
-We derive the minimum support in primitive magnetic and charge-sensitive responses and calculate finite-width bounds over the complete anchored Lipschitz class. Under a compact prior near the tree-level value $g_M=2$ \cite{FerraraPorratiTelegdi1992,BrodskyHiller1992,HagiwaraPecceiZeppenfeldHikasa1987}, the magnetic channel alone separates the classes for every finite bandwidth and Lipschitz bound. Enlarging the class to include its blind point changes the result. We then construct exact overlaps and certify the region in which the two-channel response remains separated. We also relax the exact moment relation by writing $g_M+g_Q=1+\delta$ and derive bounds uniform over $|\delta|\le\Delta$.
-
-We use a calibrated positive two-channel model for elastic current matrix elements. Mapping these responses to observables is process dependent for a specific particle. For unstable vectors, polarization and spin information can be reconstructed from production and decay distributions \cite{BurnsKongMatchevPark2008,GaoEtAl2010,BolognesiEtAl2012,ChoiChristensenSalmonWang2015}. The present analysis concerns the information carried by the calibrated electromagnetic response blocks once such observables are available.
+The results apply to specified calibrated elastic-current response blocks. Recovering them from a scattering experiment requires a process-dependent likelihood and polarization information. For unstable vector particles, such information can be inferred from production and decay distributions \cite{BurnsKongMatchevPark2008,GaoEtAl2010,BolognesiEtAl2012,ChoiChristensenSalmonWang2015}.
 
 \section{Detector-relative representation identifiability}
 \label{sec:operational}
@@ -100,7 +98,7 @@ where $\Pcal(\mathcal X_\alpha)$ is the set of probability measures on $\mathcal
 
 \begin{definition}
 \textbf{Detector-relative equivalence.}
-Two models $M_1,M_2\in\Mcal$ are equivalent under $\Dcal$, written $M_1\sim_{\Dcal}M_2$, if
+Models $M_1,M_2\in\Mcal$ are equivalent under $\Dcal$, denoted by $M_1\sim_{\Dcal}M_2$, when
 \begin{equation}
 P_{M_1,\alpha}=P_{M_2,\alpha}
 \qquad\text{for every }D_\alpha\in\Dcal.
@@ -124,7 +122,7 @@ L(M_1)=L(M_2).
 \end{definition}
 
 \paragraph{Infinite-statistics consequence.}
-If $M_1\sim_{\Dcal}M_2$, no decision rule based only on repeated uses of channels in $\Dcal$ can consistently distinguish them. Every allowed single-trial distribution is identical under the two models, and therefore so is every joint distribution generated by independent repetition. If $P_{M_i}^{(n)}$ denotes the joint law for any fixed $n$-trial protocol, then
+If $M_1\sim_{\Dcal}M_2$, all channels in $\Dcal$ produce identical single-trial distributions under the two models. Independent repetitions consequently produce identical joint distributions for every sample size. No decision rule based on these channels can consistently distinguish the models. If $P_{M_i}^{(n)}$ denotes the joint law for any fixed $n$-trial protocol, then
 \begin{equation}
 \DKL(P_{M_1}^{(n)}\Vert P_{M_2}^{(n)})=0,
 \qquad
@@ -132,7 +130,7 @@ If $M_1\sim_{\Dcal}M_2$, no decision rule based only on repeated uses of channel
 \end{equation}
 For equal priors, the optimal binary Bayes error remains $1/2$ for every $n$.
 
-To count physical resources, the response coordinates must retain their detector architecture. Let $\mathcal A$ index primitive response blocks and write
+We count resources by the primitive response channels required to construct the measured coordinates. Let $\mathcal A$ index primitive response blocks and write
 \begin{equation}
 \mathcal R_{\mathcal A}=\bigoplus_{a\in\mathcal A}\mathcal R_a.
 \label{eq:block-architecture}
@@ -146,7 +144,7 @@ For a label $\lambda$, let $\mathcal W_\lambda\subset\mathcal R_{\mathcal A}$ be
 \cap\pi_S\mathcal W_{\lambda'}=\varnothing\right\}.}
 \label{eq:general-threshold}
 \end{equation}
-The value is infinite if no allowed finite block subset separates the classes. It counts distinct primitive response types. Repeated samples and post-processed output dimension do not change this count.
+The threshold is infinite if no finite subset separates the classes. It counts distinct response blocks and is unchanged by repeated measurements or by the dimension of a post-processed output.
 
 \paragraph{Architecture invariance.}
 The threshold in Eq.~\eqref{eq:general-threshold} is invariant under invertible changes of basis within each block $\mathcal R_a$, relabeling of the blocks, and invertible post-processing of the outputs from any fixed subset $S$. Each allowed transformation maps $\pi_S\mathcal W_\lambda$ and $\pi_S\mathcal W_{\lambda'}$ bijectively into transformed sets and preserves emptiness of their intersection and the value of $|S|$. Mixing different physical blocks is different because the mixed coordinate already requires joint access to those blocks.
@@ -160,7 +158,7 @@ c_{\mathcal A}(L)
 &=|\operatorname{supp}_{\mathcal A}(L)|.
 \label{eq:readout-support}
 \end{align}
-Thus one scalar output can still use several physical resources. This distinction becomes explicit in the magnetic--charge example below.
+A scalar output may therefore depend on several primitive detector channels, as shown by the magnetic--charge example.
 
 % ============================================================
 \section{QFT detector response and spin tensors}
@@ -190,7 +188,7 @@ R^{ab}(y,\lambda)=
  e^{-i\hat P\cdot y}\hat J^b(x_0)|\Omega\rangle.
 \label{eq:detector-kernel}
 \end{equation}
-The detector state, spectrum, coupling, and pointer coarse graining are therefore part of the probability assignment.
+The resulting probability depends on the detector state, spectrum, coupling and pointer coarse graining.
 
 When absorbed momentum is resolved, the spectral kernel has the positive form
 \begin{equation}
@@ -244,9 +242,9 @@ where $\xi_s$ contains the physical nuisance parameters. Therefore
 \boxed{e^{(s)}_{a,\ell m}=0\quad\text{for all }\ell>2s.}
 \label{eq:representation-zero}
 \end{equation}
-No detector can generate an internal tensor rank that is absent from the representation.
+The measured internal effect contains only tensor ranks supported by the representation.
 
-A complete spin-coherent scan separates this representation cutoff from an accidental source orientation. For
+A complete spin-coherent scan identifies the available tensor ranks independently of a chosen source orientation. For
 \begin{equation}
 \rho_s(\bm n)=U_s(\bm n)|s,s\rangle\langle s,s|U_s^\dagger(\bm n),
 \end{equation}
@@ -292,14 +290,14 @@ $\|\Pi_{>2s}\bm y'\|\ge\delta_{s'|s}(R)>0$.
 No response can therefore belong to both model spaces.
 \end{proof}
 
-The criterion gives a sufficient separation condition. Model spaces can also be disjoint through tensor ranks shared by both representations. For adjacent spins $s'=s+1/2$, the first new internal rank is $\ell=2s+1$. The pair $1/2\leftrightarrow1$ is therefore naturally controlled by rank $2$. Rank $1$ is shared by both representations, and a spin-$1/2$ Pauli form factor can continuously vary a magnetic rank-$1$ response. Rank $2$ is the first sector that vanishes representation-theoretically for spin $1/2$.
+The criterion is sufficient for model-space separation. Disjointness may also occur in tensor ranks shared by the two representations. For adjacent spins $s'=s+1/2$, the first new internal rank is $\ell=2s+1$. The pair $1/2\leftrightarrow1$ is therefore naturally controlled by rank $2$. Rank $1$ is shared by both representations, and a spin-$1/2$ Pauli form factor can continuously vary a magnetic rank-$1$ response. Rank $2$ is the first sector that vanishes representation-theoretically for spin $1/2$.
 
 % ============================================================
 \section{A positive finite-width electromagnetic response model}
 \label{sec:positive-detector}
 % ============================================================
 
-We specify a positive two-channel kernel and the associated conditional elastic-current responses. Positivity and channel calibration can be checked directly within this model. A complete energy--momentum conserving scattering apparatus additionally requires an external probe and recoil. Let
+We consider a positive two-channel detector kernel acting on elastic electromagnetic currents. Its positivity and calibration follow from the construction. A physical scattering experiment additionally involves an external probe and recoil. Let
 \begin{equation}
 \mathcal H_D=\mathbb C|\Omega\rangle\oplus
 \bigoplus_{a=C,M}L^2(\mathbb R,\dd k),
@@ -325,14 +323,14 @@ This produces the positive rank-one spectral kernel
 =2\pi w_a(k)e_a^\mu(k)e_a^{\nu *}(k).
 \end{equation}
 
-For the finite-bandwidth calculation we use the same centered Gaussian window in both pointer sectors, without an additional momentum-dependent charge selection:
+Both channels use the same Gaussian spectral window
 \begin{align}
 w_M(k;\sigma_k)&=w_C(k;\sigma_k)
 =\exp\!\left[-\frac{k^2}{2\sigma_k^2}\right],
 \qquad \sigma_k>0.
 \label{eq:explicit-detector-weight}
 \end{align}
-The spectral kernels are positive semidefinite and $\sigma_k$ is the rms Gaussian width before current-dependent weighting. The difference between the normalized magnetic and charge measures below arises from their respective current kinematic factors, not from an inserted efficiency. Other accepted charge windows are treated only as separate sensitivity models in the Supplementary Material.
+These kernels are positive semidefinite. The Gaussian width $\sigma_k$ is defined before current-dependent weighting. The different normalized channel measures follow from the respective current kinematics. The Supplementary Material examines alternative charge acceptances.
 
 We use two orthogonal spacelike detector-current polarizations,
 \begin{equation}
@@ -353,7 +351,7 @@ q^\mu(k)&=(E_k,k,0,0),\\
 Q^2&=-\Delta^2=2m(E_k-m)\ge0.
 \label{eq:spacelike-transfer}
 \end{align}
-The timelike spectral label $\kappa$ and the outgoing target momentum $q$ share a numerical parametrization, whereas the target current depends on the spacelike transfer $\Delta=q-p$. Thus $\kappa\ne\Delta$. The QTP construction motivates the positivity structure, while the unfiltered charge measure below is obtained directly from the longitudinal current. The finite-bandwidth results are conditional on the Gaussian response model and the explicitly normalized measures $\dd\nu_M$ and $\dd\nu_C$. The Supplementary Material tests alternative charge acceptances as sensitivity models; the magnetic result is unaffected, while boundary certificates can change. A complete apparatus must additionally supply the process-dependent four-momentum flow and practical event reconstruction needed to extract these coordinates from measured events.
+The timelike detector spectral label $\kappa$ and outgoing momentum $q$ have the same numerical parametrization. The target current depends on the spacelike transfer $\Delta=q-p$, so $\kappa\ne\Delta$. The Gaussian kernel determines the spectral averaging and the longitudinal current determines the charge measure. The finite-bandwidth results use the normalized measures $\dd\nu_M$ and $\dd\nu_C$. Their experimental reconstruction requires a specified scattering process, including the external momentum flow and the measured final state.
 
 The current kinematic factors, the shared Gaussian window in Eq.~\eqref{eq:explicit-detector-weight}, and the one-particle phase measure give the normalized measures
 \begin{equation}
@@ -375,14 +373,14 @@ Then
 {N_C(\widehat\sigma)},
 \label{eq:nuC-explicit}
 \end{align}
-where $N_M$ and $N_C$ are the displayed numerators integrated over $r\in\mathbb R$. The rank-$2$ coefficient of the unfiltered squared longitudinal current is proportional to $k^2x[G_1G_Q+(x/4)G_Q^2]$ (derived in Sec.~\ref{sec:half-one}). Its current-squared spectral density is therefore proportional to $\rho_0r^2x$, exactly as in Eq.~\eqref{eq:nuC-explicit}, up to an overall constant removed by normalization. After dividing out known channel constants, the unnormalized weighted coefficients and calibrated fingerprints are related by
+where $N_M$ and $N_C$ are the integrals of the corresponding numerators over $r\in\mathbb R$. The rank-$2$ coefficient of the squared longitudinal current is proportional to $k^2x[G_1G_Q+(x/4)G_Q^2]$, as derived in Sec.~\ref{sec:half-one}. The spectral weight is therefore $\rho_0r^2x$ up to an overall constant. The unnormalized coefficients and calibrated fingerprints satisfy
 \begin{equation}
 \widetilde W_M=N_M\overline W_M,
 \qquad
 \widetilde W_C=N_C\overline W_C.
 \label{eq:channel-calibration}
 \end{equation}
-Separate channel calibration fixes the two reported coordinates before covariance whitening. Both measures are nonnegative, normalized to unity, and have $0$ in the closure of their support. As a normalization check, Eq.~\eqref{eq:nuC-explicit} gives $\langle x\rangle_C=0.1054292265$ at $\widehat\sigma=0.15$.
+Channel calibration fixes the reported coordinates before covariance whitening. Both measures are positive on their support, integrate to unity and contain the anchor $0$ in the closure of their support. Direct evaluation of Eq.~\eqref{eq:nuC-explicit} gives $\langle x\rangle_C=0.1054292265$ at $\widehat\sigma=0.15$.
 
 We use lowercase $w_a(k;\sigma_k)$ for detector spectral weights and $w_C(Q^2),w_M(Q^2)$ for local primitive protected coordinates. Their arguments distinguish the two uses. The symbols $\widetilde W_a$ and $\overline W_a$ denote uncalibrated and calibrated finite-width responses, respectively. Unbarred $W_a$ denotes the static coordinate, and bold $\bm W$ denotes the corresponding two-coordinate fingerprint.
 
@@ -457,7 +455,7 @@ The difference between the longitudinal and transverse diagonal entries of the p
 &=e_\star^2 k^2x\left(G_1G_Q+\frac{x}{4}G_Q^2\right).
 \label{eq:positive-charge-anisotropy}
 \end{align}
-The coefficient of $\diag(2,-1,-1)$ is one third of this difference. With the common Gaussian window and fixed rank-$2$ normalization, Eq.~\eqref{eq:positive-charge-anisotropy} produces the unfiltered charge measure $\dd\nu_C$ in Eq.~\eqref{eq:nuC-explicit} and the bilinear integrand used below. Positivity refers to the full effect $J_C^\dagger J_C$; its extracted traceless rank-$2$ coefficient can have either sign.
+The coefficient of $\diag(2,-1,-1)$ is one third of this difference. With the common Gaussian window and fixed rank-$2$ normalization, Eq.~\eqref{eq:positive-charge-anisotropy} gives the charge measure in Eq.~\eqref{eq:nuC-explicit} and the bilinear integrand used below. The full effect $J_C^\dagger J_C$ is positive. Its extracted traceless rank-$2$ coefficient can have either sign.
 The transverse channel is
 \begin{equation}
 \boxed{J_M=i e_\star k G_M(Q^2)\widetilde S_z,}
@@ -490,7 +488,7 @@ w_M(Q^2)&=|G_M(Q^2)|^2.
 }
 \label{eq:primitive-coordinates}
 \end{equation}
-The $Q^2\to0^+$ limit of this linear Breit-frame coefficient is understood after division by the known charge-quadrupole factor $2\eta/3=x/6$. The finite-width positive effect is a different, bilinear construction, given by Eq.~\eqref{eq:positive-charge-anisotropy}; its unfiltered spectral density is specified by Eq.~\eqref{eq:nuC-explicit}. The two constructions share the same static limit but are distinct observables at finite transfer.
+The linear Breit-frame coefficient is normalized by the known factor $2\eta/3=x/6$ before taking $Q^2\to0^+$. The finite-width response instead uses the bilinear positive effect in Eq.~\eqref{eq:positive-charge-anisotropy} and the measure in Eq.~\eqref{eq:nuC-explicit}. These quantities have the same static limit and differ at finite transfer.
 
 \paragraph{Connection to measured responses.}
 For a stable charged target, an elastic probe with recoil reconstruction and controlled target polarization provides a route to the magnetic and charge-quadrupole form factors. A rank-$2$ analysis requires tensor polarization or an equivalent reconstruction of the spin density matrix. For an unstable elementary vector such as the $W$, its electromagnetic moments enter gauge-complete production amplitudes through the triple-gauge vertex, and polarization information is reconstructed from production and decay distributions \cite{HagiwaraPecceiZeppenfeldHikasa1987,BurnsKongMatchevPark2008,GaoEtAl2010,BolognesiEtAl2012,ChoiChristensenSalmonWang2015}. Extracting the calibrated coordinates in Eq.~\eqref{eq:primitive-coordinates} then requires a process-specific likelihood, acceptance model, and control of the remaining amplitudes. The identifiability result concerns the information content of these response blocks once they are experimentally accessible.
@@ -540,14 +538,14 @@ Equations~\eqref{eq:spin1-WTI} and \eqref{eq:spin1-regularity} thus imply $2m\mu
 \boxed{g_M+g_Q=1.}
 \label{eq:elementarity}
 \end{equation}
-This derivation allows arbitrary dressing of the one-particle propagator and current and can also be continued to a resonance under the stated regularity assumptions \cite{Haberzettl2019}. The result applies to the operator-level one-particle-field current class defined above. Effective bound-state currents require their own microscopic gauge-invariant treatment. Throughout this work, the Haberzettl class refers to this operator-level current class.
+The derivation allows dressed propagators and currents and extends to resonances under the stated regularity assumptions \cite{Haberzettl2019}. The result applies to the operator-level one-particle-field current class defined above. Effective bound-state currents require their own microscopic gauge-invariant treatment. Throughout this work, the Haberzettl class refers to this operator-level current class.
 
 To test sensitivity to the exact moment relation, define
 \begin{equation}
 \delta\equiv g_M+g_Q-1.
 \label{eq:delta-definition}
 \end{equation}
-The Haberzettl class is the slice $\delta=0$. Nonzero $\delta$ defines an enlarged phenomenological nuisance family: it is not claimed to satisfy simultaneously all of the off-shell regularity assumptions leading to Eq.~\eqref{eq:elementarity}. In the standard CP-even $WW\gamma$ parametrization with electromagnetic gauge invariance,
+The Haberzettl current class corresponds to $\delta=0$. We use nonzero $\delta$ to define a phenomenological extension of the moment relation. The off-shell regularity assumptions behind Eq.~\eqref{eq:elementarity} are imposed only on the reference class. In the standard CP-even $WW\gamma$ parametrization with electromagnetic gauge invariance,
 \begin{equation}
 g_M=1+\kappa_\gamma+\lambda_\gamma,
 \qquad
@@ -627,7 +625,7 @@ for every real $g$. It is therefore a separating scalar output. However,
 \operatorname{supp}_{\mathcal A_0}(L)=\{M,C\},
 \qquad c_{\mathcal A_0}(L)=2.
 \end{equation}
-The scalar must receive both primitive responses before adding them and therefore retains physical resource count two in the second line of Eq.~\eqref{eq:tau-K}.
+The scalar readout requires both primitive responses and has physical resource count two in the second line of Eq.~\eqref{eq:tau-K}.
 
 The compactness assumption distinguishes disjoint model sets from a positive uniform margin. Define the static margins for nonempty compact $K$ by
 \begin{equation}
@@ -692,81 +690,17 @@ The robustness extension replaces the final anchor by $G_Q(0)=1+\delta-g$ with $
 For differentiable profiles this is equivalent to $|G_i'(x)|\le L_i$. For the piecewise-linear profiles below, the derivative bound holds almost everywhere and the definition includes their breakpoints.
 In this conditional elastic model we take the spacelike form factors to be real valued, as used in the positive-effect decomposition above. The finite-bandwidth analysis uses a common bound $L_1=L_M=L_Q=L$. The original $99$-point classification is the $\delta=0$ slice. We report the compact prior $K=[1,3]$ and the broader stress-test domain $g\in[-4,4]$, which contains both blind points and the Standard Model $W$ point. The broad interval is chosen to stress-test the resource criterion across both single-channel blind points. The compact interval represents a theory-motivated neighborhood of $g_M=2$ and illustrates the nonblind regime.
 
-The primary class is stated in the covariant vertex variables $(G_1,G_M,G_Q)$ because $G_1$ appears directly in Eq.~\eqref{eq:spin1-current} and in the regular off-shell completion that defines the elementary-field class. A transfer-dependent change of form-factor coordinates changes a common numerical Lipschitz constant. The coordinate choice is therefore part of the physical model. Using $G_1=G_C-xG_Q/6$, the same charge response can be written
+The Lipschitz class is defined in the covariant variables $(G_1,G_M,G_Q)$. The form factor $G_1$ enters both the current in Eq.~\eqref{eq:spin1-current} and its regular off-shell completion. A transfer-dependent coordinate transformation changes the numerical Lipschitz constant, so the function class depends on the chosen form-factor variables. Using $G_1=G_C-xG_Q/6$, the same charge response can be written
 \begin{equation}
 \overline W_C=\int\dd\nu_C(x)\,
 G_Q(x)\left[G_C(x)+\frac{x}{12}G_Q(x)\right].
 \label{eq:finite-C-Sachs}
 \end{equation}
-We therefore repeat the sufficient whole-class test with the same $L$ imposed on $(G_C,G_M,G_Q)$. For the same pointwise box and $x\ge0$, $ab+xb^2/12\le ab+xb^2/4$, so the Sachs envelope cannot certify more points by construction. Only one of the $99$ outcomes changes. The covariant and Sachs tests certify $63$ and $62$ points, respectively. The Sachs sufficient test loses the cell $(\sigma_k/m,L)=(0.30,2)$, whose envelopes are $+0.008404$ and $-0.005405$. At the reference point the corresponding unit-covariance lower bounds are $0.403483$ and $0.402935$. The explicit overlap witness at $(0.15,8)$ also satisfies $\max|G_C'|\simeq7.791093<8$ and $\max|G_Q'|\simeq7.733996<8$. This witness belongs to both coordinate conventions. The remaining overlap labels refer to the covariant class.
+The same numerical Lipschitz bound imposed on $(G_C,G_M,G_Q)$ defines a distinct nuisance class. Its sufficient origin-exclusion test certifies 62 points, compared with 63 in the covariant variables. The comparison, including the single changed grid cell and the coordinate consistency check for the overlap witness, is reported in the Supplementary Material.
 
 We use the Lipschitz class as a deliberately broad stress test. At the largest $L$, it permits profiles that need not decrease across the sampled interval. A dispersive class would require additional quantitative input such as singularity locations and coefficient or spectral-norm bounds. Such information can reduce the admitted nuisance set and may shrink the overlap region. We leave that physically stronger class for future work.
 
-For scale intuition, consider the unit-normalized dipole profile
-\begin{equation}
-\widehat G(Q^2)=\left(1+\frac{Q^2}{\Lambda^2}\right)^{-2}.
-\end{equation}
-Its origin slope in the dimensionless variable $x$ is
-\begin{equation}
-\left|\frac{\dd\widehat G}{\dd x}(0)\right|
-=2\frac{m^2}{\Lambda^2},
-\qquad
-\frac{\Lambda}{m}=\sqrt{\frac{2}{L}}
-\label{eq:dipole-proxy}
-\end{equation}
-when the slope bound is saturated. Thus $L=2$ corresponds to the proxy scale $\Lambda=m$, while $L=24$ corresponds to $\Lambda\simeq0.289m$. Equation~\eqref{eq:dipole-proxy} provides local scale intuition. For $G_i(Q^2)=G_i(0)\widehat G(Q^2)$ the absolute origin slope also contains $|G_i(0)|$. The common Lipschitz bound therefore leaves the dipole shape and structural scale free. The overlap boundary depends jointly on detector bandwidth and allowed softness. Explicit overlaps remain possible at $L=2$ for the broadest tested kernels.
-
-Before introducing detector smearing, we state a stability result for the local, amplitude-calibrated protected coordinates (not yet for the bilinear finite-width charge effect). Let
-\begin{equation}
-\bm W_1(g,Q^2)=
-\left(
-|G_M(g,Q^2)|^2,\,
-G_Q(g,Q^2)
-\right),
-\end{equation}
-and let $\|\bm x\|_A=\sqrt{\bm x^{\mathsf T}A\bm x}$ for a fixed positive-definite matrix $A$.
-
-\begin{proposition}
-\textbf{Finite-transfer stability.}
-\phantomsection\label{prop:finite-transfer}
-Let $K\subset\mathbb R$ be compact and suppose $\bm W_1(g,Q^2)$ is jointly continuous on
-$K\times[0,Q_{\max}^2]$. If
-\begin{equation}
-d_0=
-\min_{g\in K}
-\|\bm W_1(g,0)\|_A
->0,
-\end{equation}
-and for some $Q_\ast^2>0$
-\begin{equation}
-\sup_{g\in K}
-\|\bm W_1(g,Q^2)-\bm W_1(g,0)\|_A
-<d_0
-\label{eq:finite-transfer-condition}
-\end{equation}
-for all $0\le Q^2\le Q_\ast^2$, then
-\begin{equation}
-\min_{g\in K}\|\bm W_1(g,Q^2)\|_A>0
-\end{equation}
-throughout that transfer interval. Hence the spin-$1$ protected response remains separated from the spin-$1/2$ origin.
-\end{proposition}
-\begin{proof}
-For every $g\in K$, the reverse triangle inequality gives
-\begin{align}
-\|\bm W_1(g,Q^2)\|_A
-&\ge
-\|\bm W_1(g,0)\|_A
-\nonumber\\
-&\quad-
-\|\bm W_1(g,Q^2)-\bm W_1(g,0)\|_A
-\nonumber\\
-&>
-d_0-d_0=0.
-\end{align}
-Taking the minimum over the compact nuisance domain preserves strict positivity.
-\end{proof}
-
-Equation~\eqref{eq:finite-transfer-condition} is representation- and metric-aware and applies without choosing a particular form-factor ansatz. The explicit Lipschitz bounds below separately provide a constructive sufficient condition for the bilinear finite-width detector effect. The present local-coordinate statement alone does not imply the finite-width result.
+The Lipschitz bound also determines a local form-factor scale. For a unit-normalized dipole with slope saturation, $L=2$ corresponds to $\Lambda=m$. The precise relation and an independent finite-transfer continuity result for local response coordinates are given in the Supplementary Material. Neither replaces the finite-bandwidth bounds derived below.
 
 With the explicit normalized measures in Eqs.~\eqref{eq:nuM-explicit} and \eqref{eq:nuC-explicit}, the finite-width rank-$2$ fingerprint is
 \begin{align}
@@ -862,7 +796,7 @@ At $\Delta=0$ the corollary reduces to Theorem~\ref{prop:positivity-envelope}. O
 
 For numerical evaluation, the minimum in Eq.~\eqref{eq:charge-envelope} is elementary. At fixed $b$ the expression is linear in $a$, so $a$ lies at one of the two interval endpoints. For either endpoint the remaining function of $b$ is a convex quadratic and its constrained minimum is obtained by clipping $b=-2a/x$ to the same interval. This evaluates the envelope without an inner stochastic optimizer.
 
-The pointwise construction relaxes the anchored Lipschitz minimization by selecting the minimizing pair $(a,b)$ independently at each $x$. The resulting analytic lower bound is valid for the complete anchored Lipschitz class and can be conservative. A value $B_C\le0$ leaves the point undecided and can coexist with a positive minimum in the finite piecewise-linear audit, as occurs at the three unresolved points.
+The pointwise minimum allows $(a,b)$ to vary independently at each transfer. Its integral is therefore a conservative lower bound for the anchored Lipschitz class. A nonpositive value of $B_C$ is inconclusive, even when a finite-basis optimization gives a positive minimum.
 
 On the $\delta=0$ slice, the same pointwise construction also yields a quantitative whole-class distance. For each anchor $g$, define
 \begin{align}
@@ -910,9 +844,9 @@ minimized at $g=0.5734946$, gives $0.4034946602$. Hence the true class distance 
 \boxed{0.403483\le d_{\rm class}\le0.403495.}
 \label{eq:reference-distance-bracket}
 \end{equation}
-The decimal values are numerical evaluations of the analytic enclosure and are checked by grid and Gaussian-tail convergence. Formal interval arithmetic is not used. The lower-bound calculation is also evaluated at every point of the $99$-point grid. Figure~\ref{fig:bandwidth-status}(b) displays the resulting quantitative map. The full machine-readable table is available in the public repository, and the quadrature and Gaussian-tail convergence checks are documented in the Supplementary Material.
+The reported decimal bounds are obtained by numerical integration of the analytic enclosure. Grid and Gaussian-tail convergence checks are provided in the Supplementary Material. Formal interval arithmetic is not used. The lower-bound calculation is also evaluated at every point of the $99$-point grid. Figure~\ref{fig:bandwidth-status}(b) displays the resulting quantitative map. The full machine-readable table is available in the public repository, and the quadrature and Gaussian-tail convergence checks are documented in the Supplementary Material.
 
-In parallel, piecewise-linear form factors satisfying the same slope bounds are optimized adversarially to search for an explicit model whose finite-width fingerprint reaches the spin-$1/2$ origin. A successful construction proves an overlap within the discretized Lipschitz class. An unsuccessful search leaves separation undecided. We therefore use three labels, \emph{guaranteed separation}, \emph{explicit overlap found}, and \emph{unresolved}. This keeps constructive evidence separate from whole-class certification.
+We search for admissible overlaps using piecewise-linear form factors with bounded slopes. A verified sign change along an admissible path yields an overlap for the continuous Lipschitz class. Failure to find such a path gives no separation theorem. We classify each grid cell as \emph{certified}, \emph{explicit overlap} or \emph{unresolved}.
 
 For finite-noise data, let $\Sigma$ be the covariance matrix of the calibrated fingerprint estimator. The relevant distance is
 \begin{equation}
@@ -926,14 +860,14 @@ Write
 \end{equation}
 so $\Sigma_{\mathrm{shape}}$ fixes relative channel precision and correlation, while $\varepsilon$ sets a reference estimator-uncertainty scale. In the Supplementary Material convention $\Sigma_{\mathrm{shape}}=\bigl(\begin{smallmatrix}1&\rho r_\Sigma\\ \rho r_\Sigma&r_\Sigma^2\end{smallmatrix}\bigr)$, $\varepsilon=\sigma(W_M)$ and $r_\Sigma\varepsilon=\sigma(W_C)$. The parameter $\varepsilon$ is a magnetic-coordinate reference scale and becomes a common standard deviation only when $r_\Sigma=1$.
 
-The componentwise moment bound certifies 46 of the 99 bandwidth--smoothness points. Theorem~\ref{prop:positivity-envelope} certifies 17 further points for the complete Lipschitz class. A simple two-kink continuous family produces explicit overlap paths in all 33 overlap cells; the $(\sigma_k/m,L)=(0.15,8)$ example illustrates the corresponding high-resolution root. For the $\delta=0$ reference slice, the final classification is
+The componentwise moment bound certifies 46 grid points. Theorem~\ref{prop:positivity-envelope} certifies 17 additional points. A continuous two-kink family gives an overlap in 33 cells, including $(\sigma_k/m,L)=(0.15,8)$. For the $\delta=0$ reference slice, the final classification is
 \begin{equation}
 \boxed{63\ \text{certified},\qquad
 33\ \text{explicit overlaps},\qquad
 3\ \text{unresolved}.}
 \label{eq:status-63-33-3}
 \end{equation}
-A deterministic two-kink family provides a direct constructive witness for every one of the 33 overlap cells, without relying on the optimizer's convergence:
+The following two-kink family provides the overlap witnesses
 \begin{align}
 X_\sigma&=2\!\left[\sqrt{1+(9\sigma_k/m)^2}-1\right],
 &h_\sigma&=X_\sigma/32,\notag\\
@@ -943,9 +877,9 @@ G_1^{(t)}(x)&=1+tL\!\left[\min(x,X_\sigma)-2\min(x,h_\sigma)\right],
 \qquad 0\le t\le1.
 \label{eq:two-kink-witness}
 \end{align}
-All profiles are anchored correctly and have slopes of magnitude at most $L$. At $t=0$, the charge response is positive; knot-split quadrature gives $\overline W_C(1)<0$ for all 33 overlap cells, the least negative value being approximately $-0.0474608$ at $(0.15,8)$. Continuity in $t$ proves an exact protected-origin overlap in each such cell. The full set of 33 signed values and roots is provided with the reproducibility audit; the numerical sign checks are not formal interval-arithmetic certificates.
+Every profile satisfies the anchors and the slope bound $L$. The charge response is positive at $t=0$. Knot-split quadrature gives $\overline W_C(1)<0$ for all 33 cells, with the smallest negative magnitude $0.0474608$ at $(0.15,8)$. These sign changes give an overlap by continuity. The 33 endpoint values and numerical roots are included in the reproducibility data. The evaluated signs have not been certified by interval arithmetic.
 
-The three points not classified by either whole-class positivity or the two-kink witness are $(0.08,24)$, $(0.10,16)$, and $(0.50,1)$. Their newly evaluated eight-segment global QCQP minima are $0.201665$, $0.168785$, and $0.105516$, respectively. These finite-basis positive minima do not certify the complete Lipschitz class, and the three points remain unresolved. The old 32-segment multistart values obtained with the filtered charge measure are not reused. An explicit overlap occurs at $L(\sigma_k/m)^2=0.18$, while whole-class certificates persist at some tested points up to $0.25$. The low-transfer product remains a useful organizing variable, but the relativistic detector measure prevents exact one-parameter scaling.
+The three unresolved cells are $(0.08,24)$, $(0.10,16)$ and $(0.50,1)$. An eight-segment global QCQP audit and a $48$-segment multistart search do not establish separation at these points. The latter recovers a negative response at the known overlap $(0.15,8)$, providing a resolution control. All four search results, profile checks and numerical settings are given in the Supplementary Material. The three cases remain unresolved.
 
 For the $(0.15,8)$ overlap, the family in Eq.~\eqref{eq:two-kink-witness} is the same as a 32-segment profile with its first $G_1$ slope negative, its remaining $G_1$ slopes positive, and every $G_Q$ slope negative. It gives
 \begin{equation}
@@ -959,9 +893,9 @@ t_\star\simeq0.9667494646,
 \qquad
 |\overline W_C(t_\star)|\sim10^{-15}\quad\text{(unrounded numerical root)},
 \end{equation}
-and its maximum absolute slope is $7.7339957<8$. The displayed numerical root uses continuous quadrature split at the segment knots; the exact existence assertion follows instead from the positive-to-negative endpoint sign change and the intermediate-value theorem. Together with $\overline W_M=0$, this is an explicit protected-origin overlap in the full admissible class.
+and its maximum absolute slope is $7.7339957<8$. The root is evaluated by quadrature split at the segment knots. Its existence follows from the endpoint sign change and continuity. Together with $\overline W_M=0$, this is an explicit protected-origin overlap in the full admissible class.
 
-We also audit the 21 points inconclusive under the componentwise bound in an eight-segment basis. After Eq.~\eqref{eq:magnetic-zero-reduction}, the charge response is a box-constrained QCQP that is linear in the eight $G_1$ slopes. Enumerating all $2^8$ vertices and solving the remaining convex box QP in the eight $G_Q$ slopes gives a positive global finite-basis minimum at every one of the 21 points, with numerical KKT residuals checked at the reported minima. A separate degree-$2$ SOS calculation supplies explicit numerically feasible positive lower bounds for at least 12 of the 21 unreduced bilinear QCQPs; negative relaxation bounds remain inconclusive. The finite-basis minima and SOS identities audit the numerical procedure. Whole-class certification uses the analytic envelope in Theorem~\ref{prop:positivity-envelope}.
+For 21 cells not resolved by the componentwise moment bound, the finite-basis analysis finds positive eight-segment QCQP minima and 12 positive numerical degree-$2$ SOS bounds. These results check the optimization but do not certify the full Lipschitz class. The corresponding formulation, KKT checks and SOS identities are given in the Supplementary Material.
 
 \begin{figure}[t]
 \centering
@@ -989,78 +923,37 @@ The finite-bandwidth calculation determines physical model-space separation. Sta
 \end{equation}
 and calibrate a profile-distance test to a $5\%$ false-positive rate under spin $1/2$.
 
-At the reference point $\sigma_k/m=0.10$, $L=2$, and $\Sigma_{\mathrm{shape}}=I$, the validation uses 8000 Monte Carlo estimator draws per hypothesis. The quoted powers average over a specified inference cloud. We draw $g$ uniformly on $[-4,4]$ and the 24 slopes of the three eight-segment form factors independently and uniformly on $[-2,2]$. The cloud-averaged spin-$1$ power is $0.881$ at $\varepsilon=0.50$, $0.961$ at $\varepsilon=0.30$, $0.992$ at $\varepsilon=0.20$, and $0.999$ at $\varepsilon=0.15$. The corresponding ROC areas are $0.969$, $0.992$, $0.998$, and $0.9997$. These values are nuisance averaged. For the explicit near-boundary profile at $g=0.573495$ that supplies the upper endpoint of Eq.~\eqref{eq:reference-distance-bracket}, the powers at the same four uncertainty scales are $0.166$, $0.357$, $0.629$, and $0.824$. The two sets of values quantify estimator precision for the stated nuisance sampling and boundary profile.
+At $(\sigma_k/m,L)=(0.10,2)$ with unit covariance, the Monte Carlo test gives nuisance-averaged spin-$1$ power of $0.961$ at $\varepsilon=0.30$. For the explicitly constructed near-boundary profile, the power is $0.357$ at the same estimator uncertainty. This difference shows that average recovery does not describe the hardest admissible profiles. Sampling, covariance sensitivity, ROC areas and the other power values are reported in the Supplementary Material. These estimator-space quantities cannot be converted to event counts without a process-specific likelihood.
 
-At the same reference point, Proposition~\ref{prop:distance-enclosure} and the explicit profile in Eq.~\eqref{eq:explicit-distance-upper-profile} bracket the equal-error class distance between $0.403483$ and $0.403495$. The whole-class lower bound falls to $0.150643$ if the charge-coordinate standard deviation is four times the magnetic-coordinate standard deviation. These values follow from the explicit measures and deterministic scalar minimizations. The full $99$-point distance map and the grid and Gaussian-tail convergence tests are tabulated in the Supplementary Material. The finite-noise geometry therefore depends materially on the covariance shape.
-
-A detector ablation checks the broad-class resource criterion at finite bandwidth. At $\sigma_k/m=0.10$ and $L=2$, adversarial optimization drives the magnetic-only gap below $10^{-21}$ and the charge-only gap below $5\times10^{-9}$, while the two-channel unit-covariance distance satisfies the independently derived bracket in Eq.~\eqref{eq:reference-distance-bracket}. Thus each primitive channel can still be tuned away separately, while their combination remains separated at the reference point.
-
-The expanded nuisance class makes the failure mode explicit. If it admits $g=0$ and $\delta=-1$, then $g_Q=0$ and the protected spin-$1$ fingerprint reaches the spin-$1/2$ origin exactly. The rank-$2$ representation difference alone is therefore insufficient for this certificate. Equation~\eqref{eq:tau-K} identifies the precise blind locus in the enlarged moment-relation class.
-
-Detailed estimator-space power curves, covariance-shape scans, and the complete numerical protocol are reported in the Supplementary Material \cite{SupplementalMaterial}.
-
-% ============================================================
 \section{Extension to other spin pairs}
 \label{sec:computational}
 % ============================================================
 
-The architecture-aware criterion has a direct geometric extension beyond the spin-$1/2$--spin-$1$ example. Order the pair as $s<s'$, and let $\Pi_{>2s}$ project onto internal rotational ranks unavailable to spin $s$. For a higher-spin nuisance domain $\Xi_{s'}$, define the protected model set
-\begin{equation}
-\mathcal V_{s'|s}
-=\left\{\Pi_{>2s}\bm W_{s'}(\xi):\xi\in\Xi_{s'}\right\}
-\subseteq\mathcal R_{\mathcal A}.
-\label{eq:protected-variety}
-\end{equation}
-The lower-spin protected set is the origin. For each physical block $a\in\mathcal A$, define its blind locus
-\begin{equation}
-Z_a=\left\{\xi\in\Xi_{s'}:
-\pi_a\Pi_{>2s}\bm W_{s'}(\xi)=0\right\}.
-\label{eq:blind-locus}
-\end{equation}
-Then Eq.~\eqref{eq:general-threshold} becomes
-\begin{equation}
-\boxed{
-\tau_{\mathcal A}(s,s')
-=\min_{S\subseteq\mathcal A}
-\left\{|S|:\bigcap_{a\in S}Z_a=\varnothing\right\}.}
-\label{eq:higher-spin-threshold}
-\end{equation}
-This statement is abstract but exact. It reduces the resource problem to the existence of a common admissible nuisance point in the selected detector-block blind loci. The relevant higher-spin multipole constraints must be established independently for the physical model class under study.
+The response-set criterion also applies to other spin pairs. For $s<s'$, the relevant protected sector consists of tensor ranks above $2s$. Separation occurs when a selected set of primitive detector blocks has no common admissible blind point in that sector. The formal construction is given in the Supplementary Material. It requires multipole and nuisance constraints for the higher-spin current, which must be established separately for each physical model. Polynomial parametrizations may then be examined using finite-basis optimization and SOS relaxations \cite{Lasserre2001,Parrilo2003}.
 
-For finite polynomial parametrizations, the resulting model-set intersection can be relaxed through moment and sum-of-squares methods \cite{Lasserre2001,Parrilo2003}. The degree-$2$ identity used in the finite-bandwidth audit is one directly checkable relaxation. Its explicit matrix form and verification residuals are given in the Supplementary Material. A positive certificate proves separation in the stated parametrization. A nonpositive relaxation remains inconclusive for the full function class.
-
-% ============================================================
 \section{Discussion}
 \label{sec:discussion}
 
-The central result is a nuisance-class-dependent detector-resource criterion for spin identification. Proposition~\ref{prop:magnetic-all-width} gives a whole-class magnetic margin at every finite Gaussian bandwidth and finite Lipschitz bound whenever the admitted domain stays away from $g_M=0$. A second primitive response becomes necessary for static uniform separation only after the admitted class includes both single-channel blind points. Finite-width exact overlaps in the broad class show that detector blindness can persist even when both calibrated responses are available. More observations reduce statistical error when the accessible responses differ. They cannot resolve an exact response degeneracy.
+The resource criterion distinguishes the representation content of a particle from the electromagnetic responses available to a detector. Proposition~\ref{prop:magnetic-all-width} gives a positive magnetic-only margin whenever the magnetic-moment domain satisfies $\inf_{g\in K}|g|>0$. The result holds for every finite Gaussian bandwidth and finite Lipschitz constant. For broader nuisance classes, both magnetic and charge-sensitive channels are required to exclude the static spin-$1/2$ rank-$2$ origin.
 
-For charged spin-$1/2$ versus spin-$1$ particles, the protected rank-$2$ sector makes the distinction explicit. Spin $1/2$ cannot support this internal sector, while spin $1$ can. In the enlarged class $g_M+g_Q=1+\delta$, a joint protected blind point requires $(g,\delta)=(0,-1)$. The two primitive responses therefore remain statically separating for every compact deformation domain that excludes $\delta=-1$.
+The broad interval $g_M\in[-4,4]$ contains the magnetic blind point. Magnetic positivity then reduces a possible joint overlap to $g_M=0$. For the charge response, the full Lipschitz envelope certifies 63 cells on the $99$-point grid, while an admissible two-kink family produces 33 overlaps. Three cells remain unresolved after finite-basis optimization and a $48$-segment multistart search. The whole-class lower bound and the explicit upper profile give $0.403483\le d_{\rm class}\le0.403495$ at the reference point.
 
-The architecture-aware threshold counts physical inputs. Although $W_M+W_C$ is one scalar and never vanishes on the elementary static spin-$1$ curve, obtaining it requires access to both primitive responses. If the higher-spin class admits independently variable magnetic and quadrupole moments, it can contain $g_M=g_Q=0$ and the protected certificate disappears. The elementarity hypothesis is therefore a substantive input to the comparison.
+The moment relation is a substantive model assumption. Under $g_M+g_Q=1+\delta$, the static fingerprint can reach the protected origin at $(g_M,\delta)=(0,-1)$. The uniform finite-width bound retains 61 certificates for $|\delta|\le0.10$. Allowing independent magnetic and quadrupole moments would also admit a common blind point. The representation-theoretic presence of rank $2$ alone therefore does not ensure separation within an unrestricted current class.
 
-Finite bandwidth tests the robustness of this distinction. Magnetic positivity reduces every possible origin overlap to $g_M=0$ and removes the magnetic form factor on the detector support. Proposition~\ref{prop:magnetic-all-width} is unchanged by $\delta$. Corollary~\ref{cor:delta-robustness} gives a whole-class envelope uniform over $|\delta|\le\Delta$. On the reference grid, $61$ points remain certified at $\Delta=0.10$ and $55$ at $\Delta=0.50$. The $\delta=0$ slice contains the explicit continuous-class degeneracies and the three unresolved points reported above.
-
-Restricted measurements, informational completeness, and observable reconstruction provide the inverse-problem setting \cite{MatthewsWehnerWinter2009,Finkelstein2004,BaldwinDeutschKalev2016,ArenhoevelFix2014,CaretteGlowackiLoveridge2023,DuEtAl2026}. Our contribution is a detector-resource criterion for the elementary current class together with finite-bandwidth certification over the complete anchored Lipschitz class. The broad nuisance class also yields constructive degeneracies, so the analysis identifies both the separating region and its failure modes. Finite-basis QCQP and SOS calculations use established optimization methods \cite{Lasserre2001,Parrilo2003} to audit the numerical boundary.
-
-The protected-variety and blind-locus formulation extends the criterion to other spin pairs once their physical nuisance classes are specified. For adjacent spins, the first new internal rank is $\ell=2s+1$. Under Lorc\'e's additional pointlike light-cone-helicity prior, the corresponding natural multipole is fixed and nonzero \cite{Lorce2009NaturalMoments}. Applying the same geometric criterion to a broader EFT class requires the corresponding higher-spin consistency constraints.
-
+The finite-width results refer to real anchored Lipschitz form factors and calibrated positive response blocks. A dispersive form-factor model or a complete scattering likelihood would impose additional physical conditions. The detector covariance affects the statistical separation achievable from these response blocks. The results specify the information required for spin discrimination within the stated current class, while a process-specific realization remains to be established.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-We formulated charged-particle spin identification as a detector-restricted inverse problem in QFT. The architecture-aware criterion separates intrinsic representation content from the physical responses available to an experiment. Increasing statistics cannot remove an exact detector-response degeneracy. Spin identification then requires additional physical information or an independently justified restriction of the model class.
+We studied the identification of charged spin-$1/2$ and spin-$1$ particles using magnetic and charge-sensitive electromagnetic responses. An architecture-aware criterion determines the number of primitive channels needed to distinguish their protected response sets. For $g_M\in[1,3]$, the magnetic response provides a positive whole-class margin at every finite bandwidth and finite Lipschitz bound, independently of the moment deformation $\delta$.
 
-For charged spin-$1/2$ and spin-$1$ candidates, the rank-$2$ sector and the spin-$1$ moment constraints give complementary magnetic and charge-sensitive protected responses. Writing $g_M+g_Q=1+\delta$ makes the dependence on the theory-side current class explicit. Proposition~\ref{prop:magnetic-all-width} proves that any magnetic-moment class bounded away from $g_M=0$ has a positive magnetic-only margin at every finite Gaussian bandwidth and finite Lipschitz bound, independently of $\delta$. The interval $K=[1,3]$ supplies a concrete example.
-
-On the Haberzettl slice $\delta=0$, the broad interval $g_M\in[-4,4]$ yields 63 whole-class certificates, 33 explicit overlaps, and three unresolved points. Every constructed origin overlap occurs at $g_M=0$. Enlarging the moment relation to $|\delta|\le0.10$ retains 61 whole-class certificates, and the reference finite-width lower bound remains positive. Static two-channel separation can fail only when the nuisance domain reaches $\delta=-1$. The higher-spin extension reduces the same resource question to intersections of detector-block blind loci once the relevant physical constraints are fixed.
-
+For $g_M\in[-4,4]$, the $\delta=0$ grid contains 63 whole-class certificates, 33 explicit overlaps and three unresolved cases. A uniform $|\delta|\le0.10$ extension retains 61 certificates. These results show how detector bandwidth, form-factor uncertainty and current constraints determine spin identifiability for the specified response model.
 
 \funding{This work was supported by the University of Zagreb Faculty of Organization and Informatics through the Institutional Research Projects funded under the National Recovery and Resilience Plan 2021--2026, under the project ``PiPi: Data Infrastructure and Augmented Intelligence for Sustainable Development.''}
 
 \ack{ChatGPT and Codex (OpenAI, GPT-5-series models, accessed in 2026) were used for language editing, code debugging, and consistency checks. The author reviewed the resulting text and computational changes and takes full responsibility for the scientific content, analyses, and reported results.}
 
-\data{The unfiltered-charge ($\alpha=0$) numerical code, processed data, and reproducibility checks are publicly available in the project repository at the fixed scientific snapshot~\cite{VlahekSpinRepo2026}. They include the 99-point whole-class classification, 33 signed two-kink witnesses, covariance and distance enclosures, QCQP/SOS numerical audits, estimator-space checks, and the $\delta$-robustness calculation. The older filtered-charge ($\alpha=2$) results are retained separately as development provenance and should not be used to reproduce the present tables.}
+\data{Code, processed numerical results and verification scripts for the $\alpha=0$ model are available at the fixed GitHub snapshot~\cite{VlahekSpinRepo2026}. The archive includes the $99$-point classification, signed overlap witnesses, finite-basis QCQP/SOS checks, estimator-space calculations, covariance bounds and the moment-deformation audit. The same snapshot includes the $48$-segment multistart audit, saved profile arrays, independent quadrature checks and convergence data.}
 
 \suppdata{Supplementary material accompanies this article and contains the numerical protocols, nuisance-class robustness results, finite-basis audits, and estimator-space checks.}
 

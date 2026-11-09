@@ -1,68 +1,64 @@
 # Detector-restricted spin identifiability
 
-**Research code and reproducible numerical results for the conditional identification of charged spin-1/2 and spin-1 particles from electromagnetic detector responses.**
+Research code, numerical data and LaTeX sources for *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies*.
 
-[![Reproduction CI](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml/badge.svg)](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Research snapshot v1.9.0](https://img.shields.io/badge/research%20snapshot-v1.9.0-informational.svg)](CITATION.cff)
+[![Reproduction CI](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml/badge.svg)](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Manuscript:** *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies* — prepared for journal submission; **not yet published or peer-reviewed**.  
-**Author:** Dino Vlahek (Faculty of Organization and Informatics, University of Zagreb).  
-**Frozen scientific code/data:** [`f711505b03b1`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080).  
-**Primary charge channel:** unfiltered squared-current response, $A_C(k)=1$ ($\alpha=0$).
+**Status:** Manuscript prepared for *Journal of Physics A*. Not yet peer reviewed or published.
 
-[Manuscript sources](manuscript_jphysa/) · [Evidence map](docs/RESULTS.md) · [Reproduce](docs/REPRODUCIBILITY.md) · [Scope](docs/SCOPE.md) · [Citation](#citation)
-
-## Research question
-
-Spin is intrinsic, but a detector observes only its available response blocks. We ask **which calibrated electromagnetic channels can distinguish charged spin-1/2 from spin-1 models when form factors are uncertain and detector bandwidth is finite**. The lower-spin internal rank-2 sector is absent; the higher-spin current is restricted by an explicit moment/nuisance class.
-
-The finite-width *primary* charge measure is the normalized squared-longitudinal-current weight, $d\nu_C\propto\rho_0(r)r^2x\,dr$. There is no additional, momentum-dependent charge-event acceptance in the main model. The formerly primary $\alpha=2$ acceptance is retained **only as a sensitivity case**.
-
-> **Scope.** The results are conditional on the stated positive detector-response model and anchored Lipschitz form-factor class. This repository does not establish a complete process-dependent detector implementation, a particle discovery, or a universal statement across all interactions. The collider folders record auxiliary historical experiments, not the numerical basis of this manuscript.
+**Reference model:** the positive magnetic and longitudinal-current detector responses, with no additional momentum-dependent charge acceptance ($A_C=1$). All numerical claims are conditional on the detector model and specified anchored Lipschitz form-factor class.
 
 ## Main results
 
-- **All-finite-bandwidth magnetic separation:** if $\inf_{g\in K}|g|>0$, a strictly positive magnetic-only margin exists at every finite Gaussian bandwidth and finite Lipschitz constant, independently of $\delta$.
-- **Broad-class 99-point grid** (primary $\alpha=0$): **63 whole-class sufficient certificates, 33 explicit continuous-class origin overlaps, 3 unresolved cases**. Unresolved does not imply degeneracy or separation.
-- **Moment deformation:** for $|\delta|\leq0.10$, **61** of the same grid points have a uniform whole-class sufficient certificate.
-- **Reference finite-width distance** at $(\sigma_k/m,L)=(0.10,2)$: $0.4034833471\leq d_{\mathrm{class}}\leq0.4034946602$ (unit covariance).
-- **Fixed acceptance sensitivity** $A_C^{(\alpha)}=[2m/(E_k+m)]^\alpha$: $\alpha=0,1,2,3$ gives (63,33,3), (63,33,3), (64,33,2), (64,33,2), respectively. This is not a theorem uniform in $\alpha$.
+| Result | Finding |
+| --- | --- |
+| Nonblind magnetic-moment class | Separation at every finite Gaussian bandwidth and finite Lipschitz bound |
+| Broad 99-point grid ($\delta=0$) | **63** sufficient whole-class certificates, **33** constructed overlaps, **3** unresolved |
+| Moment deformation $|\delta|\le0.10$ | **61** sufficient whole-class certificates |
+| Reference unit-covariance distance | $0.4034833471\le d_{\rm class}\le0.4034946602$ |
+| Independent numerical checks | 21 eight-segment QCQPs, 12 positive numerical SOS bounds and a 48-segment adversarial search |
 
-![Unfiltered charge-response 99-point classification](manuscript_jphysa/figures/figure2a.png)
+![99-point classification](manuscript_jphysa/figures/figure2a.png)
 
-*Green: sufficient whole-class certificate; red: signed constructive overlap; gray: unresolved. See [assumptions and detailed evidence](docs/RESULTS.md).*
+Green indicates a sufficient whole-class separation certificate, red a constructed overlap and grey a case left unresolved by the tests.
 
-## Quick start
+## Reproduce the results
 
-With Python 3.12, from repository root:
+Python 3.12 is recommended. From the repository root on Windows, Linux or macOS:
 
 ```bash
 python -m pip install -r requirements.txt
-python theory_numerics/spin_alpha0_compute.py
-python theory_numerics/spin_alpha0_qcqp.py
-python theory_numerics/spin_alpha0_power.py
-python theory_numerics/verify_alpha0_release.py
+python reproduce.py --mode smoke
+python reproduce.py --mode full
 ```
 
-The results are generated in the ignored `theory_numerics/reproduced_alpha0/` directory and compared against the fixed reference data under [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/). See the [full reproducibility guide](docs/REPRODUCIBILITY.md).
+The **smoke** check validates frozen result counts and independently re-integrates four saved 48-segment form-factor profiles. The **full** run regenerates the primary tables, figures, estimator results and numerical certificate checks. Generated outputs go to `theory_numerics/reproduced_alpha0/` and do not overwrite the published data.
 
-## Repository map
+The adversarial search with 200 seeded starts per case can also be run independently:
 
-| Path | Role in the current paper |
+```bash
+python reproduce.py --mode highres
+```
+
+A positive optimized response does **not** prove separation. The three unresolved cases remain unresolved.
+
+Full setup, expected outputs and a fresh LaTeX build are documented in [Reproducibility](docs/REPRODUCIBILITY.md).
+
+## Find the material
+
+| Location | Contents |
 | --- | --- |
-| [`manuscript_jphysa/`](manuscript_jphysa/) | Main/supplement LaTeX and figure assets |
-| [`theory_numerics/spin_alpha0_*.py`](theory_numerics/) | Primary unfiltered calculations |
-| [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) | Fixed numerical evidence and SOS witness records |
-| [`docs/`](docs/) | Scientific scope, evidence mapping, reproduction, version history |
-| [`theory_numerics/results/publication_v1_0/`](theory_numerics/results/publication_v1_0/) | **Legacy filtered-charge** snapshot, not current results |
-| [`collider/`](collider/) and [`generator_configuration/`](generator_configuration/) | Auxiliary development provenance (not used in paper) |
-| [`archive/development_snapshots/`](archive/development_snapshots/) | Historical development archive |
+| [`manuscript_jphysa/`](manuscript_jphysa/) | Main text, Supplementary Material, bibliography and figures |
+| [`theory_numerics/spin_alpha0_*.py`](theory_numerics/) | Primary finite-width computations |
+| [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) | Frozen tables, SOS witnesses, 48-segment profiles and convergence data |
+| [`reproduce.py`](reproduce.py) | Cross-platform command-line entry point |
+| [Evidence map](docs/RESULTS.md) | Claim-to-code-to-data references |
+| [Scientific scope](docs/SCOPE.md) | Assumptions, proof status and limitations |
 
-## Citation
+## Cite the software
 
-Use [`CITATION.cff`](CITATION.cff) or GitHub's *Cite this repository* control, citing the immutable science commit rather than changing `main`:
+The fixed, reproducible scientific snapshot is [`93c70ed48244`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f). Use [`CITATION.cff`](CITATION.cff) to cite the code and data. Do not substitute the changing `main` branch for the frozen snapshot.
 
-> Vlahek, D. (2026). *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data*, v1.9.0, commit [`f711505b03b1`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/f711505b03b1a01ad4d4be8a50ce4d46dbda2080), GitHub.
+**Author:** Dino Vlahek, Faculty of Organization and Informatics, University of Zagreb.
 
-No DOI is asserted. The MIT license covers repository code; see [data availability](DATA_AVAILABILITY.md) and [contribution guidance](CONTRIBUTING.md).
+The reported results do not demonstrate an actual collider detector, determine the spin of an observed particle or settle the three unresolved cells. The license applies to the code. No Zenodo DOI is claimed.

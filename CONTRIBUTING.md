@@ -1,27 +1,21 @@
-# Contributing and reproducibility reports
+# Reproducibility reports and contributions
 
-This repository is a research artifact accompanying a manuscript, not a general-purpose spin-analysis library. Correctness, reproducibility, portability and documentation contributions are welcome.
+The repository is a reproducible research artifact associated with a mathematical-physics manuscript. It is not a general-purpose spin-determination package.
 
-## Report an issue
+If a calculation fails, open a GitHub issue with the following details.
 
-Open a [GitHub issue](https://github.com/dvlahek/detector-induced-spin-identifiability/issues) with:
+1. Exact commit SHA and the command you ran.
+2. Operating system, Python version and `python -m pip freeze`.
+3. Expected and actual output, including the first relevant traceback.
+4. The affected manuscript equation, figure or evidence table.
 
-1. The tested **commit SHA** (frozen manuscript snapshot or current `main`).
-2. OS, Python version and dependencies (`python -m pip freeze`).
-3. Minimal command, actual output and expected output.
-4. Whether the issue affects an analytic proof, numerical evaluation, constructed witness, manuscript text or an auxiliary collider artifact.
-
-Do not post personal credentials or nonpublic event-level data.
-
-## Propose a change
-
-Open a focused pull request against `main`. Identify any affected manuscript equation or table and distinguish scientific changes from presentation-only edits. At minimum run:
+A minimal initial check is:
 
 ```bash
-python theory_numerics/verify_publication_tables.py
-python theory_numerics/charge_kernel_identity_check.py
+python -m pip install -r requirements.txt
+python reproduce.py --mode smoke
 ```
 
-See the [GitHub Actions reproduction workflow](.github/workflows/reproduce.yml) for the full validation chain. Do **not** silently rewrite immutable cited results or historical archives; explain a correction and create a clearly identified new snapshot when needed.
+Use `python reproduce.py --mode full` for the full numerical regression suite. Pull requests should distinguish a change to the scientific model from a correction to implementation or presentation. Never overwrite a frozen cited result without documenting a new reproducibility snapshot.
 
-The auxiliary collider folders are not part of the current Journal of Physics A theoretical claims.
+Do not include private data or credentials in issues. See [the workflow](.github/workflows/reproduce.yml) and the [reproduction guide](docs/REPRODUCIBILITY.md).

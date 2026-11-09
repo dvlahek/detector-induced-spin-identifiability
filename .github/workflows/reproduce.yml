@@ -1,7 +1,8 @@
-name: Reproduce J. Phys. A unfiltered charge results
+name: Reproduce spin-identifiability numerical evidence
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -38,6 +39,8 @@ jobs:
           assert np.allclose(old.to_numpy(),new.to_numpy(),rtol=1e-9,atol=1e-11)
           print('PASS magnetic-only 99-grid margins')
           PY
+      - name: Independent frozen-profile and citation-snapshot smoke tests
+        run: python reproduce.py --mode smoke
       - name: Upload regenerated numerical results
         uses: actions/upload-artifact@v4
         with:
