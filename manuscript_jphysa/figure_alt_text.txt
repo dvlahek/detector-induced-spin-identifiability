@@ -1,7 +1,0 @@
-Figure 1 (main manuscript): Two-panel figure for the delta=0 reference slice. Panel (a) plots the elementary spin-1 protected response curve with the spin-1/2 origin, the magnetic blind point at g=0, the charge blind point at g=1, the closest approach near g=0.590, and the Yang--Mills point g=2 marked. Panel (b) plots magnetic-only, charge-only, and combined uniform protected-response margins versus the half-width R of K_R=[2-R,2+R]. The charge-only margin reaches zero at R=1 and the magnetic-only margin at R=2, while the combined margin remains positive.
-
-Figure 2 (main manuscript): Two-panel bandwidth--smoothness grid on the delta=0 reference slice. Panel (a) classifies 99 tested points as whole-class certified, explicit overlap, or unresolved; the only unresolved points are (sigma_k/m,L)=(0.08,24) and (0.10,16). Panel (b) shows the whole-class unit-covariance lower bound D_L(I) on the same grid on a logarithmic scale; cells with zero lower enclosure are inconclusive.
-
-Figure S1: Whole-class unit-covariance distance lower bound on the 99-point delta=0 bandwidth--smoothness grid. Positive cells form the certified region and zero-enclosure cells are inconclusive.
-
-Figure S2: Side-by-side comparison of sufficient origin-exclusion maps when the same numerical Lipschitz constant is imposed in covariant variables (G1, GM, GQ) and in Sachs variables (GC, GM, GQ). The two maps differ at only one tested point.

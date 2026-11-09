@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "Code and processed data for the unfiltered-charge spin-identifiability manuscript."
-title: "Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies — Code and Data"
+message: "Cite this repository when using its numerical code and processed data."
+title: "Detector-Restricted Spin Identifiability: Numerical Code and Data"
 type: software
 version: "1.9.0"
 date-released: 2026-11-09
@@ -10,7 +10,7 @@ authors:
     affiliation: "Faculty of Organization and Informatics, University of Zagreb"
     orcid: "https://orcid.org/0000-0002-3911-8685"
 repository-code: "https://github.com/dvlahek/detector-induced-spin-identifiability"
-url: "https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f"
+url: "https://github.com/dvlahek/detector-induced-spin-identifiability/tree/2421638e1311dd2319a269d5c98dcfa94cb57970"
 license: MIT
 keywords:
   - spin identifiability

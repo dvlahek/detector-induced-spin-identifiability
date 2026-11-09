@@ -1,7 +1,9 @@
-# Code and data availability
+# Code and numerical data
 
-The code and processed numerical results corresponding to the manuscript are available at the immutable [scientific snapshot](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f).
+The complete code and processed data for the spin-identifiability calculations are publicly available at the [frozen scientific source](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/2421638e1311dd2319a269d5c98dcfa94cb57970).
 
-The primary calculations are implemented in `theory_numerics/spin_alpha0_*.py`. Reference datasets under [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) contain the 99-point classification, 33 constructed overlap paths, covariance-distance bounds, moment-deformation scan, QCQP/SOS results, estimator-space power, 48-segment searches, saved profiles and quadrature convergence.
+The reference implementation is in [`theory_numerics/`](theory_numerics/). The primary datasets under [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) include 99-point classification, 33 constructive overlap paths, covariance-distance bounds, moment-deformation scans, QCQP/SOS results, estimator-space power, 48-segment profiles and quadrature convergence.
 
-The [reproduction guide](docs/REPRODUCIBILITY.md) gives commands for Windows, Linux and macOS. No private event-level collider data are required. The results are conditional on the explicitly specified detector model and do not establish a complete scattering apparatus.
+Run the independent verification or complete reproduction using the [reproducibility guide](docs/REPRODUCIBILITY.md). Generated data are written to a separate ignored directory. No private event-level collider data are required for the primary results.
+
+The conclusions are conditional on the specified detector-response model and do not establish a complete experimental scattering apparatus.

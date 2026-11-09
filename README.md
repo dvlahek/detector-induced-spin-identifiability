@@ -1,30 +1,27 @@
 # Detector-restricted spin identifiability
 
-Research code, numerical data and LaTeX sources for *Detector-Restricted Identifiability of Charged Spin-1/2 and Spin-1 Particles: Whole-Class Certificates and Exact Degeneracies*.
+Reproducible Python code and numerical datasets for studying the conditional identifiability of charged spin-1/2 and spin-1 particles from calibrated electromagnetic detector responses.
 
-[![Reproduction CI](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml/badge.svg)](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Reproduction CI](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml/badge.svg)](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Status:** Manuscript prepared for *Journal of Physics A*. Not yet peer reviewed or published.
+The primary model uses a magnetic response and a longitudinal-current charge response with no additional charge acceptance, $A_C(k)=1$. All bounds depend on the stated detector model and anchored Lipschitz form-factor class. This repository contains **source code and numerical evidence, not article or submission files**.
 
-**Reference model:** the positive magnetic and longitudinal-current detector responses, with no additional momentum-dependent charge acceptance ($A_C=1$). All numerical claims are conditional on the detector model and specified anchored Lipschitz form-factor class.
+## Numerical results
 
-## Main results
-
-| Result | Finding |
+| Check | Reference result |
 | --- | --- |
-| Nonblind magnetic-moment class | Separation at every finite Gaussian bandwidth and finite Lipschitz bound |
-| Broad 99-point grid ($\delta=0$) | **63** sufficient whole-class certificates, **33** constructed overlaps, **3** unresolved |
-| Moment deformation $|\delta|\le0.10$ | **61** sufficient whole-class certificates |
-| Reference unit-covariance distance | $0.4034833471\le d_{\rm class}\le0.4034946602$ |
-| Independent numerical checks | 21 eight-segment QCQPs, 12 positive numerical SOS bounds and a 48-segment adversarial search |
+| 99-point finite-bandwidth grid at $\delta=0$ | **63** sufficient whole-class separation certificates, **33** constructed overlaps, **3** unresolved |
+| Moment-deformation scan with $|\delta|\le0.10$ | **61** sufficient whole-class certificates |
+| Reference unit-covariance class distance | $0.4034833471\le d_{\rm class}\le0.4034946602$ |
+| Global eight-segment numerical audit | 21 QCQPs, 12 positive numerical SOS lower bounds |
+| High-resolution search | Four 48-segment profiles, including one known-overlap control and three unresolved cases |
 
-![99-point classification](manuscript_jphysa/figures/figure2a.png)
+The all-finite-bandwidth magnetic margin is strictly positive for a nonblind magnetic-moment domain and any finite Gaussian width and Lipschitz bound. See the [results and evidence map](docs/RESULTS.md) for assumptions and the exact scripts supporting each claim.
 
-Green indicates a sufficient whole-class separation certificate, red a constructed overlap and grey a case left unresolved by the tests.
+## Quick start
 
-## Reproduce the results
-
-Python 3.12 is recommended. From the repository root on Windows, Linux or macOS:
+Python 3.12 is recommended. Run from the repository root on Linux, macOS, or Windows.
 
 ```bash
 python -m pip install -r requirements.txt
@@ -32,33 +29,33 @@ python reproduce.py --mode smoke
 python reproduce.py --mode full
 ```
 
-The **smoke** check validates frozen result counts and independently re-integrates four saved 48-segment form-factor profiles. The **full** run regenerates the primary tables, figures, estimator results and numerical certificate checks. Generated outputs go to `theory_numerics/reproduced_alpha0/` and do not overwrite the published data.
-
-The adversarial search with 200 seeded starts per case can also be run independently:
+- `smoke` checks frozen result counts and independently integrates the saved 48-segment profiles.
+- `full` regenerates the primary numerical tables, figure data, QCQP/SOS checks and estimator results.
+- `highres` repeats the optional seeded 48-segment search with 200 starts per case.
 
 ```bash
 python reproduce.py --mode highres
 ```
 
-A positive optimized response does **not** prove separation. The three unresolved cases remain unresolved.
+Generated results are written under `theory_numerics/reproduced_alpha0/`. The committed reference data remain unchanged. A positive result from local optimization is not proof of whole-class separation. The three unresolved cases remain unresolved.
 
-Full setup, expected outputs and a fresh LaTeX build are documented in [Reproducibility](docs/REPRODUCIBILITY.md).
+## Repository contents
 
-## Find the material
-
-| Location | Contents |
+| Path | Purpose |
 | --- | --- |
-| [`manuscript_jphysa/`](manuscript_jphysa/) | Main text, Supplementary Material, bibliography and figures |
-| [`theory_numerics/spin_alpha0_*.py`](theory_numerics/) | Primary finite-width computations |
-| [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) | Frozen tables, SOS witnesses, 48-segment profiles and convergence data |
-| [`reproduce.py`](reproduce.py) | Cross-platform command-line entry point |
-| [Evidence map](docs/RESULTS.md) | Claim-to-code-to-data references |
-| [Scientific scope](docs/SCOPE.md) | Assumptions, proof status and limitations |
+| [`reproduce.py`](reproduce.py) | Cross-platform entry point for verification and reproduction |
+| [`theory_numerics/`](theory_numerics/) | Numerical implementations and validation scripts |
+| [`theory_numerics/results/alpha0/`](theory_numerics/results/alpha0/) | Immutable reference tables, SOS witnesses, convergence data and 48-segment profiles |
+| [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) | Installation, execution and verification |
+| [`docs/RESULTS.md`](docs/RESULTS.md) | Claim-to-script-to-data evidence map |
+| [`docs/SCOPE.md`](docs/SCOPE.md) | Assumptions and limitations |
+| [`collider/`](collider/) and [`generator_configuration/`](generator_configuration/) | Auxiliary count-level benchmark and provenance |
+| [`archive/development_snapshots/`](archive/development_snapshots/) | Historical numerical scripts and results, not used for the primary reproduction |
 
-## Cite the software
+## Citation and scope
 
-The fixed, reproducible scientific snapshot is [`93c70ed48244`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/93c70ed482443730c1abc6c2891732fb1bd5bd4f). Use [`CITATION.cff`](CITATION.cff) to cite the code and data. Do not substitute the changing `main` branch for the frozen snapshot.
+For fixed numerical results use the source revision described in [`CITATION.cff`](CITATION.cff), rather than a changing `main` branch. [Release and provenance information](docs/RELEASES.md) describes the frozen data and versions.
 
-**Author:** Dino Vlahek, Faculty of Organization and Informatics, University of Zagreb.
+The results do not establish an operational collider detector, identify the spin of an observed particle, or settle the three unresolved grid cells. Numerical SOS feasibility is checked in floating point rather than verified interval arithmetic. See [scientific scope](docs/SCOPE.md) for details.
 
-The reported results do not demonstrate an actual collider detector, determine the spin of an observed particle or settle the three unresolved cells. The license applies to the code. No Zenodo DOI is claimed.
+**Maintainer:** Dino Vlahek, Faculty of Organization and Informatics, University of Zagreb. Source code is released under the MIT license. No archival DOI is asserted.
