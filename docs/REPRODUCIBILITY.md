@@ -2,12 +2,12 @@
 
 ## Environment and immutable source
 
-Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b) when reproducing the fixed numerical results. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
+Use Python 3.12 and the [frozen scientific commit](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/be8391ad763860df062226fa727f8a914ee4a29e) when reproducing the fixed numerical results. `requirements.txt` specifies dependency ranges rather than a complete platform lockfile. Retain the output of `python -m pip freeze` when reporting a cross-platform discrepancy.
 
 ```bash
 git clone https://github.com/dvlahek/detector-induced-spin-identifiability.git
 cd detector-induced-spin-identifiability
-git checkout e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b
+git checkout be8391ad763860df062226fa727f8a914ee4a29e
 python -m pip install -r requirements.txt
 ```
 
@@ -20,9 +20,12 @@ python theory_numerics/spin_alpha0_power.py
 python theory_numerics/spin_alpha0_figures.py
 python theory_numerics/verify_alpha0_release.py
 python theory_numerics/verify_48segment_quadrature.py
+python theory_numerics/verify_overlap_sign_intervals.py
 ```
 
 The commands regenerate the primary 99-point classification, seven $\Delta$ scans, covariance bounds, QCQP/SOS audits, estimator-space power and figures, then verify the saved tables and independently integrate the 48-segment witness profiles. On the current default branch, the convenience wrapper `python reproduce.py --mode full` performs the same primary workflow.
+
+The directed-interval endpoint verification checks all 33 overlap signs using 1000 subintervals, 35-digit interval arithmetic and a Gaussian-tail bound. Its frozen rounded upper enclosures are in `theory_numerics/results/alpha0/interval_endpoint_signs_alpha0.csv`, and running the verifier writes full interval endpoints to `theory_numerics/reproduced_alpha0/interval_endpoint_signs_alpha0.json`.
 
 The scripts write to `theory_numerics/reproduced_alpha0/` and keep the repository reference data unchanged. The regenerated figures use Matplotlib. Power calculations use a fixed pseudorandom seed and specified finite inference and truth clouds.
 
@@ -40,6 +43,7 @@ This uses a seeded 48-segment alternating optimization with 200 starts for the k
 - At $|\delta|\le0.10$, 61 grid cells retain positive whole-class bounds.
 - The reference distance is enclosed between 0.4034833471 and 0.4034946602.
 - The numerical degree-2 SOS audit has 12 positive saved feasible lower bounds among 21 finite-basis QCQPs.
+- The directed-interval test establishes negative endpoint signs for each of the 33 constructed protected-response overlap paths.
 - The 48-segment negative control is negative when independently integrated. The three unresolved cases are not promoted to positive theorems.
 
 The SOS checks use floating-point feasibility, not interval arithmetic.

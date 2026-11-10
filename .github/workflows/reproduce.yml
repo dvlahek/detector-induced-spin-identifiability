@@ -41,6 +41,8 @@ jobs:
           PY
       - name: Independent frozen-profile and citation-snapshot smoke tests
         run: python reproduce.py --mode smoke
+      - name: Verify all 33 overlap signs by directed interval enclosures
+        run: python theory_numerics/verify_overlap_sign_intervals.py
       - name: Upload regenerated numerical results
         uses: actions/upload-artifact@v4
         with:

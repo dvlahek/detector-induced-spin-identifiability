@@ -5,7 +5,7 @@ Reproducible Python code and numerical datasets for studying the conditional ide
 [![Reproduction CI](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml/badge.svg)](https://github.com/dvlahek/detector-induced-spin-identifiability/actions/workflows/reproduce.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-The primary model uses a magnetic response and a longitudinal-current charge response with no additional charge acceptance, $A_C(k)=1$. All bounds depend on the stated detector model and anchored Lipschitz form-factor class. This repository contains **source code and numerical evidence, not article or submission files**.
+The primary model uses a one-dimensional signed-momentum detector response with effective on-shell measure $dk/(2E_k)$, without the $k^2$ Jacobian of a three-dimensional angular integral. It combines magnetic and longitudinal-current charge responses with no additional charge acceptance, $A_C(k)=1$. All bounds depend on the stated detector model and anchored Lipschitz form-factor class. This repository contains **source code and numerical evidence, not article or submission files**.
 
 ## Numerical results
 
@@ -29,12 +29,13 @@ python reproduce.py --mode smoke
 python reproduce.py --mode full
 ```
 
-- `smoke` checks frozen result counts and independently integrates the saved 48-segment profiles.
+- `smoke` checks frozen result counts and independently integrates the saved 48-segment profiles. The separate interval audit verifies the signs of all 33 constructive overlap endpoints.
 - `full` regenerates the primary numerical tables, figure data, QCQP/SOS checks and estimator results.
 - `highres` repeats the optional seeded 48-segment search with 200 starts per case.
 
 ```bash
 python reproduce.py --mode highres
+python theory_numerics/verify_overlap_sign_intervals.py
 ```
 
 Generated results are written under `theory_numerics/reproduced_alpha0/`. The committed reference data remain unchanged. A positive result from local optimization is not proof of whole-class separation. The three unresolved cases remain unresolved.
