@@ -1,6 +1,6 @@
 # Versioning and citation
 
-**Current scientific snapshot:** [`e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/e4bb51f9e6891c88b46b8583b3fd0ef5c6414f8b).
+**Current scientific snapshot:** [`be8391ad763860df062226fa727f8a914ee4a29e`](https://github.com/dvlahek/detector-induced-spin-identifiability/tree/be8391ad763860df062226fa727f8a914ee4a29e).
 
 **Numerical code version:** 1.9.0. The above SHA identifies the exact frozen computations, including the 48-segment verification data. Development commits on `main` may contain later documentation changes and should not replace the frozen source in academic citations.
 
